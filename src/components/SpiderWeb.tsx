@@ -84,8 +84,8 @@ export function SpiderWeb() {
       const spokes = 12;
       for (let spoke = 0; spoke < spokes; spoke++) {
         ctx.beginPath();
-        ctx.strokeStyle = "rgba(0, 128, 255, 0.08)";
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(0, 128, 255, 0.25)";
+        ctx.lineWidth = 2;
 
         for (let i = 0; i < 7; i++) {
           const pointIndex = i === 0 ? 0 : 1 + i * spokes - spokes + spoke;
@@ -104,8 +104,8 @@ export function SpiderWeb() {
       // Dessiner les anneaux
       for (let ring = 1; ring <= 6; ring++) {
         ctx.beginPath();
-        ctx.strokeStyle = "rgba(0, 128, 255, 0.06)";
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(0, 128, 255, 0.2)";
+        ctx.lineWidth = 1.5;
 
         for (let spoke = 0; spoke < spokes; spoke++) {
           const pointIndex = 1 + (ring - 1) * spokes + spoke;
@@ -127,13 +127,13 @@ export function SpiderWeb() {
         if (index === 0) {
           // Point central plus visible
           ctx.beginPath();
-          ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0, 128, 255, 0.3)";
+          ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(0, 128, 255, 0.6)";
           ctx.fill();
         } else {
           ctx.beginPath();
-          ctx.arc(point.x, point.y, 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0, 128, 255, 0.2)";
+          ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(0, 128, 255, 0.4)";
           ctx.fill();
         }
       });
@@ -156,7 +156,6 @@ export function SpiderWeb() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.4 }}
     />
   );
 }
