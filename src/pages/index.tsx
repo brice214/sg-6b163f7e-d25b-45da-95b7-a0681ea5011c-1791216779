@@ -1,6 +1,10 @@
 import { SEO } from "@/components/SEO";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Services } from "@/components/homepage/Services";
+import { WhySpiderhoster } from "@/components/homepage/WhySpiderhoster";
+import { Offers } from "@/components/homepage/Offers";
+import { FAQ } from "@/components/homepage/FAQ";
 
 export default function Home() {
   return (
@@ -11,6 +15,10 @@ export default function Home() {
       />
       <Header />
       <Hero />
+      <Services />
+      <WhySpiderhoster />
+      <Offers />
+      <FAQ />
     </>
   );
 }

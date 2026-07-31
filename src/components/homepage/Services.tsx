@@ -1,4 +1,4 @@
-import { Server, Wordpress, Cloud, Globe } from "lucide-react";
+import { Server, Package, Cloud, Globe } from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ export function Services() {
       gradient: "from-primary/10 to-primary/5",
     },
     {
-      icon: Wordpress,
+      icon: Package,
       title: "Hébergement WordPress",
       description: "Hébergement optimisé pour WordPress avec installation 1-clic, cache intégré et mises à jour automatiques. Performance maximale garantie.",
       features: ["Installation 1-clic", "Cache LiteSpeed", "Mises à jour auto"],
