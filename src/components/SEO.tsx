@@ -40,7 +40,7 @@ export function SEOElements({
 }
 
 // Default SEO component for use in pages/_app.tsx or individual pages (uses next/head)
-export default function SEO(props: SEOProps) {
+export function SEO(props: SEOProps) {
   return (
     <Head>
       <SEOElements {...props} />
