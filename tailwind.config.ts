@@ -43,6 +43,10 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        "blue-light": "hsl(var(--blue-light))",
+        "blue-mid": "hsl(var(--blue-mid))",
+        "blue-dark": "hsl(var(--blue-dark))",
+        "gray-dark": "hsl(var(--gray-dark))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -55,6 +59,7 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
+        "gradient-blue": "var(--gradient-blue)",
       },
       boxShadow: {
         card: "var(--shadow-card)",
