@@ -4,7 +4,10 @@ import { Hero } from "@/components/Hero";
 import { Services } from "@/components/homepage/Services";
 import { WhySpiderhoster } from "@/components/homepage/WhySpiderhoster";
 import { Offers } from "@/components/homepage/Offers";
+import { Testimonials } from "@/components/homepage/Testimonials";
+import { BlogPreview } from "@/components/homepage/BlogPreview";
 import { FAQ } from "@/components/homepage/FAQ";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -18,7 +21,10 @@ export default function Home() {
       <Services />
       <WhySpiderhoster />
       <Offers />
+      <Testimonials />
+      <BlogPreview />
       <FAQ />
+      <Footer />
     </>
   );
 }

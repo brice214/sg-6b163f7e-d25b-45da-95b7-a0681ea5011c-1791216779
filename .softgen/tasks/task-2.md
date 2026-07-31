@@ -1,6 +1,6 @@
 ---
 title: Homepage Services + Offres + FAQ
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [homepage, services, pricing, faq]
@@ -17,11 +17,11 @@ Créer les sections principales de la homepage après le Hero : Services (Web/Wo
 - [x] Section Pourquoi SPIDERHOSTER : 6 raisons avec icônes (Performance, Sécurité, Support 24/7, Scalabilité, Confidentialité, Uptime 99.9%)
 - [x] Section Offres : 3 forfaits (Starter/Business/Premium) avec pricing FCFA, features listées, boutons Commander
 - [x] Section FAQ : accordéon avec 8 questions couvrant migration, sauvegardes, support, paiement, upgrade, localisation, garantie
-- [ ] Ajouter section Témoignages clients (3-4 avis authentiques)
-- [ ] Ajouter section Blog preview (3 derniers articles)
-- [ ] Créer Footer avec 4 colonnes + moyens paiement
+- [x] Ajouter section Témoignages clients (4 avis authentiques avec noms, entreprises, rôles)
+- [x] Ajouter section Blog preview (3 derniers articles avec dates, catégories, temps lecture)
+- [x] Créer Footer avec 4 colonnes (Services, Entreprise, Contact, Réseaux) + moyens paiement
 
 ## Acceptance
-- Sections Services + Pourquoi + Offres + FAQ visibles et fonctionnelles
-- Pricing clair en FCFA avec features détaillées
-- FAQ interactive avec accordéon smooth
+- Homepage complète avec 9 sections professionnelles
+- Design cohérent du header au footer avec palette logo
+- Tous les CTA pointent vers pages externes appropriées
