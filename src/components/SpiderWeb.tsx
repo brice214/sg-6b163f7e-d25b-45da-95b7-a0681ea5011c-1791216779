@@ -9,10 +9,22 @@ interface Point {
   baseY: number;
 }
 
+interface Spider {
+  x: number;
+  y: number;
+  size: number;
+  speed: number;
+  angle: number;
+  ring: number;
+  direction: number;
+  legPhase: number;
+}
+
 export function SpiderWeb() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const pointsRef = useRef<Point[]>([]);
+  const spidersRef = useRef<Spider[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -25,6 +37,7 @@ export function SpiderWeb() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initPoints();
+      initSpiders();
     };
 
     const initPoints = () => {
@@ -56,8 +69,96 @@ export function SpiderWeb() {
       pointsRef.current = points;
     };
 
+    const initSpiders = () => {
+      const spiders: Spider[] = [];
+      const numberOfSpiders = 8;
+
+      for (let i = 0; i < numberOfSpiders; i++) {
+        spiders.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          size: 3 + Math.random() * 5,
+          speed: 0.3 + Math.random() * 0.5,
+          angle: Math.random() * Math.PI * 2,
+          ring: Math.floor(Math.random() * 5) + 1,
+          direction: Math.random() > 0.5 ? 1 : -1,
+          legPhase: Math.random() * Math.PI * 2,
+        });
+      }
+
+      spidersRef.current = spiders;
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const drawSpider = (spider: Spider) => {
+      if (!ctx) return;
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = (spider.ring / 6) * Math.min(canvas.width, canvas.height) * 0.45;
+
+      spider.x = centerX + Math.cos(spider.angle) * radius;
+      spider.y = centerY + Math.sin(spider.angle) * radius;
+
+      // Corps de l'araignée
+      ctx.save();
+      ctx.translate(spider.x, spider.y);
+      ctx.rotate(spider.angle + Math.PI / 2);
+
+      // Abdomen
+      ctx.beginPath();
+      ctx.ellipse(0, 0, spider.size * 0.6, spider.size, 0, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(31, 41, 55, 0.7)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(0, 128, 255, 0.3)";
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+
+      // Tête
+      ctx.beginPath();
+      ctx.arc(0, -spider.size * 0.8, spider.size * 0.5, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(31, 41, 55, 0.8)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(0, 128, 255, 0.3)";
+      ctx.stroke();
+
+      // Pattes (4 de chaque côté)
+      const legLength = spider.size * 2;
+      const legPhase = spider.legPhase;
+
+      for (let i = 0; i < 4; i++) {
+        const legAngle = (i * Math.PI) / 6 - Math.PI / 4;
+        const wave = Math.sin(legPhase + i * 0.5) * 0.2;
+
+        // Pattes gauches
+        ctx.beginPath();
+        ctx.moveTo(0, -spider.size * 0.3 + i * spider.size * 0.3);
+        ctx.quadraticCurveTo(
+          -legLength * 0.5,
+          -spider.size * 0.3 + i * spider.size * 0.3 - legLength * 0.3 + wave * legLength,
+          -legLength * Math.cos(legAngle),
+          legLength * Math.sin(legAngle) + wave * legLength
+        );
+        ctx.strokeStyle = "rgba(31, 41, 55, 0.6)";
+        ctx.lineWidth = spider.size * 0.15;
+        ctx.stroke();
+
+        // Pattes droites
+        ctx.beginPath();
+        ctx.moveTo(0, -spider.size * 0.3 + i * spider.size * 0.3);
+        ctx.quadraticCurveTo(
+          legLength * 0.5,
+          -spider.size * 0.3 + i * spider.size * 0.3 - legLength * 0.3 + wave * legLength,
+          legLength * Math.cos(legAngle),
+          legLength * Math.sin(legAngle) + wave * legLength
+        );
+        ctx.stroke();
+      }
+
+      ctx.restore();
     };
 
     const animate = () => {
@@ -136,6 +237,24 @@ export function SpiderWeb() {
           ctx.fillStyle = "rgba(0, 128, 255, 0.4)";
           ctx.fill();
         }
+      });
+
+      // Animer et dessiner les araignées
+      spidersRef.current.forEach((spider) => {
+        spider.angle += spider.speed * 0.01 * spider.direction;
+        spider.legPhase += 0.1;
+
+        // Changer de direction aléatoirement
+        if (Math.random() < 0.005) {
+          spider.direction *= -1;
+        }
+
+        // Changer d'anneau aléatoirement
+        if (Math.random() < 0.002) {
+          spider.ring = Math.max(1, Math.min(6, spider.ring + (Math.random() > 0.5 ? 1 : -1)));
+        }
+
+        drawSpider(spider);
       });
 
       requestAnimationFrame(animate);
