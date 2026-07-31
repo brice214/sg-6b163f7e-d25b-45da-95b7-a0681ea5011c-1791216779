@@ -1,0 +1,473 @@
+Refonte du site vitrine SPIDERHOSTER
+Rôle
+
+Tu es un expert en UX/UI Design, en développement web moderne et en création de sites vitrines premium pour les entreprises technologiques.
+
+Ta mission est de créer la nouvelle version du site officiel de SPIDERHOSTER, une entreprise africaine spécialisée dans les solutions d'hébergement web.
+
+Le site doit être une vitrine professionnelle, moderne, rapide et élégante.
+
+Il ne doit pas être une application SaaS.
+
+Aucune base de données n'est nécessaire.
+
+Aucun espace administrateur ne doit être créé.
+
+Le contenu sera géré directement dans les fichiers du site.
+
+Les boutons d'achat pourront rediriger vers une plateforme externe de commande (WHMCS ou autre solution).
+
+Objectif du site
+
+Créer une présence digitale premium capable de :
+
+présenter les services SPIDERHOSTER
+mettre en confiance les visiteurs
+expliquer clairement les offres
+générer des demandes de commande
+renforcer l'image d'un hébergeur africain professionnel
+améliorer la visibilité SEO
+
+Le site doit donner l'impression d'une entreprise technologique internationale tout en conservant une identité africaine moderne.
+
+Direction artistique
+
+Créer un design :
+
+moderne
+professionnel
+premium
+technologique
+africain contemporain
+animé
+épuré
+très rapide
+
+S'inspirer des standards visuels des grands acteurs du cloud et de l'hébergement :
+
+Cloudflare
+DigitalOcean
+Vercel
+Hostinger
+
+sans copier leur design.
+
+L'identité visuelle doit rester propre à SPIDERHOSTER.
+
+Identité graphique
+
+Utiliser exclusivement les couleurs du logo SPIDERHOSTER.
+
+Créer une palette secondaire harmonieuse à partir du logo :
+
+couleurs principales
+nuances
+dégradés
+fonds
+effets lumineux
+
+Ne jamais modifier le logo.
+
+Le design doit renforcer :
+
+confiance
+sécurité
+rapidité
+technologie
+proximité africaine
+Animations et interactions
+
+Ajouter des animations modernes mais légères :
+
+apparition progressive des sections au scroll
+animations des cartes d'offres
+effets hover sur les boutons
+transitions fluides
+effets de profondeur
+animations discrètes dans le Hero
+éléments flottants représentant le cloud, les serveurs ou la connexion réseau
+
+Les animations doivent être élégantes et ne jamais ralentir le site.
+
+Architecture du site
+
+Créer les pages suivantes :
+
+Page Accueil
+
+Créer une page d'accueil impactante.
+
+Hero
+
+Contenu :
+
+Titre fort :
+
+"Votre hébergement web rapide, sécurisé et adapté à vos ambitions"
+
+Sous-titre présentant SPIDERHOSTER.
+
+Boutons :
+
+Commander maintenant
+Découvrir nos offres
+
+Ajouter une illustration moderne :
+
+serveurs
+cloud
+réseau
+Afrique numérique
+Section Services
+
+Présenter les services :
+
+Hébergement Web
+
+Présentation courte + bouton.
+
+Hébergement WordPress
+
+Présentation courte + bouton.
+
+Hébergement VPS
+
+Présentation courte + bouton.
+
+Nom de domaine
+
+Recherche et réservation de domaine.
+
+Section Pourquoi choisir SPIDERHOSTER
+
+Mettre en avant :
+
+Infrastructure performante
+Sécurité renforcée
+Support client
+Disponibilité élevée
+Solutions adaptées aux entreprises africaines
+Section Nos offres
+
+Présenter les différents forfaits.
+
+Créer des cartes modernes.
+
+Chaque service possède trois offres.
+
+Exemple :
+
+Hébergement Web :
+
+Starter
+Business
+Premium
+
+Hébergement WordPress :
+
+WP Starter
+WP Business
+WP Premium
+
+VPS :
+
+VPS Basic
+VPS Pro
+VPS Enterprise
+
+Chaque carte contient :
+
+Nom
+Prix
+Caractéristiques principales
+Bouton Commander
+
+Ajouter un badge :
+
+"Le plus choisi"
+
+sur l'offre recommandée.
+
+Section Nom de domaine
+
+Créer une présentation attractive.
+
+Afficher :
+
+.com
+
+.net
+
+.org
+
+.africa
+
+.ga
+
+.io
+
+avec un bouton :
+
+"Rechercher un domaine"
+
+Ce bouton peut rediriger vers un outil externe.
+
+Section Témoignages
+
+Créer une zone avec avis clients.
+
+Prévoir plusieurs cartes.
+
+Section Blog
+
+Afficher les derniers articles.
+
+Cartes avec :
+
+image
+titre
+extrait
+bouton lire plus
+Section FAQ
+
+Créer une FAQ statique.
+
+Questions :
+
+Pourquoi choisir Spiderhoster ?
+Quel hébergement choisir ?
+Proposez-vous des certificats SSL ?
+Comment migrer mon site ?
+Quel support proposez-vous ?
+Page Hébergement Web
+
+Créer une page dédiée.
+
+Sections :
+
+Présentation
+Avantages
+Comparatif des trois forfaits
+FAQ
+Bouton Commander
+Page Hébergement WordPress
+
+Sections :
+
+Pourquoi choisir un hébergement WordPress optimisé
+Fonctionnalités
+Les trois offres
+FAQ
+Page Hébergement VPS
+
+Sections :
+
+Présentation VPS
+Performances
+Sécurité
+Les trois offres
+FAQ
+Page Nom de domaine
+
+Sections :
+
+Recherche domaine
+Extensions disponibles
+Tarifs
+Questions fréquentes
+Page À propos
+
+Présenter :
+
+Histoire de SPIDERHOSTER
+Mission
+Vision
+Valeurs
+Engagement envers les entreprises africaines
+
+Créer une image professionnelle.
+
+Page Blog
+
+Créer une page blog statique.
+
+Fonctionnalités :
+
+liste des articles
+catégories
+recherche visuelle
+pagination
+
+Aucune base de données.
+
+Les articles seront ajoutés manuellement.
+
+Page Contact
+
+Créer un formulaire simple :
+
+Nom
+
+Email
+
+Téléphone
+
+Sujet
+
+Message
+
+Le formulaire peut utiliser un service externe d'envoi d'emails.
+
+Ajouter :
+
+adresse
+téléphone
+email
+réseaux sociaux
+Header
+
+Créer un header premium.
+
+Barre supérieure
+
+Afficher :
+
+Téléphone
+Email
+Liens réseaux sociaux
+
+À droite :
+
+Bouton :
+
+Espace Client
+
+Bouton :
+
+Panneau de contrôle
+
+Ces boutons redirigent vers des URLs externes.
+
+Menu principal
+
+Logo SPIDERHOSTER
+
+Menu :
+
+Accueil
+
+Hébergement Web
+
+WordPress
+
+VPS
+
+Domaines
+
+Blog
+
+À propos
+
+Contact
+
+Bouton :
+
+Commander
+
+Header fixe au défilement.
+
+Footer
+
+Créer un footer complet.
+
+Sections :
+
+Entreprise
+
+Services
+
+Support
+
+Ressources
+
+Contact
+
+Moyens de paiement acceptés :
+
+Airtel Money
+Moov Money
+Carte bancaire
+Virement bancaire
+Chèque
+Cash
+Contraintes techniques
+
+Créer uniquement un site vitrine.
+
+Ne pas créer :
+
+base de données
+authentification
+tableau de bord
+espace client interne
+CMS interne
+gestion utilisateur
+
+Prévoir uniquement :
+
+pages statiques
+composants réutilisables
+contenu facilement modifiable
+liens externes vers les systèmes de commande
+
+Optimiser :
+
+vitesse
+SEO
+responsive design
+accessibilité
+SEO
+
+Optimiser les pages pour :
+
+hébergement web Gabon
+hébergeur web Afrique
+hébergement WordPress
+hébergement VPS
+nom de domaine
+serveur VPS Afrique
+hébergement professionnel
+
+Créer :
+
+balises SEO
+Open Graph
+données structurées Schema.org
+sitemap.xml
+robots.txt
+Performance
+
+Objectif :
+
+Score Lighthouse supérieur à 95.
+
+Utiliser :
+
+images optimisées
+lazy loading
+code propre
+animations performantes
+chargement rapide
+Résultat attendu
+
+Créer un site vitrine SPIDERHOSTER haut de gamme, moderne et professionnel, capable de rivaliser visuellement avec les grands hébergeurs internationaux tout en conservant une identité africaine forte.
+
+Le site doit inspirer :
+
+confiance
+sécurité
+performance
+proximité
+professionnalisme
+
+Il doit être une véritable vitrine commerciale destinée à convertir les visiteurs en clients.
