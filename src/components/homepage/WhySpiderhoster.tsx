@@ -35,16 +35,24 @@ export function WhySpiderhoster() {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-20 lg:py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/20 to-background">
+      {/* Subtle pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, hsl(207 100% 50%) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-slide-up">
-          <div className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-4">
-            <span className="text-sm font-mono font-semibold text-accent">Pourquoi nous choisir</span>
+          <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 mb-4">
+            <span className="text-sm font-mono font-semibold text-primary">Pourquoi nous choisir</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-foreground mb-4">
-            L'excellence au service de votre réussite
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mono font-bold text-foreground mb-4 tracking-tight">
+            L'excellence au service de votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">réussite</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             SPIDERHOSTER combine technologie de pointe et expertise locale pour vous offrir le meilleur hébergement en Afrique
           </p>
         </div>
@@ -53,17 +61,23 @@ export function WhySpiderhoster() {
           {reasons.map((reason, index) => (
             <div 
               key={reason.title}
-              className="group animate-slide-up"
+              className="group relative animate-slide-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="flex gap-4">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300" />
+              
+              <div className="relative flex gap-4 p-6 rounded-2xl border border-transparent group-hover:border-primary/20 transition-all duration-300">
                 <div className="flex-shrink-0">
-                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <reason.icon className="h-6 w-6 text-primary" />
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <reason.icon className="h-7 w-7 text-primary" />
+                    </div>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-mono font-bold text-foreground mb-2">
+                  <h3 className="text-xl font-mono font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {reason.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
