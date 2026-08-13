@@ -26,8 +26,8 @@ export function Hero() {
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-slide-up">
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+          <div className="animate-slide-up w-full">
             <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
               <span className="text-sm font-mono font-semibold text-primary flex items-center gap-2">
                 <Zap className="h-4 w-4" />
@@ -39,11 +39,11 @@ export function Hero() {
               Votre hébergement web <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">rapide, sécurisé</span> et adapté à vos ambitions
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
               Solutions d'hébergement premium au Gabon et en Afrique. Infrastructure moderne, support expert 24/7, et performances exceptionnelles pour votre réussite en ligne.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
               <Button 
                 asChild 
                 size="lg" 
@@ -69,11 +69,11 @@ export function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center justify-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Zap className="h-5 w-5 text-primary" />
                     </div>
@@ -86,7 +86,7 @@ export function Hero() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center justify-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Shield className="h-5 w-5 text-primary" />
                     </div>
@@ -99,7 +99,7 @@ export function Hero() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center justify-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Clock className="h-5 w-5 text-primary" />
                     </div>
@@ -110,9 +110,6 @@ export function Hero() {
               </div>
             </div>
           </div>
-
-          {/* Espace pour équilibrer la grille - vide intentionnellement car l'image est en background */}
-          <div className="hidden lg:block" />
         </div>
 
         {/* Scroll indicator */}
