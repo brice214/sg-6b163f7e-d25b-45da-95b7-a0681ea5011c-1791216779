@@ -3,9 +3,9 @@ title: Design System + Homepage Hero
 status: done
 priority: urgent
 type: feature
-tags: [design-system, homepage, hero]
+tags: [design-system, hero, homepage]
 created_by: agent
-created_at: 2026-07-31T22:40:45Z
+created_at: 2026-08-19T11:36:00Z
 position: 1
 ---
 
