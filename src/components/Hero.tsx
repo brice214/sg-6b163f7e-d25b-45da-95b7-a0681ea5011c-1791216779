@@ -111,11 +111,11 @@ export function Hero() {
             </div>
 
             {/* Scroll indicator - juste après les stats */}
-            <div className="flex justify-center animate-bounce">
-              <div className="h-12 w-8 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <a href="#offres" className="flex justify-center animate-bounce cursor-pointer">
+              <div className="h-12 w-8 rounded-full border-2 border-white/30 flex items-start justify-center p-2 hover:border-white/50 transition-colors">
                 <div className="h-2 w-2 rounded-full bg-white/50 animate-pulse" />
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
