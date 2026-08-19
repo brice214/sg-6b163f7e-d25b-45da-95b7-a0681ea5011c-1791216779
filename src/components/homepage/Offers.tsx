@@ -121,7 +121,7 @@ export function Offers() {
               <div className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
 
               {/* Card */}
-              <div className={`relative bg-card border-2 ${plan.popular ? `border-transparent bg-gradient-to-br ${plan.gradient}` : "border-border"} rounded-2xl p-8 h-full flex flex-col`}>
+              <div className={`relative bg-gradient-to-br ${plan.gradient} border-2 ${plan.popular ? "border-transparent" : "border-border"} rounded-2xl p-8 h-full flex flex-col backdrop-blur-sm`}>
                 {plan.popular && (
                   <Badge className={`absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r ${plan.borderGradient} text-white border-none`}>
                     Le plus populaire
