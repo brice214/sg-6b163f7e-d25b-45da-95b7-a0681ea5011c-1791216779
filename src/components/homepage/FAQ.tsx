@@ -16,24 +16,20 @@ export function FAQ() {
       answer: "Oui, absolument ! Notre équipe technique vous assiste gratuitement dans la migration de votre site. Contactez notre support avec les détails de votre hébergement actuel et nous nous occupons du transfert sans interruption de service.",
     },
     {
-      question: "Les sauvegardes sont-elles incluses ?",
-      answer: "Oui, toutes nos offres Business et Premium incluent des sauvegardes automatiques quotidiennes. Vos données sont sauvegardées sur des serveurs distincts et vous pouvez restaurer votre site à tout moment depuis cPanel.",
+      question: "Où sont situés vos datacenters ?",
+      answer: "Nos datacenters sont situés au Royaume-Uni, garantissant une infrastructure de pointe avec une connectivité optimale pour l'Afrique et le monde entier."
     },
     {
-      question: "Comment fonctionne le support 24/7 ?",
-      answer: "Notre équipe technique est disponible 24h/24 et 7j/7 par téléphone, email et chat en direct. Les clients Business et Premium bénéficient d'un support prioritaire avec temps de réponse garanti sous 30 minutes.",
+      question: "Puis-je changer de plan plus tard ?",
+      answer: "Oui, vous pouvez upgrader ou downgrader votre plan à tout moment depuis votre espace client. Les changements sont appliqués immédiatement."
     },
     {
-      question: "Quels moyens de paiement acceptez-vous ?",
-      answer: "Nous acceptons Airtel Money, Moov Money, cartes bancaires (Visa, Mastercard), virements bancaires, chèques et paiement en espèces à nos bureaux de Libreville. Le renouvellement peut être automatisé via carte bancaire ou mobile money.",
+      question: "Quel support technique proposez-vous ?",
+      answer: "Notre équipe d'experts est disponible 24/7 par email, chat en direct et téléphone pour vous accompagner à tout moment."
     },
     {
-      question: "Puis-je upgrader mon offre ultérieurement ?",
-      answer: "Oui, vous pouvez upgrader vers une offre supérieure à tout moment. Le changement est instantané et vous ne payez que la différence au prorata pour la période restante. Aucune interruption de service pendant la migration.",
-    },
-    {
-      question: "Où sont situés vos serveurs ?",
-      answer: "Nos serveurs sont situés dans un datacenter Tier III certifié à Libreville, Gabon. Cette localisation garantit latence minimale pour vos visiteurs africains, conformité avec les réglementations locales, et souveraineté de vos données.",
+      question: "Les certificats SSL sont-ils vraiment gratuits ?",
+      answer: "Oui, tous nos plans incluent des certificats SSL Let's Encrypt gratuits, automatiquement installés et renouvelés."
     },
     {
       question: "Offrez-vous une garantie satisfait ou remboursé ?",
