@@ -17,7 +17,7 @@ export function Header() {
           <div className="flex items-center justify-between h-10 text-xs md:text-sm">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-4 text-sm">
-                <a href="tel:+24174436343" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <a href="tel:+24174436343" className="flex items-center gap-2 text-white hover:text-primary transition-colors">
                   <Phone className="h-4 w-4" />
                   <span className="hidden md:inline">+241 74 43 63 43</span>
                 </a>
