@@ -6,14 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export function Offers() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "annually">("monthly");
+  const [isAnnual, setIsAnnual] = useState(false);
 
   const plans = [
     {
       name: "Starter",
       description: "Parfait pour débuter",
       priceMonthly: "3050",
-      priceAnnually: "30500",
+      priceAnnually: "36600",
       urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=monthly",
       urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=annually",
       features: [
@@ -26,17 +26,19 @@ export function Offers() {
         "WordPress Optimisé",
         "Support 24/7"
       ],
-      popular: false
+      popular: false,
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      borderGradient: "from-blue-500 to-cyan-500"
     },
     {
       name: "Evolution",
       description: "Notre meilleure offre",
       priceMonthly: "5800",
-      priceAnnually: "58000",
+      priceAnnually: "69600",
       urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=monthly",
       urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=annually",
       features: [
-        "300 GB Espace web",
+        "300 GB Espace Web",
         "Bande passante Illimitée",
         "4 Base de données",
         "4 Sous-domaine",
@@ -45,13 +47,15 @@ export function Offers() {
         "WordPress Optimisé",
         "Support 24/7"
       ],
-      popular: true
+      popular: true,
+      gradient: "from-primary/20 to-secondary/20",
+      borderGradient: "from-primary to-secondary"
     },
     {
       name: "Premium",
       description: "Performance maximale",
       priceMonthly: "7500",
-      priceAnnually: "75000",
+      priceAnnually: "90000",
       urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=monthly",
       urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=annually",
       features: [
@@ -64,116 +68,113 @@ export function Offers() {
         "WordPress Optimisé",
         "Support 24/7"
       ],
-      popular: false
+      popular: false,
+      gradient: "from-purple-500/10 to-pink-500/10",
+      borderGradient: "from-purple-500 to-pink-500"
     }
   ];
 
   return (
-    <section id="offres" className="py-20 bg-background">
+    <section id="offers" className="py-20 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-4">
-            Nos offres d'hébergement
+          <Badge variant="outline" className="mb-4">
+            Nos Offres
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-mono">
+            Plans d&apos;Hébergement
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Choisissez la formule qui correspond à vos besoins. Toutes nos offres incluent SSL gratuit et support 24/7
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+            Choisissez le plan qui correspond à vos besoins. Tous nos plans incluent un support 24/7.
           </p>
 
-          {/* Billing cycle toggle */}
-          <div className="inline-flex items-center gap-2 bg-muted/50 p-1 rounded-lg">
-            <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                billingCycle === "monthly"
-                  ? "bg-primary text-white shadow-md"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
+          {/* Toggle Mensuel/Annuel */}
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <span className={`text-sm font-medium transition-colors ${!isAnnual ? "text-foreground" : "text-muted-foreground"}`}>
               Mensuel
-            </button>
+            </span>
             <button
-              onClick={() => setBillingCycle("annually")}
-              className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                billingCycle === "annually"
-                  ? "bg-primary text-white shadow-md"
-                  : "text-muted-foreground hover:text-foreground"
+              onClick={() => setIsAnnual(!isAnnual)}
+              className={`relative inline-flex h-7 w-14 items-center rounded-full transition-colors ${
+                isAnnual ? "bg-primary" : "bg-muted"
               }`}
             >
-              Annuel
+              <span
+                className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
+                  isAnnual ? "translate-x-8" : "translate-x-1"
+                }`}
+              />
             </button>
+            <span className={`text-sm font-medium transition-colors ${isAnnual ? "text-foreground" : "text-muted-foreground"}`}>
+              Annuel
+            </span>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-card border rounded-2xl p-8 hover:shadow-xl transition-all duration-300 ${
-                plan.popular
-                  ? "border-primary shadow-lg shadow-primary/10 scale-105"
-                  : "border-border hover:border-primary/50"
-              }`}
+              className={`relative group ${plan.popular ? "md:-mt-4" : ""}`}
             >
-              {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1">
-                  Le plus populaire
-                </Badge>
-              )}
+              {/* Glow effect */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
 
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-mono font-bold text-foreground mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-muted-foreground">{plan.description}</p>
-              </div>
+              {/* Card */}
+              <div className={`relative bg-card border-2 ${plan.popular ? `border-transparent bg-gradient-to-br ${plan.gradient}` : "border-border"} rounded-2xl p-8 h-full flex flex-col`}>
+                {plan.popular && (
+                  <Badge className={`absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r ${plan.borderGradient} text-white border-none`}>
+                    Le plus populaire
+                  </Badge>
+                )}
 
-              <div className="text-center mb-6">
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-4xl font-mono font-bold text-foreground">
-                    {billingCycle === "monthly" ? plan.priceMonthly : plan.priceAnnually}
-                  </span>
-                  <span className="text-muted-foreground">FCFA</span>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold font-mono mb-2">{plan.name}</h3>
+                  <p className="text-sm text-muted-foreground">{plan.description}</p>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
-                  /{billingCycle === "monthly" ? "mois" : "an"}
-                </p>
-              </div>
 
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="h-3 w-3 text-primary" />
-                    </div>
-                    <span className="text-sm text-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                <div className="mb-6">
+                  <div className="flex items-baseline gap-2">
+                    <span className={`text-4xl font-bold font-mono bg-gradient-to-r ${plan.borderGradient} bg-clip-text text-transparent`}>
+                      {isAnnual ? plan.priceAnnually : plan.priceMonthly}
+                    </span>
+                    <span className="text-muted-foreground">FCFA</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {isAnnual ? "par an" : "par mois"}
+                  </p>
+                </div>
 
-              <Button
-                asChild
-                className={`w-full ${
-                  plan.popular
-                    ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white"
-                    : "bg-primary hover:bg-primary/90 text-white"
-                }`}
-              >
-                <a
-                  href={billingCycle === "monthly" ? plan.urlMonthly : plan.urlAnnually}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <ul className="space-y-3 mb-8 flex-grow">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  asChild
+                  className={`w-full bg-gradient-to-r ${plan.borderGradient} hover:opacity-90 text-white group/btn`}
                 >
-                  Choisir {plan.name}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
+                  <a 
+                    href={isAnnual ? plan.urlAnnually : plan.urlMonthly}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Choisir {plan.name}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  </a>
+                </Button>
+              </div>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
-            Tous les prix sont en Francs CFA. Paiements acceptés : Airtel Money, Moov Money, Carte bancaire, Virement, Chèque, Espèces
+            💳 Moyens de paiement : Airtel Money, Moov Money, Carte Bancaire, Virement, Chèque, Espèces
           </p>
         </div>
       </div>
