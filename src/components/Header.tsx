@@ -16,20 +16,19 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-10 text-xs md:text-sm">
             <div className="flex items-center gap-4">
-              <a 
-                href="tel:+24177123456" 
-                className="flex items-center gap-2 text-white hover:text-primary transition-colors"
-              >
-                <Phone className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">+241 77 12 34 56</span>
-              </a>
-              <a 
-                href="mailto:contact@spiderhoster.com" 
-                className="flex items-center gap-2 text-white hover:text-primary transition-colors"
-              >
-                <Mail className="h-3.5 w-3.5" />
-                <span className="hidden md:inline">contact@spiderhoster.com</span>
-              </a>
+              <div className="flex items-center gap-4 text-sm">
+                <a href="tel:+24174436343" className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <Phone className="h-4 w-4" />
+                  <span className="hidden md:inline">+241 74 43 63 43</span>
+                </a>
+                <a 
+                  href="mailto:contact@spiderhoster.com" 
+                  className="flex items-center gap-2 text-white hover:text-primary transition-colors"
+                >
+                  <Mail className="h-3.5 w-3.5" />
+                  <span className="hidden md:inline">contact@spiderhoster.com</span>
+                </a>
+              </div>
             </div>
             <div className="flex items-center gap-3">
               <a 
