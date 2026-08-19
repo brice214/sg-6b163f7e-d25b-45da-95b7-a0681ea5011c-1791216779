@@ -1,169 +1,179 @@
-import { Check, ArrowRight, Star } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export function Offers() {
-  const offers = [
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annually">("monthly");
+
+  const plans = [
     {
       name: "Starter",
       description: "Parfait pour débuter",
-      price: "9.990",
-      currency: "FCFA",
-      period: "/mois",
+      priceMonthly: "3050",
+      priceAnnually: "30500",
+      urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=monthly",
+      urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=annually",
       features: [
-        "10 GB d'espace disque",
-        "1 nom de domaine gratuit",
-        "5 comptes email",
-        "Bande passante illimitée",
-        "SSL gratuit",
-        "Support 24/7",
+        "2 GB Espace Web",
+        "Bande passante Illimitée",
+        "1 Base de données",
+        "1 Sous-domaine",
+        "10 Comptes Emails",
+        "Certificat SSL Gratuit",
+        "WordPress Optimisé",
+        "Support 24/7"
       ],
-      cta: "Choisir Starter",
-      popular: false,
+      popular: false
     },
     {
-      name: "Business",
+      name: "Evolution",
       description: "Notre meilleure offre",
-      price: "19.990",
-      currency: "FCFA",
-      period: "/mois",
+      priceMonthly: "5800",
+      priceAnnually: "58000",
+      urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=monthly",
+      urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=annually",
       features: [
-        "50 GB d'espace disque",
-        "3 noms de domaine gratuits",
-        "Comptes email illimités",
-        "Bande passante illimitée",
-        "SSL gratuit",
-        "Support 24/7",
-        "Sauvegardes automatiques",
+        "300 GB Espace web",
+        "Bande passante Illimitée",
+        "4 Base de données",
+        "4 Sous-domaine",
+        "20 Comptes Emails",
+        "Certificat SSL Gratuit",
+        "WordPress Optimisé",
+        "Support 24/7"
       ],
-      cta: "Choisir Business",
-      popular: true,
+      popular: true
     },
     {
       name: "Premium",
       description: "Performance maximale",
-      price: "39.990",
-      currency: "FCFA",
-      period: "/mois",
+      priceMonthly: "7500",
+      priceAnnually: "75000",
+      urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=monthly",
+      urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=annually",
       features: [
-        "100 GB d'espace disque",
-        "5 noms de domaine gratuits",
-        "Comptes email illimités",
-        "Bande passante illimitée",
-        "SSL gratuit",
-        "Support prioritaire 24/7",
-        "Sauvegardes automatiques",
-        "CDN gratuit",
+        "500 GB Espace Web",
+        "Bande passante Illimitée",
+        "10 Base de données",
+        "10 Sous-domaine",
+        "30 Comptes Emails",
+        "Certificat SSL Gratuit",
+        "WordPress Optimisé",
+        "Support 24/7"
       ],
-      cta: "Choisir Premium",
-      popular: false,
-    },
+      popular: false
+    }
   ];
 
   return (
-    <section id="offres" className="py-20 lg:py-32 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      </div>
-      
-      {/* Tech grid */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(hsl(207 100% 50% / 0.5) 1px, transparent 1px), linear-gradient(90deg, hsl(207 100% 50% / 0.5) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-slide-up">
-          <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-4">
-            <span className="text-sm font-mono font-semibold text-primary">Nos Offres</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mono font-bold text-white mb-4 tracking-tight">
-            Des tarifs <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">adaptés</span> à chaque projet
+    <section id="offres" className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-4">
+            Nos offres d'hébergement
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             Choisissez la formule qui correspond à vos besoins. Toutes nos offres incluent SSL gratuit et support 24/7
           </p>
+
+          {/* Billing cycle toggle */}
+          <div className="inline-flex items-center gap-2 bg-muted/50 p-1 rounded-lg">
+            <button
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                billingCycle === "monthly"
+                  ? "bg-primary text-white shadow-md"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Mensuel
+            </button>
+            <button
+              onClick={() => setBillingCycle("annually")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                billingCycle === "annually"
+                  ? "bg-primary text-white shadow-md"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Annuel
+            </button>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {offers.map((offer, index) => (
-            <Card 
-              key={offer.name}
-              className={`relative overflow-hidden bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 transition-all duration-500 animate-slide-up ${offer.popular ? 'lg:scale-105 border-primary/50 shadow-2xl shadow-primary/20' : 'hover:scale-105'}`}
-              style={{ animationDelay: `${index * 100}ms` }}
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {plans.map((plan, index) => (
+            <div
+              key={index}
+              className={`relative bg-card border rounded-2xl p-8 hover:shadow-xl transition-all duration-300 ${
+                plan.popular
+                  ? "border-primary shadow-lg shadow-primary/10 scale-105"
+                  : "border-border hover:border-primary/50"
+              }`}
             >
-              {/* Glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-500" />
-              
-              {offer.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-primary via-secondary to-primary text-white text-center py-3">
-                  <div className="flex items-center justify-center gap-2">
-                    <Star className="h-4 w-4 fill-white" />
-                    <span className="text-sm font-mono font-bold">LE PLUS POPULAIRE</span>
-                    <Star className="h-4 w-4 fill-white" />
-                  </div>
-                </div>
+              {plan.popular && (
+                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1">
+                  Le plus populaire
+                </Badge>
               )}
-              
-              <div className={`relative p-8 ${offer.popular ? 'pt-16' : ''}`}>
-                <div className="mb-6">
-                  <h3 className="text-2xl md:text-3xl font-mono font-bold text-white mb-2">
-                    {offer.name}
-                  </h3>
-                  <p className="text-sm text-gray-400">
-                    {offer.description}
-                  </p>
-                </div>
-                
-                <div className="mb-8">
-                  <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-5xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                      {offer.price}
-                    </span>
-                    <span className="text-lg text-gray-400">
-                      {offer.currency}
-                    </span>
-                  </div>
-                  <div className="text-sm text-gray-500">{offer.period}</div>
-                </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {offer.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 mt-0.5">
-                        <div className="h-5 w-5 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                          <Check className="h-3 w-3 text-white" />
-                        </div>
-                      </div>
-                      <span className="text-sm text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button 
-                  asChild 
-                  className={`w-full group ${offer.popular ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90 hover:scale-105 shadow-lg shadow-primary/50' : 'bg-white/10 hover:bg-white/20 text-white border-white/20'}`}
-                  size="lg"
-                >
-                  <a href="https://order.spiderhoster.com" target="_blank" rel="noopener noreferrer">
-                    {offer.cta}
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
+
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-mono font-bold text-foreground mb-2">
+                  {plan.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">{plan.description}</p>
               </div>
-            </Card>
+
+              <div className="text-center mb-6">
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-4xl font-mono font-bold text-foreground">
+                    {billingCycle === "monthly" ? plan.priceMonthly : plan.priceAnnually}
+                  </span>
+                  <span className="text-muted-foreground">FCFA</span>
+                </div>
+                <p className="text-sm text-muted-foreground mt-1">
+                  /{billingCycle === "monthly" ? "mois" : "an"}
+                </p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-3 w-3 text-primary" />
+                    </div>
+                    <span className="text-sm text-foreground">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Button
+                asChild
+                className={`w-full ${
+                  plan.popular
+                    ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white"
+                    : "bg-primary hover:bg-primary/90 text-white"
+                }`}
+              >
+                <a
+                  href={billingCycle === "monthly" ? plan.urlMonthly : plan.urlAnnually}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Choisir {plan.name}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           ))}
         </div>
-        
-        <div className="text-center mt-12 animate-fade-in">
-          <p className="text-gray-400 text-sm">
-            💳 Paiements acceptés : Airtel Money, Moov Money, Carte bancaire, Virement, Chèque, Espèces
+
+        <div className="text-center mt-12">
+          <p className="text-sm text-muted-foreground">
+            Tous les prix sont en Francs CFA. Paiements acceptés : Airtel Money, Moov Money, Carte bancaire, Virement, Chèque, Espèces
           </p>
         </div>
       </div>
