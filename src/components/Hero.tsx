@@ -113,7 +113,7 @@ export function Hero() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="h-12 w-8 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
             <div className="h-2 w-2 rounded-full bg-white/50 animate-pulse" />
           </div>
