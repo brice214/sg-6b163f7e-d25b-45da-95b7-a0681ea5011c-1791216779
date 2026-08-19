@@ -69,7 +69,7 @@ export function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-16">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
@@ -109,13 +109,13 @@ export function Hero() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="h-12 w-8 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-            <div className="h-2 w-2 rounded-full bg-white/50 animate-pulse" />
+            {/* Scroll indicator - juste après les stats */}
+            <div className="flex justify-center animate-bounce">
+              <div className="h-12 w-8 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+                <div className="h-2 w-2 rounded-full bg-white/50 animate-pulse" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
