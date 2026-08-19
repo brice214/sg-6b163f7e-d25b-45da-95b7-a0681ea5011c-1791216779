@@ -26,9 +26,7 @@ export function Offers() {
         "WordPress Optimisé",
         "Support 24/7"
       ],
-      popular: false,
-      gradient: "from-blue-500/10 to-cyan-500/10",
-      borderGradient: "from-blue-500 to-cyan-500"
+      popular: false
     },
     {
       name: "Evolution",
@@ -47,9 +45,7 @@ export function Offers() {
         "WordPress Optimisé",
         "Support 24/7"
       ],
-      popular: true,
-      gradient: "from-primary/20 to-secondary/20",
-      borderGradient: "from-primary to-secondary"
+      popular: true
     },
     {
       name: "Premium",
@@ -68,9 +64,7 @@ export function Offers() {
         "WordPress Optimisé",
         "Support 24/7"
       ],
-      popular: false,
-      gradient: "from-purple-500/10 to-pink-500/10",
-      borderGradient: "from-purple-500 to-pink-500"
+      popular: false
     }
   ];
 
@@ -85,7 +79,7 @@ export function Offers() {
             Plans d&apos;Hébergement
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Choisissez le plan qui correspond à vos besoins. Tous nos plans incluent un support 24/7.
+            Choisissez la formule qui correspond à vos besoins. Toutes nos offres incluent SSL gratuit et support 24/7
           </p>
 
           {/* Toggle Mensuel/Annuel */}
@@ -118,13 +112,13 @@ export function Offers() {
               className={`relative group ${plan.popular ? "md:-mt-4" : ""}`}
             >
               {/* Glow effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+              <div className={`absolute inset-0 ${plan.popular ? "bg-primary/20" : "bg-white/5"} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
 
               {/* Card */}
-              <div className={`relative bg-gradient-to-br ${plan.gradient} border-2 ${plan.popular ? "border-transparent" : "border-border"} rounded-2xl p-8 h-full flex flex-col backdrop-blur-sm`}>
+              <div className={`relative ${plan.popular ? "bg-primary/10 border-primary/30" : "bg-card/50 border-border"} border-2 rounded-2xl p-8 h-full flex flex-col backdrop-blur-sm`}>
                 {plan.popular && (
-                  <Badge className={`absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r ${plan.borderGradient} text-white border-none`}>
-                    Le plus populaire
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white border-none">
+                    ⭐ Le plus populaire ⭐
                   </Badge>
                 )}
 
@@ -135,13 +129,13 @@ export function Offers() {
 
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2">
-                    <span className={`text-4xl font-bold font-mono bg-gradient-to-r ${plan.borderGradient} bg-clip-text text-transparent`}>
+                    <span className="text-4xl font-bold font-mono text-primary">
                       {isAnnual ? plan.priceAnnually : plan.priceMonthly}
                     </span>
                     <span className="text-muted-foreground">FCFA</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {isAnnual ? "par an" : "par mois"}
+                    {isAnnual ? "/an" : "/mois"}
                   </p>
                 </div>
 
@@ -156,7 +150,7 @@ export function Offers() {
 
                 <Button
                   asChild
-                  className={`w-full bg-gradient-to-r ${plan.borderGradient} hover:opacity-90 text-white group/btn`}
+                  className={`w-full ${plan.popular ? "bg-primary hover:bg-primary/90" : "bg-muted hover:bg-muted/80"} group/btn`}
                 >
                   <a 
                     href={isAnnual ? plan.urlAnnually : plan.urlMonthly}
@@ -174,7 +168,7 @@ export function Offers() {
 
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
-            💳 Moyens de paiement : Airtel Money, Moov Money, Carte Bancaire, Virement, Chèque, Espèces
+            💳 Paiements acceptés : Airtel Money, Moov Money, Carte bancaire, Virement, Chèque, Espèces
           </p>
         </div>
       </div>
