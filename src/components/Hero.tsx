@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-24 md:pt-32">
       {/* Background image pleine hauteur */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -31,7 +31,7 @@ export function Hero() {
             <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
               <span className="text-sm font-mono font-semibold text-primary flex items-center gap-2">
                 <Zap className="h-4 w-4" />
-                Infrastructure cloud africaine
+                Hébergement Premium pour l&apos;Afrique
               </span>
             </div>
             
@@ -40,7 +40,7 @@ export function Hero() {
             </h1>
             
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Solutions d'hébergement premium au Gabon et en Afrique. Infrastructure moderne, support expert 24/7, et performances exceptionnelles pour votre réussite en ligne.
+              Infrastructure internationale de pointe au service de l&apos;Afrique. Datacenters au Royaume-Uni, support expert 24/7 basé au Gabon, performances exceptionnelles pour votre réussite en ligne.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
@@ -72,40 +72,40 @@ export function Hero() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-16">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
+                <div className="relative bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
                   <div className="flex items-center justify-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Zap className="h-5 w-5 text-primary" />
                     </div>
                     <div className="text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">99.9%</div>
                   </div>
-                  <div className="text-xs text-gray-400 font-medium">Uptime garanti</div>
+                  <div className="text-xs text-gray-300 font-medium">Uptime garanti</div>
                 </div>
               </div>
 
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
+                <div className="relative bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
                   <div className="flex items-center justify-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Shield className="h-5 w-5 text-primary" />
                     </div>
                     <div className="text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">SSL</div>
                   </div>
-                  <div className="text-xs text-gray-400 font-medium">Certificat gratuit</div>
+                  <div className="text-xs text-gray-300 font-medium">Certificat gratuit</div>
                 </div>
               </div>
 
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
+                <div className="relative bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all">
                   <div className="flex items-center justify-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Clock className="h-5 w-5 text-primary" />
                     </div>
                     <div className="text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">24/7</div>
                   </div>
-                  <div className="text-xs text-gray-400 font-medium">Support expert</div>
+                  <div className="text-xs text-gray-300 font-medium">Support expert</div>
                 </div>
               </div>
             </div>
