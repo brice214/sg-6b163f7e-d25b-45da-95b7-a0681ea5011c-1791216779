@@ -40,7 +40,7 @@ export function Hero() {
             </h1>
             
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Infrastructure internationale de pointe au service de l&apos;Afrique. Datacenters au Royaume-Uni, support expert 24/7 basé au Gabon, performances exceptionnelles pour votre réussite en ligne.
+              Infrastructure internationale de pointe au service de l&apos;Afrique. Support expert 24/7 basé au Gabon et en Europe, performances exceptionnelles pour votre réussite en ligne.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
