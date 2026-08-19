@@ -115,7 +115,7 @@ export function Offers() {
               <div className={`absolute inset-0 ${plan.popular ? "bg-primary/20" : "bg-white/5"} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
 
               {/* Card */}
-              <div className={`relative ${plan.popular ? "bg-primary/10 border-primary/30" : "bg-card/50 border-border"} border-2 rounded-2xl p-8 h-full flex flex-col backdrop-blur-sm`}>
+              <div className={`relative ${plan.popular ? "bg-blue-600" : "bg-slate-900"} border-2 ${plan.popular ? "border-blue-500" : "border-slate-800"} rounded-2xl p-8 h-full flex flex-col`}>
                 {plan.popular && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white border-none">
                     ⭐ Le plus populaire ⭐
@@ -123,18 +123,18 @@ export function Offers() {
                 )}
 
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold font-mono mb-2">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
+                  <h3 className="text-2xl font-bold font-mono mb-2 text-white">{plan.name}</h3>
+                  <p className="text-sm text-gray-300">{plan.description}</p>
                 </div>
 
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold font-mono text-primary">
+                    <span className="text-4xl font-bold font-mono text-white">
                       {isAnnual ? plan.priceAnnually : plan.priceMonthly}
                     </span>
-                    <span className="text-muted-foreground">FCFA</span>
+                    <span className="text-gray-300">FCFA</span>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-gray-400 mt-1">
                     {isAnnual ? "/an" : "/mois"}
                   </p>
                 </div>
@@ -142,15 +142,15 @@ export function Offers() {
                 <ul className="space-y-3 mb-8 flex-grow">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{feature}</span>
+                      <Check className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-200">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Button
                   asChild
-                  className={`w-full ${plan.popular ? "bg-primary hover:bg-primary/90" : "bg-muted hover:bg-muted/80"} group/btn`}
+                  className={`w-full ${plan.popular ? "bg-white text-blue-600 hover:bg-gray-100" : "bg-slate-800 hover:bg-slate-700 text-white"} group/btn`}
                 >
                   <a 
                     href={isAnnual ? plan.urlAnnually : plan.urlMonthly}
