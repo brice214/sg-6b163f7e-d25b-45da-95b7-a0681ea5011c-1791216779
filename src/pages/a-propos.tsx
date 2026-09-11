@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Target, Eye, Award, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function APropos() {
   const valeurs = [
@@ -229,9 +230,9 @@ export default function APropos() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10">
-                  <a href="/contact">
+                  <Link href="/contact">
                     Nous contacter
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>

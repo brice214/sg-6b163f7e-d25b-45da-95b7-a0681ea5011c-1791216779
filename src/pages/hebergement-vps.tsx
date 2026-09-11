@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Cpu, HardDrive, Network, Shield, Zap, Server } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function HebergementVPS() {
   const forfaits = [
@@ -364,9 +365,9 @@ export default function HebergementVPS() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10">
-                  <a href="/contact">
+                  <Link href="/contact">
                     Nous contacter
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>

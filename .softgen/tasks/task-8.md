@@ -1,6 +1,6 @@
 ---
 title: Page Hébergement WordPress
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [pages, hébergement]

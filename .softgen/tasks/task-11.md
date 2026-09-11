@@ -1,6 +1,6 @@
 ---
 title: Page À propos
-status: in_progress
+status: done
 priority: medium
 type: feature
 tags: [pages, entreprise]
