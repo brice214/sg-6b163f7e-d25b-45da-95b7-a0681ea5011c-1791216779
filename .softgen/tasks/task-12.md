@@ -1,6 +1,6 @@
 ---
 title: Page Blog
-status: todo
+status: in_progress
 priority: low
 type: feature
 tags: [pages, contenu]

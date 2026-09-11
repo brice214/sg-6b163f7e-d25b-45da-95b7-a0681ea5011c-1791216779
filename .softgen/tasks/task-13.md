@@ -1,6 +1,6 @@
 ---
 title: Page Contact
-status: todo
+status: in_progress
 priority: medium
 type: feature
 tags: [pages, contact]
