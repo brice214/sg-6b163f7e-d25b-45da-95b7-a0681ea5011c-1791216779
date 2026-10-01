@@ -153,8 +153,8 @@ export default function HebergementWordPress() {
           titlePrefix="WordPress"
           titleHighlight="Surpuissant"
           description="Hébergement WordPress optimisé avec cache avancé, staging, mises à jour automatiques et gestion simplifiée pour des performances exceptionnelles"
-          backgroundImage="/generated/wordpress-performance.png"
-          imageAlt="Performance WordPress optimisée SPIDERHOSTER"
+          backgroundImage="/Hebergement-WordPress-Gabon.png"
+          imageAlt="Hébergement WordPress au Gabon avec logo WordPress - SPIDERHOSTER"
           primaryCta={{
             label: "Choisir mon forfait",
             href: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress",
