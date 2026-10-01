@@ -166,8 +166,8 @@ export default function HebergementVPS() {
           titlePrefix="VPS"
           titleHighlight="Puissants"
           description="Des serveurs privés virtuels avec ressources dédiées, stockage NVMe ultra-rapide et accès root complet pour vos applications les plus exigeantes"
-          backgroundImage="/generated/vps-infrastructure.png"
-          imageAlt="Infrastructure VPS haute performance SPIDERHOSTER"
+          backgroundImage="/hebergement-vps-gabon.png"
+          imageAlt="Hébergement VPS au Gabon - SPIDERHOSTER"
           primaryCta={{
             label: "Choisir mon VPS",
             href: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-vps",
