@@ -73,6 +73,9 @@ export function Header() {
             <Link href="/hebergement-vps" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted/50">
               VPS
             </Link>
+            <Link href="/emails-professionnels" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted/50">
+              Emails Pro
+            </Link>
             <Link href="/domaines" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted/50">
               Domaines
             </Link>
@@ -119,6 +122,9 @@ export function Header() {
             </Link>
             <Link href="/hebergement-vps" className="px-4 py-3 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)}>
               VPS
+            </Link>
+            <Link href="/emails-professionnels" className="px-4 py-3 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)}>
+              Emails Pro
             </Link>
             <Link href="/domaines" className="px-4 py-3 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Domaines

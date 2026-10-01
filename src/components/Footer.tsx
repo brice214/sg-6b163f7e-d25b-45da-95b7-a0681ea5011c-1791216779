@@ -49,6 +49,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/emails-professionnels" className="text-background/70 hover:text-background transition-colors">
+                  Emails Professionnels
+                </Link>
+              </li>
+              <li>
                 <Link href="/domaines" className="text-background/70 hover:text-background transition-colors">
                   Noms de Domaine
                 </Link>
