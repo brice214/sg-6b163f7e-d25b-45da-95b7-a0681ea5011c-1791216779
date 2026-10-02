@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -5,9 +6,13 @@ import { Badge } from "@/components/ui/badge";
 export interface PricingPlan {
   name: string;
   description: string;
-  price: string;
-  period: string;
-  url: string;
+  price?: string;
+  period?: string;
+  url?: string;
+  priceMonthly?: string;
+  priceAnnually?: string;
+  urlMonthly?: string;
+  urlAnnually?: string;
   features: string[];
   popular?: boolean;
 }
@@ -19,9 +24,20 @@ interface PricingSectionProps {
   subtitle: string;
   plans: PricingPlan[];
   footnote?: string;
+  billingToggle?: boolean;
 }
 
-export function PricingSection({ id, badgeLabel, title, subtitle, plans, footnote }: PricingSectionProps) {
+export function PricingSection({
+  id,
+  badgeLabel,
+  title,
+  subtitle,
+  plans,
+  footnote,
+  billingToggle = false,
+}: PricingSectionProps) {
+  const [isAnnual, setIsAnnual] = useState(false);
+
   return (
     <section id={id} className="py-20 lg:py-32 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
@@ -30,65 +46,94 @@ export function PricingSection({ id, badgeLabel, title, subtitle, plans, footnot
             {badgeLabel}
           </Badge>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold mb-4 text-foreground">{title}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-lg">{subtitle}</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8 text-lg">{subtitle}</p>
+
+          {billingToggle && (
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className={`text-sm font-medium transition-colors ${!isAnnual ? "text-foreground" : "text-muted-foreground"}`}>
+                Mensuel
+              </span>
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                className={`relative inline-flex h-7 w-14 items-center rounded-full transition-colors ${
+                  isAnnual ? "bg-primary" : "bg-muted"
+                }`}
+              >
+                <span
+                  className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
+                    isAnnual ? "translate-x-8" : "translate-x-1"
+                  }`}
+                />
+              </button>
+              <span className={`text-sm font-medium transition-colors ${isAnnual ? "text-foreground" : "text-muted-foreground"}`}>
+                Annuel
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan) => (
-            <div key={plan.name} className={`relative group ${plan.popular ? "md:-mt-4" : ""}`}>
-              <div
-                className={`absolute inset-0 ${
-                  plan.popular ? "bg-primary/20" : "bg-white/5"
-                } rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`}
-              />
+          {plans.map((plan) => {
+            const displayPrice = billingToggle ? (isAnnual ? plan.priceAnnually : plan.priceMonthly) : plan.price;
+            const displayPeriod = billingToggle ? (isAnnual ? "/an" : "/mois") : plan.period;
+            const displayUrl = billingToggle ? (isAnnual ? plan.urlAnnually : plan.urlMonthly) : plan.url;
 
-              <div
-                className={`relative ${plan.popular ? "bg-blue-600" : "bg-slate-900"} border-2 ${
-                  plan.popular ? "border-blue-500" : "border-slate-800"
-                } rounded-2xl p-8 h-full flex flex-col`}
-              >
-                {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white border-none">
-                    ⭐ Le plus populaire ⭐
-                  </Badge>
-                )}
+            return (
+              <div key={plan.name} className={`relative group ${plan.popular ? "md:-mt-4" : ""}`}>
+                <div
+                  className={`absolute inset-0 ${
+                    plan.popular ? "bg-primary/20" : "bg-white/5"
+                  } rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`}
+                />
 
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold font-mono mb-2 text-white">{plan.name}</h3>
-                  <p className="text-sm text-gray-300">{plan.description}</p>
-                </div>
-
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold font-mono text-white">{plan.price}</span>
-                    <span className="text-gray-300">FCFA</span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-1">{plan.period}</p>
-                </div>
-
-                <ul className="space-y-3 mb-8 flex-grow">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-200">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  asChild
-                  className={`w-full ${
-                    plan.popular ? "bg-white text-blue-600 hover:bg-gray-100" : "bg-slate-800 hover:bg-slate-700 text-white"
-                  } group/btn`}
+                <div
+                  className={`relative ${plan.popular ? "bg-blue-600" : "bg-slate-900"} border-2 ${
+                    plan.popular ? "border-blue-500" : "border-slate-800"
+                  } rounded-2xl p-8 h-full flex flex-col`}
                 >
-                  <a href={plan.url} target="_blank" rel="noopener noreferrer">
-                    Choisir {plan.name}
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                  </a>
-                </Button>
+                  {plan.popular && (
+                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white border-none">
+                      ⭐ Le plus populaire ⭐
+                    </Badge>
+                  )}
+
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold font-mono mb-2 text-white">{plan.name}</h3>
+                    <p className="text-sm text-gray-300">{plan.description}</p>
+                  </div>
+
+                  <div className="mb-6">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-bold font-mono text-white">{displayPrice}</span>
+                      <span className="text-gray-300">FCFA</span>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-1">{displayPeriod}</p>
+                  </div>
+
+                  <ul className="space-y-3 mb-8 flex-grow">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <Check className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-gray-200">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    asChild
+                    className={`w-full ${
+                      plan.popular ? "bg-white text-blue-600 hover:bg-gray-100" : "bg-slate-800 hover:bg-slate-700 text-white"
+                    } group/btn`}
+                  >
+                    <a href={displayUrl} target="_blank" rel="noopener noreferrer">
+                      Choisir {plan.name}
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                    </a>
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {footnote && (
