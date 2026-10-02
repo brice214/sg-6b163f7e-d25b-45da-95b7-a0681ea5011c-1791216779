@@ -41,6 +41,12 @@ export const blogArticles: BlogArticleMeta[] = [
     category: "WordPress",
     date: "22 Sept 2026",
     author: "Équipe SPIDERHOSTER",
+    readTime: "6 min",
+    metaDescription:
+      "10 astuces concrètes pour accélérer votre site WordPress : hébergement optimisé, cache, images, CDN. Guide complet SPIDERHOSTER pour améliorer votre vitesse et votre SEO.",
+    keywords: ["optimiser WordPress", "accélérer site WordPress", "vitesse WordPress", "hébergement WordPress Gabon"],
+    coverImage: "/generated/wordpress-vitesse-optimisation.png",
+    coverImageAlt: "Astuces pour optimiser la vitesse d'un site WordPress",
   },
   {
     slug: "securiser-site-web-ssl",
@@ -50,6 +56,12 @@ export const blogArticles: BlogArticleMeta[] = [
     category: "Sécurité",
     date: "15 Sept 2026",
     author: "Équipe SPIDERHOSTER",
+    readTime: "5 min",
+    metaDescription:
+      "Découvrez pourquoi le certificat SSL est indispensable en 2026 : sécurité, confiance, référencement Google. SSL gratuit inclus sur tous les forfaits SPIDERHOSTER.",
+    keywords: ["certificat SSL", "HTTPS site web", "sécuriser site internet", "SSL gratuit Gabon"],
+    coverImage: "/generated/certificat-ssl-securite-site.png",
+    coverImageAlt: "Importance du certificat SSL pour sécuriser un site web",
   },
   {
     slug: "vps-vs-hebergement-partage",
@@ -59,6 +71,12 @@ export const blogArticles: BlogArticleMeta[] = [
     category: "Infrastructure",
     date: "08 Sept 2026",
     author: "Équipe SPIDERHOSTER",
+    readTime: "7 min",
+    metaDescription:
+      "VPS ou hébergement mutualisé : comparatif complet pour choisir la solution adaptée à votre projet (performance, coût, évolutivité). Guide SPIDERHOSTER.",
+    keywords: ["VPS vs hébergement mutualisé", "serveur privé virtuel", "hébergement partagé", "choisir VPS Gabon"],
+    coverImage: "/generated/vps-hebergement-partage-comparatif.png",
+    coverImageAlt: "Comparatif entre VPS et hébergement partagé",
   },
   {
     slug: "lancer-boutique-en-ligne-gabon",
