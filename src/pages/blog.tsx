@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { SEO } from "@/components/SEO";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -68,8 +69,34 @@ const articles: Article[] = [
 ];
 
 const categories = ["Tous", "Guide", "WordPress", "Sécurité", "Infrastructure", "E-commerce", "Domaines"];
+const ARTICLES_PER_PAGE = 3;
 
 export default function Blog() {
+  const [selectedCategory, setSelectedCategory] = useState("Tous");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const filteredArticles = useMemo(
+    () => (selectedCategory === "Tous" ? articles : articles.filter((a) => a.category === selectedCategory)),
+    [selectedCategory]
+  );
+
+  const totalPages = Math.max(1, Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE));
+
+  const paginatedArticles = useMemo(
+    () => filteredArticles.slice((currentPage - 1) * ARTICLES_PER_PAGE, currentPage * ARTICLES_PER_PAGE),
+    [filteredArticles, currentPage]
+  );
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const goToPage = (page: number) => {
+    setCurrentPage(Math.min(Math.max(1, page), totalPages));
+    document.getElementById("articles")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <>
       <SEO
@@ -99,12 +126,17 @@ export default function Blog() {
         <section className="py-10 bg-background border-b border-border/50">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map((cat, index) => (
+              {categories.map((cat) => (
                 <Button
                   key={cat}
-                  variant={index === 0 ? "default" : "outline"}
+                  variant={selectedCategory === cat ? "default" : "outline"}
                   size="sm"
-                  className={index === 0 ? "bg-primary hover:bg-primary/90 text-white font-mono" : "border-border/50 font-mono"}
+                  onClick={() => handleCategoryChange(cat)}
+                  className={
+                    selectedCategory === cat
+                      ? "bg-primary hover:bg-primary/90 text-white font-mono"
+                      : "border-border/50 font-mono hover:border-primary/40"
+                  }
                 >
                   {cat}
                 </Button>
@@ -115,56 +147,81 @@ export default function Blog() {
 
         <section id="articles" className="py-20 lg:py-32 bg-background">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {articles.map((article, index) => (
-                <div key={article.slug} className="group relative animate-slide-up" style={{ animationDelay: `${index * 80}ms` }}>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 rounded-2xl" />
-                  <Card className="relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-300 flex flex-col h-full">
-                    <div className="h-44 bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden flex items-center justify-center">
-                      <Tag className="w-14 h-14 text-primary/30 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div className="p-6 flex-1 flex flex-col">
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" />
-                          <span>{article.date}</span>
-                        </div>
-                        <span className="px-2 py-0.5 bg-primary/10 text-primary rounded font-mono font-semibold">
-                          {article.category}
-                        </span>
+            {paginatedArticles.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                {paginatedArticles.map((article, index) => (
+                  <div key={article.slug} className="group relative animate-slide-up" style={{ animationDelay: `${index * 80}ms` }}>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 rounded-2xl" />
+                    <Card className="relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-300 flex flex-col h-full">
+                      <div className="h-44 bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden flex items-center justify-center">
+                        <Tag className="w-14 h-14 text-primary/30 group-hover:scale-110 transition-transform duration-300" />
                       </div>
-                      <h3 className="text-lg font-mono font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                        {article.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-3 leading-relaxed">
-                        {article.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <User className="w-3.5 h-3.5" />
-                          <span>{article.author}</span>
+                      <div className="p-6 flex-1 flex flex-col">
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            <span>{article.date}</span>
+                          </div>
+                          <span className="px-2 py-0.5 bg-primary/10 text-primary rounded font-mono font-semibold">
+                            {article.category}
+                          </span>
                         </div>
-                        <span className="flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
-                          Lire <ArrowRight className="w-4 h-4" />
-                        </span>
+                        <h3 className="text-lg font-mono font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                          {article.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-3 leading-relaxed">
+                          {article.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <User className="w-3.5 h-3.5" />
+                            <span>{article.author}</span>
+                          </div>
+                          <span className="flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                            Lire <ArrowRight className="w-4 h-4" />
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
-                </div>
-              ))}
-            </div>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-20">
+                <p className="text-muted-foreground font-mono">Aucun article dans cette catégorie pour le moment.</p>
+              </div>
+            )}
 
-            <div className="flex justify-center gap-2 mt-16">
-              <Button variant="outline" disabled className="border-border/50">
-                Précédent
-              </Button>
-              <Button className="bg-primary text-white hover:bg-primary/90">1</Button>
-              <Button variant="outline" className="border-border/50">2</Button>
-              <Button variant="outline" className="border-border/50">3</Button>
-              <Button variant="outline" className="border-border/50">
-                Suivant
-              </Button>
-            </div>
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-2 mt-16">
+                <Button
+                  variant="outline"
+                  disabled={currentPage === 1}
+                  onClick={() => goToPage(currentPage - 1)}
+                  className="border-border/50"
+                >
+                  Précédent
+                </Button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <Button
+                    key={page}
+                    onClick={() => goToPage(page)}
+                    variant={page === currentPage ? "default" : "outline"}
+                    className={page === currentPage ? "bg-primary text-white hover:bg-primary/90" : "border-border/50"}
+                  >
+                    {page}
+                  </Button>
+                ))}
+                <Button
+                  variant="outline"
+                  disabled={currentPage === totalPages}
+                  onClick={() => goToPage(currentPage + 1)}
+                  className="border-border/50"
+                >
+                  Suivant
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
