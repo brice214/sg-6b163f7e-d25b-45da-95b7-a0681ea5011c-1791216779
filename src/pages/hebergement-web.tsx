@@ -115,11 +115,6 @@ const faq: FAQItem[] = [
     answer: "Oui, tous nos forfaits incluent un certificat SSL gratuit pour sécuriser votre site avec le protocole HTTPS.",
   },
   {
-    question: "Proposez-vous des sauvegardes automatiques ?",
-    answer:
-      "Oui, nous effectuons des sauvegardes quotidiennes automatiques de tous vos sites et données. Vous pouvez restaurer vos fichiers en quelques clics depuis votre panneau de contrôle.",
-  },
-  {
     question: "Quelle est la garantie de disponibilité ?",
     answer: "Nous garantissons une disponibilité de 99.9% grâce à notre infrastructure redondante et nos serveurs de haute performance.",
   },
