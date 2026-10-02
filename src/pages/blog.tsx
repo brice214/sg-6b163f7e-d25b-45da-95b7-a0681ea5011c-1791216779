@@ -8,10 +8,65 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calendar, User, ArrowRight, Tag, Rss, BookOpen, Layers } from "lucide-react";
-import { blogArticles as articles } from "@/lib/blog-articles";
+import { blogArticles } from "@/lib/blog-articles";
+import { legacyArticles, legacyCategoryLabels } from "@/lib/legacy-articles";
 
-const categories = ["Tous", "Guide", "WordPress", "Sécurité", "Infrastructure", "E-commerce", "Domaines"];
-const ARTICLES_PER_PAGE = 3;
+interface DisplayArticle {
+  slug: string;
+  urlCategory: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  author: string;
+  coverImage?: string;
+  coverImageAlt?: string;
+  isPublished: boolean;
+}
+
+const publishedArticles: DisplayArticle[] = blogArticles.map((a) => ({
+  slug: a.slug,
+  urlCategory: a.urlCategory,
+  title: a.title,
+  excerpt: a.excerpt,
+  category: a.category,
+  date: a.date,
+  author: a.author,
+  coverImage: a.coverImage,
+  coverImageAlt: a.coverImageAlt,
+  isPublished: true,
+}));
+
+const upcomingArticles: DisplayArticle[] = [...legacyArticles].reverse().map((a) => ({
+  slug: a.slug,
+  urlCategory: a.category,
+  title: a.title,
+  excerpt: "Cet article arrive bientôt sur le blog SPIDERHOSTER.",
+  category: legacyCategoryLabels[a.category] || a.category,
+  date: a.date,
+  author: "Équipe SPIDERHOSTER",
+  isPublished: false,
+}));
+
+const articles: DisplayArticle[] = [...publishedArticles, ...upcomingArticles];
+
+const categories = [
+  "Tous",
+  "Guide",
+  "WordPress",
+  "Sécurité",
+  "Infrastructure",
+  "E-commerce",
+  "Domaines",
+  "Marketing",
+  "Référencement",
+  "Hébergement Web",
+  "Non classé",
+  "Web Design",
+  "Partenaires",
+];
+
+const ARTICLES_PER_PAGE = 9;
 
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("Tous");
@@ -59,8 +114,8 @@ export default function Blog() {
           primaryCta={{ label: "Découvrir les articles", href: "#articles" }}
           secondaryCta={{ label: "Voir nos offres", href: "/hebergement-web" }}
           stats={[
-            { icon: BookOpen, value: "50+", label: "Articles publiés" },
-            { icon: Tag, value: "6", label: "Catégories" },
+            { icon: BookOpen, value: "57", label: "Articles" },
+            { icon: Tag, value: "13", label: "Catégories" },
             { icon: Layers, value: "Hebdo", label: "Nouvelles parutions" },
           ]}
         />
@@ -93,14 +148,19 @@ export default function Blog() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {paginatedArticles.map((article, index) => (
                   <Link
-                    key={article.slug}
-                    href={`/blog/${article.slug}`}
+                    key={`${article.urlCategory}-${article.slug}`}
+                    href={`/${article.urlCategory}/${article.slug}`}
                     className="group relative block animate-slide-up"
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
                     <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 rounded-2xl" />
                     <Card className="relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-300 flex flex-col h-full">
                       <div className="h-44 bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden flex items-center justify-center">
+                        {!article.isPublished && (
+                          <span className="absolute top-3 right-3 z-10 px-2 py-1 rounded-md bg-slate-900/80 text-white text-[10px] font-mono font-semibold uppercase tracking-wide">
+                            Bientôt
+                          </span>
+                        )}
                         {article.coverImage ? (
                           <img
                             src={article.coverImage}
@@ -148,7 +208,7 @@ export default function Blog() {
             )}
 
             {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-2 mt-16">
+              <div className="flex flex-wrap justify-center items-center gap-2 mt-16">
                 <Button
                   variant="outline"
                   disabled={currentPage === 1}
