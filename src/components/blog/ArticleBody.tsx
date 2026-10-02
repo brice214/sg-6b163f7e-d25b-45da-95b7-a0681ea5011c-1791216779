@@ -9,7 +9,7 @@ interface ArticleBodyProps {
 
 export function ArticleBody({ blocks }: ArticleBodyProps) {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div>
       {blocks.map((block, index) => {
         if (block.type === "heading") {
           return (

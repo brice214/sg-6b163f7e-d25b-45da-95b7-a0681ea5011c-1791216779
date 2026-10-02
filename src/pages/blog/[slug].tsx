@@ -9,6 +9,7 @@ import { SpiderWeb } from "@/components/SpiderWeb";
 import { ArticleHero } from "@/components/blog/ArticleHero";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { BlogSidebar } from "@/components/blog/BlogSidebar";
 import { blogArticles, type BlogArticleMeta } from "@/lib/blog-articles";
 import { blogContentMap } from "@/data/blog-content";
 import type { BlogArticleContent } from "@/lib/blog-content-types";
@@ -60,21 +61,26 @@ export default function ArticlePage({ meta, content, related }: ArticlePageProps
 
         <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4">
-            {content ? (
-              <ArticleBody blocks={content.blocks} />
-            ) : (
-              <div className="max-w-2xl mx-auto text-center py-10">
-                <p className="text-muted-foreground font-mono mb-6">
-                  Cet article est en cours de rédaction. Revenez bientôt pour le découvrir !
-                </p>
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
-                >
-                  <ArrowLeft className="h-4 w-4" /> Retour au blog
-                </Link>
+            <div className="grid lg:grid-cols-[1fr_320px] gap-12 max-w-6xl mx-auto">
+              <div className="min-w-0">
+                {content ? (
+                  <ArticleBody blocks={content.blocks} />
+                ) : (
+                  <div className="text-center py-10">
+                    <p className="text-muted-foreground font-mono mb-6">
+                      Cet article est en cours de rédaction. Revenez bientôt pour le découvrir !
+                    </p>
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                    >
+                      <ArrowLeft className="h-4 w-4" /> Retour au blog
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
+              <BlogSidebar />
+            </div>
           </div>
         </section>
 
