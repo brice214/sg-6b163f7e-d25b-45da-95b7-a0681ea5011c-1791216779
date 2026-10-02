@@ -86,6 +86,12 @@ export const blogArticles: BlogArticleMeta[] = [
     category: "E-commerce",
     date: "01 Sept 2026",
     author: "Équipe SPIDERHOSTER",
+    readTime: "8 min",
+    metaDescription:
+      "Guide complet pour lancer sa boutique en ligne au Gabon : hébergement, nom de domaine, SSL, paiement mobile money. Conseils pratiques SPIDERHOSTER.",
+    keywords: ["boutique en ligne Gabon", "e-commerce Gabon", "créer site e-commerce", "paiement mobile money Gabon"],
+    coverImage: "/generated/boutique-en-ligne-gabon-ecommerce.png",
+    coverImageAlt: "Guide pour lancer une boutique en ligne au Gabon",
   },
   {
     slug: "choisir-nom-de-domaine",
@@ -95,5 +101,11 @@ export const blogArticles: BlogArticleMeta[] = [
     category: "Domaines",
     date: "25 Août 2026",
     author: "Équipe SPIDERHOSTER",
+    readTime: "6 min",
+    metaDescription:
+      "Comment bien choisir son nom de domaine : critères essentiels, extensions (.ga, .com, .africa), protection de marque. Guide SPIDERHOSTER.",
+    keywords: ["choisir nom de domaine", "nom de domaine Gabon", "extension .ga", "réserver domaine"],
+    coverImage: "/generated/choisir-nom-domaine-gabon.png",
+    coverImageAlt: "Comment bien choisir son nom de domaine",
   },
 ];

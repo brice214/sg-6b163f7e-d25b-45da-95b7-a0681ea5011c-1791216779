@@ -1,6 +1,6 @@
 ---
 title: Articles de blog SEO
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [blog, seo, content]
@@ -18,8 +18,8 @@ Rédaction de 6 articles de blog 100% originaux, optimisés SEO, rédigés en fr
 - [x] Article 2 : 10 astuces pour accélérer votre site WordPress (optimiser-wordpress-vitesse)
 - [x] Article 3 : Pourquoi le certificat SSL est indispensable en 2026 (securiser-site-web-ssl)
 - [x] Article 4 : VPS ou hébergement partagé (vps-vs-hebergement-partage)
-- [ ] Article 5 : Lancer sa boutique en ligne au Gabon (lancer-boutique-en-ligne-gabon)
-- [ ] Article 6 : Comment bien choisir son nom de domaine (choisir-nom-de-domaine)
+- [x] Article 5 : Lancer sa boutique en ligne au Gabon (lancer-boutique-en-ligne-gabon)
+- [x] Article 6 : Comment bien choisir son nom de domaine (choisir-nom-de-domaine)
 
 ## Acceptance
 - Chaque article publié est accessible sur /blog/{slug} avec un contenu complet, des liens internes et des CTA fonctionnels
