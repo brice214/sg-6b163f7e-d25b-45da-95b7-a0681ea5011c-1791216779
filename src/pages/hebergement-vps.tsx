@@ -6,7 +6,7 @@ import { PageHero } from "@/components/shared/PageHero";
 import { FeatureGrid, type FeatureItem } from "@/components/shared/FeatureGrid";
 import { PricingSection, type PricingPlan } from "@/components/shared/PricingSection";
 import { PageFAQ, type FAQItem } from "@/components/shared/PageFAQ";
-import { Server, Cpu, HardDrive, Network, Shield, Zap, LayoutDashboard } from "lucide-react";
+import { Server, Cpu, HardDrive, Network, Shield, Zap, LayoutDashboard, Terminal } from "lucide-react";
 
 const commonFeatures = [
   "Stockage SSD d'entreprise",
@@ -66,12 +66,12 @@ const forfaits: PricingPlan[] = [
   },
 ];
 
-const operatingSystems = [
+const operatingSystems: { name: string; slug?: string }[] = [
   { name: "CentOS", slug: "centos" },
   { name: "AlmaLinux 9", slug: "almalinux" },
   { name: "Debian 11", slug: "debian" },
   { name: "Ubuntu 22.04", slug: "ubuntu" },
-  { name: "Oracle Linux 9", slug: "oracle" },
+  { name: "Oracle Linux 9" },
 ];
 
 const avantages: FeatureItem[] = [
@@ -206,7 +206,13 @@ export default function HebergementVPS() {
                 <div key={os.name} className="group relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative flex flex-col items-center gap-3 p-6 rounded-2xl border border-border/50 group-hover:border-primary/30 transition-all bg-card text-center h-full">
-                    <img src={`https://cdn.simpleicons.org/${os.slug}`} alt={os.name} className="h-10 w-10" />
+                    {os.slug ? (
+                      <img src={`https://cdn.simpleicons.org/${os.slug}`} alt={os.name} className="h-10 w-10" />
+                    ) : (
+                      <div className="h-10 w-10 flex items-center justify-center">
+                        <Terminal className="h-9 w-9 text-primary" />
+                      </div>
+                    )}
                     <span className="text-sm font-mono font-semibold text-foreground">{os.name}</span>
                   </div>
                 </div>
