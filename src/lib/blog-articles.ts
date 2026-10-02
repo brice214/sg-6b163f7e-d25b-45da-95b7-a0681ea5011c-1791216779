@@ -1,5 +1,6 @@
 export interface BlogArticleMeta {
   slug: string;
+  urlCategory: string;
   title: string;
   excerpt: string;
   category: string;
@@ -15,6 +16,7 @@ export interface BlogArticleMeta {
 export const blogArticles: BlogArticleMeta[] = [
   {
     slug: "choisir-hebergement-web-gabon",
+    urlCategory: "hebergement-web",
     title: "Comment choisir son hébergement web au Gabon en 2026",
     excerpt:
       "Guide complet pour sélectionner l'hébergeur idéal selon vos besoins : performance, support local, sécurité et budget.",
@@ -35,6 +37,7 @@ export const blogArticles: BlogArticleMeta[] = [
   },
   {
     slug: "optimiser-wordpress-vitesse",
+    urlCategory: "wordpress",
     title: "10 astuces pour accélérer votre site WordPress",
     excerpt:
       "Des techniques concrètes pour réduire le temps de chargement de votre site WordPress et améliorer l'expérience utilisateur.",
@@ -50,6 +53,7 @@ export const blogArticles: BlogArticleMeta[] = [
   },
   {
     slug: "securiser-site-web-ssl",
+    urlCategory: "securite",
     title: "Pourquoi le certificat SSL est indispensable en 2026",
     excerpt:
       "Comprendre l'importance du HTTPS pour la sécurité, le référencement et la confiance de vos visiteurs.",
@@ -65,6 +69,7 @@ export const blogArticles: BlogArticleMeta[] = [
   },
   {
     slug: "vps-vs-hebergement-partage",
+    urlCategory: "hebergement-web",
     title: "VPS ou hébergement partagé : quel choix pour votre projet ?",
     excerpt:
       "Analyse comparative des deux solutions pour vous aider à choisir l'infrastructure adaptée à votre croissance.",
@@ -80,6 +85,7 @@ export const blogArticles: BlogArticleMeta[] = [
   },
   {
     slug: "lancer-boutique-en-ligne-gabon",
+    urlCategory: "e-commerce",
     title: "Lancer sa boutique en ligne au Gabon : le guide complet",
     excerpt:
       "Étapes essentielles pour créer un e-commerce performant, de l'hébergement au paiement mobile money.",
@@ -95,6 +101,7 @@ export const blogArticles: BlogArticleMeta[] = [
   },
   {
     slug: "choisir-nom-de-domaine",
+    urlCategory: "domaine",
     title: "Comment bien choisir son nom de domaine",
     excerpt:
       "Les critères essentiels pour sélectionner un nom de domaine qui renforce votre identité de marque.",
