@@ -10,7 +10,7 @@ export const legacyCategoryLabels: Record<string, string> = {
   referencement: "Référencement",
   securite: "Sécurité",
   "hebergement-web": "Hébergement Web",
-  domaine: "Nom de domaine",
+  domaine: "Domaines",
   "non-classe": "Non classé",
   wordpress: "WordPress",
   webdesign: "Web Design",
