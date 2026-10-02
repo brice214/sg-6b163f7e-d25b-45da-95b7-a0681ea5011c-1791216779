@@ -6,72 +6,72 @@ import { PageHero } from "@/components/shared/PageHero";
 import { FeatureGrid, type FeatureItem } from "@/components/shared/FeatureGrid";
 import { PricingSection, type PricingPlan } from "@/components/shared/PricingSection";
 import { PageFAQ, type FAQItem } from "@/components/shared/PageFAQ";
-import { Server, Cpu, HardDrive, Network, Shield, Zap } from "lucide-react";
+import { Server, Cpu, HardDrive, Network, Shield, Zap, LayoutDashboard } from "lucide-react";
+
+const commonFeatures = [
+  "Stockage SSD d'entreprise",
+  "Approvisionnement rapide",
+  "Bande passante illimitée",
+  "Garantie de niveau de service",
+  "RAID matériel",
+  "Console hors bande",
+  "1 Tbit/s+ Anti-DDoS",
+  "Prise en charge Windows et Linux",
+  "Aucun contrat",
+];
 
 const forfaits: PricingPlan[] = [
   {
-    name: "VPS Starter",
-    description: "Pour projets en croissance nécessitant des ressources dédiées",
-    price: "25 000",
+    name: "VPS Start",
+    description: "Pour démarrer avec des ressources dédiées",
+    price: "23 900",
     period: "/mois",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-vps",
+    url: "https://spiderhoster.com/portail/index.php?rp=/store/serveur-prive-virtuel/vps2",
     features: [
-      "2 vCPU dédiés",
-      "4 Go RAM",
-      "80 Go SSD NVMe",
-      "2 To/mois bande passante",
-      "Root SSH complet",
-      "IPv4 dédiée",
-      "Backups quotidiens",
-      "Protection DDoS 1Tbit/s+",
-      "Firewall configurable",
-      "Support technique 24/7",
+      "2 GB de CPU",
+      "2 Go de RAM",
+      "50 Go d'espace disque",
+      "100 Mbps de vitesse des ports",
+      ...commonFeatures,
     ],
   },
   {
     name: "VPS Business",
     description: "Performance et ressources pour applications exigeantes",
-    price: "55 000",
+    price: "37 900",
     period: "/mois",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-vps",
+    url: "https://spiderhoster.com/portail/index.php?rp=/store/serveur-prive-virtuel/vps4",
     features: [
-      "4 vCPU dédiés",
-      "8 Go RAM",
-      "160 Go SSD NVMe",
-      "4 To/mois bande passante",
-      "Root SSH complet",
-      "IPv4 dédiée",
-      "Backups quotidiens",
-      "Protection DDoS 1Tbit/s+",
-      "Firewall configurable",
-      "Monitoring 24/7",
-      "Support prioritaire 24/7",
-      "Snapshots illimités",
+      "4 GB de CPU",
+      "4 Go de RAM",
+      "75 Go d'espace disque",
+      "250 Mbps de vitesse des ports",
+      ...commonFeatures,
     ],
     popular: true,
   },
   {
-    name: "VPS Premium",
+    name: "VPS Performance",
     description: "Ressources maximales pour infrastructures critiques",
-    price: "120 000",
+    price: "70 900",
     period: "/mois",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-vps",
+    url: "https://spiderhoster.com/portail/index.php?rp=/store/serveur-prive-virtuel/vps6-1",
     features: [
-      "8 vCPU dédiés",
-      "16 Go RAM",
-      "320 Go SSD NVMe",
-      "8 To/mois bande passante",
-      "Root SSH complet",
-      "IPv4 dédiée + IPv6",
-      "Backups horaires",
-      "Protection DDoS 1Tbit/s+",
-      "Firewall avancé",
-      "Monitoring 24/7",
-      "Support VIP 24/7",
-      "Snapshots illimités",
-      "Ressources garanties",
+      "6 cores de CPU",
+      "8 Go de RAM",
+      "100 Go d'espace disque",
+      "500 Mbps de vitesse des ports",
+      ...commonFeatures,
     ],
   },
+];
+
+const operatingSystems = [
+  { name: "CentOS", slug: "centos" },
+  { name: "AlmaLinux 9", slug: "almalinux" },
+  { name: "Debian 11", slug: "debian" },
+  { name: "Ubuntu 22.04", slug: "ubuntu" },
+  { name: "Oracle Linux 9", slug: "oracle" },
 ];
 
 const avantages: FeatureItem[] = [
@@ -186,6 +186,52 @@ export default function HebergementVPS() {
           subtitle="Des ressources garanties et une liberté totale pour déployer vos applications les plus critiques"
           features={avantages}
         />
+
+        <section className="py-20 lg:py-32 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 mb-4">
+                <span className="text-sm font-mono font-semibold text-primary">Systèmes d&apos;exploitation</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-foreground mb-4">
+                Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">OS préféré</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Tous nos VPS sont compatibles avec les distributions Linux les plus utilisées, installées en quelques clics depuis votre panneau de contrôle
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto mb-16">
+              {operatingSystems.map((os) => (
+                <div key={os.name} className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative flex flex-col items-center gap-3 p-6 rounded-2xl border border-border/50 group-hover:border-primary/30 transition-all bg-card text-center h-full">
+                    <img src={`https://cdn.simpleicons.org/${os.slug}`} alt={os.name} className="h-10 w-10" />
+                    <span className="text-sm font-mono font-semibold text-foreground">{os.name}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative max-w-4xl mx-auto">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-10 blur-xl rounded-2xl" />
+              <div className="relative bg-slate-900 border border-slate-800 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center">
+                <div className="h-16 w-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
+                  <LayoutDashboard className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-mono font-bold text-white mb-3">
+                    Besoin d&apos;une interface de gestion ? Ajoutez cPanel
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    Vous préférez administrer votre serveur via une interface graphique plutôt qu&apos;en ligne de commande ? Commandez une licence cPanel/WHM en complément de votre VPS pour gérer facilement vos sites, bases de données, comptes emails et sauvegardes, sans compétences techniques avancées. Idéal pour les agences et équipes qui gèrent plusieurs clients.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <PricingSection
           id="offres"
           badgeLabel="Nos Forfaits"
