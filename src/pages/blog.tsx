@@ -6,67 +6,9 @@ import { SpiderWeb } from "@/components/SpiderWeb";
 import { PageHero } from "@/components/shared/PageHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { Calendar, User, ArrowRight, Tag, Rss, BookOpen, Layers } from "lucide-react";
-
-interface Article {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  author: string;
-}
-
-const articles: Article[] = [
-  {
-    slug: "choisir-hebergement-web-gabon",
-    title: "Comment choisir son hébergement web au Gabon en 2026",
-    excerpt: "Guide complet pour sélectionner l'hébergeur idéal selon vos besoins : performance, support local, sécurité et budget.",
-    category: "Guide",
-    date: "28 Sept 2026",
-    author: "Équipe SPIDERHOSTER",
-  },
-  {
-    slug: "optimiser-wordpress-vitesse",
-    title: "10 astuces pour accélérer votre site WordPress",
-    excerpt: "Des techniques concrètes pour réduire le temps de chargement de votre site WordPress et améliorer l'expérience utilisateur.",
-    category: "WordPress",
-    date: "22 Sept 2026",
-    author: "Équipe SPIDERHOSTER",
-  },
-  {
-    slug: "securiser-site-web-ssl",
-    title: "Pourquoi le certificat SSL est indispensable en 2026",
-    excerpt: "Comprendre l'importance du HTTPS pour la sécurité, le référencement et la confiance de vos visiteurs.",
-    category: "Sécurité",
-    date: "15 Sept 2026",
-    author: "Équipe SPIDERHOSTER",
-  },
-  {
-    slug: "vps-vs-hebergement-partage",
-    title: "VPS ou hébergement partagé : quel choix pour votre projet ?",
-    excerpt: "Analyse comparative des deux solutions pour vous aider à choisir l'infrastructure adaptée à votre croissance.",
-    category: "Infrastructure",
-    date: "08 Sept 2026",
-    author: "Équipe SPIDERHOSTER",
-  },
-  {
-    slug: "lancer-boutique-en-ligne-gabon",
-    title: "Lancer sa boutique en ligne au Gabon : le guide complet",
-    excerpt: "Étapes essentielles pour créer un e-commerce performant, de l'hébergement au paiement mobile money.",
-    category: "E-commerce",
-    date: "01 Sept 2026",
-    author: "Équipe SPIDERHOSTER",
-  },
-  {
-    slug: "choisir-nom-de-domaine",
-    title: "Comment bien choisir son nom de domaine",
-    excerpt: "Les critères essentiels pour sélectionner un nom de domaine qui renforce votre identité de marque.",
-    category: "Domaines",
-    date: "25 Août 2026",
-    author: "Équipe SPIDERHOSTER",
-  },
-];
+import { blogArticles as articles } from "@/lib/blog-articles";
 
 const categories = ["Tous", "Guide", "WordPress", "Sécurité", "Infrastructure", "E-commerce", "Domaines"];
 const ARTICLES_PER_PAGE = 3;
@@ -150,11 +92,24 @@ export default function Blog() {
             {paginatedArticles.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {paginatedArticles.map((article, index) => (
-                  <div key={article.slug} className="group relative animate-slide-up" style={{ animationDelay: `${index * 80}ms` }}>
+                  <Link
+                    key={article.slug}
+                    href={`/blog/${article.slug}`}
+                    className="group relative block animate-slide-up"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                  >
                     <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 rounded-2xl" />
                     <Card className="relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-300 flex flex-col h-full">
                       <div className="h-44 bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden flex items-center justify-center">
-                        <Tag className="w-14 h-14 text-primary/30 group-hover:scale-110 transition-transform duration-300" />
+                        {article.coverImage ? (
+                          <img
+                            src={article.coverImage}
+                            alt={article.coverImageAlt || article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <Tag className="w-14 h-14 text-primary/30 group-hover:scale-110 transition-transform duration-300" />
+                        )}
                       </div>
                       <div className="p-6 flex-1 flex flex-col">
                         <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
@@ -183,7 +138,7 @@ export default function Blog() {
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ) : (
