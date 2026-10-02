@@ -68,6 +68,4 @@ export const legacyArticles: LegacyArticleMeta[] = [
   { category: "hebergement-web", slug: "les-differents-modes-de-paiement-acceptes-sur-la-plateforme-dhebergement-web-spiderhoster", title: "Les différents modes de paiement acceptés sur la plateforme d'hébergement web SPIDERHOSTER", date: "27 Juil 2024" },
   { category: "domaine", slug: "acheter-un-nom-de-domaine-ga-au-gabon", title: "Acheter un nom de domaine .ga au Gabon", date: "27 Juil 2024" },
   { category: "e-commerce", slug: "creer-une-boutique-en-ligne-au-gabon-avec-woocommerce-en-acceptant-les-paiements-mobile", title: "Créer une boutique en ligne au Gabon avec WooCommerce en acceptant les paiements mobile", date: "27 Juil 2024" },
-  { category: "wordpress", slug: "pourquoi-utiliser-notre-hebergement-wordpress", title: "Pourquoi utiliser notre hébergement WordPress", date: "15 Déc 2024" },
-  { category: "portait", slug: "creez-vos-factures-en-ligne-au-gabon-avec-factugabon-com", title: "Créez vos factures en ligne au Gabon avec FactuGabon.com", date: "20 Déc 2024" },
 ];
