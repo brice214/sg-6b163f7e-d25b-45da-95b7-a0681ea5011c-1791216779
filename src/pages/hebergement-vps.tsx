@@ -139,11 +139,6 @@ const faq: FAQItem[] = [
       "Notre support est disponible 24/7 pour les questions liées à l'infrastructure (réseau, matériel, connectivité). La gestion applicative de votre serveur reste sous votre responsabilité, mais notre équipe peut vous conseiller.",
   },
   {
-    question: "Quelle est la fréquence des sauvegardes ?",
-    answer:
-      "Les VPS Starter et Business bénéficient de sauvegardes quotidiennes automatiques, tandis que le forfait Premium inclut des sauvegardes horaires pour une protection maximale de vos données.",
-  },
-  {
     question: "Puis-je obtenir une adresse IP dédiée supplémentaire ?",
     answer:
       "Oui, des adresses IPv4 et IPv6 supplémentaires peuvent être ajoutées à votre VPS sur demande, moyennant un coût additionnel selon disponibilité.",

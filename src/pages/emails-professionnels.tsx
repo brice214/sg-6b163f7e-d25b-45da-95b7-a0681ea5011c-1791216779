@@ -115,10 +115,6 @@ const faq: FAQItem[] = [
     answer: "Oui, vous pouvez créer des alias illimités (contact@, info@, support@, etc.) qui redirigent vers vos comptes email principaux.",
   },
   {
-    question: "Les emails sont-ils sauvegardés ?",
-    answer: "Oui, nous effectuons des sauvegardes quotidiennes de tous vos emails. Le forfait Premium inclut également un système d'archivage automatique.",
-  },
-  {
     question: "Puis-je migrer mes emails existants ?",
     answer: "Oui, nous offrons un service de migration gratuit pour transférer tous vos emails, contacts et calendriers depuis votre ancien fournisseur sans perte de données.",
   },
