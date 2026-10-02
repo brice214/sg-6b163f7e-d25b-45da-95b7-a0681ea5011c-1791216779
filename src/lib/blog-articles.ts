@@ -15,6 +15,27 @@ export interface BlogArticleMeta {
 
 export const blogArticles: BlogArticleMeta[] = [
   {
+    slug: "creez-vos-factures-en-ligne-au-gabon-avec-factugabon-com",
+    urlCategory: "portait",
+    title: "Créez vos factures en ligne au Gabon avec Tsangoo.com",
+    excerpt:
+      "Comment facturer vos clients en toute simplicité grâce à Tsangoo.com, la solution de facturation en ligne pensée pour les entrepreneurs gabonais.",
+    category: "Partenaires",
+    date: "02 Oct 2026",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "6 min",
+    metaDescription:
+      "Découvrez comment créer vos factures en ligne au Gabon avec Tsangoo.com : devis, factures professionnelles, suivi des paiements. Guide pratique SPIDERHOSTER.",
+    keywords: [
+      "facture en ligne Gabon",
+      "logiciel de facturation Gabon",
+      "créer facture professionnelle",
+      "Tsangoo.com",
+    ],
+    coverImage: "/generated/facturation-en-ligne-gabon.png",
+    coverImageAlt: "Créer ses factures en ligne au Gabon avec Tsangoo.com",
+  },
+  {
     slug: "choisir-hebergement-web-gabon",
     urlCategory: "hebergement-web",
     title: "Comment choisir son hébergement web au Gabon en 2026",
