@@ -32,7 +32,7 @@ export function Header() {
             </div>
             <div className="flex items-center gap-3">
               <a 
-                href="https://panel.spiderhoster.com" 
+                href="https://spiderhoster.com/portail/index.php?rp=/login" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-white hover:text-primary transition-colors"
@@ -41,7 +41,7 @@ export function Header() {
                 <span className="hidden sm:inline">Espace Client</span>
               </a>
               <a 
-                href="https://panel.spiderhoster.com" 
+                href="https://portail.spiderhoster.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-white hover:text-primary transition-colors"
