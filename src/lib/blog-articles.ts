@@ -15,6 +15,27 @@ export interface BlogArticleMeta {
 
 export const blogArticles: BlogArticleMeta[] = [
   {
+    slug: "hebergement-wordpress-optimise-a-port-gentil-installez-wordpress-en-5-secondes-avec-spiderhoster-com",
+    urlCategory: "wordpress",
+    title: "Hébergement WordPress optimisé à Port-Gentil : installez WordPress en 5 secondes avec SPIDERHOSTER.com",
+    excerpt:
+      "Pourquoi un hébergement WordPress dédié fait la différence à Port-Gentil : installation en 5 secondes, paiement mobile money et performance au rendez-vous.",
+    category: "WordPress",
+    date: "27 Juil 2024",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "6 min",
+    metaDescription:
+      "Hébergement WordPress optimisé à Port-Gentil : installez WordPress en 5 secondes, payez par Airtel Money ou Moov Money. Guide SPIDERHOSTER.",
+    keywords: [
+      "hébergement WordPress Port-Gentil",
+      "installer WordPress en 5 secondes",
+      "hébergement WordPress Gabon",
+      "WordPress Port-Gentil",
+    ],
+    coverImage: "/generated/hebergement-wordpress-port-gentil-gabon.png",
+    coverImageAlt: "Hébergement WordPress optimisé à Port-Gentil",
+  },
+  {
     slug: "vendre-et-acheter-en-ligne-au-gabon",
     urlCategory: "e-commerce",
     title: "Vendre et acheter en ligne au Gabon",
