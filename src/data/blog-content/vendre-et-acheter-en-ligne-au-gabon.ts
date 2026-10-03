@@ -16,7 +16,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Pourquoi de plus en plus de Gabonais vendent en ligne",
+      text: "Pourquoi de plus en plus de Gabonais vendent en ligne",
     },
     {
       type: "paragraph",
@@ -26,7 +26,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Pourquoi de plus en plus de Gabonais achètent en ligne",
+      text: "Pourquoi de plus en plus de Gabonais achètent en ligne",
     },
     {
       type: "paragraph",
@@ -36,7 +36,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Marketplace ou boutique en ligne : deux logiques différentes",
+      text: "Marketplace ou boutique en ligne : deux logiques différentes",
     },
     {
       type: "paragraph",
@@ -46,7 +46,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Option 1 : vendre via une marketplace",
+      text: "Option 1 : vendre via une marketplace",
     },
     {
       type: "paragraph",
@@ -67,7 +67,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Option 2 : créer votre propre boutique en ligne",
+      text: "Option 2 : créer votre propre boutique en ligne",
     },
     {
       type: "paragraph",
@@ -105,7 +105,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Quel modèle choisir pour votre activité ?",
+      text: "Quel modèle choisir pour votre activité ?",
     },
     {
       type: "paragraph",
@@ -117,7 +117,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Sécuriser vos transactions en ligne",
+      text: "Sécuriser vos transactions en ligne",
     },
     {
       type: "paragraph",
@@ -131,7 +131,7 @@ const content: BlogArticleContent = {
     },
     {
       type: "heading",
-      content: "Conclusion",
+      text: "Conclusion",
     },
     {
       type: "paragraph",
