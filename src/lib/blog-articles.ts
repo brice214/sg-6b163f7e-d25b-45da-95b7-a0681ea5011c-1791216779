@@ -15,6 +15,28 @@ export interface BlogArticleMeta {
 
 export const blogArticles: BlogArticleMeta[] = [
   {
+    slug: "creer-une-boutique-en-ligne-au-gabon-avec-woocommerce-en-acceptant-les-paiements-mobile",
+    urlCategory: "e-commerce",
+    title: "Créer une boutique en ligne au Gabon avec WooCommerce en acceptant les paiements mobile",
+    excerpt:
+      "Guide complet pour créer votre boutique en ligne avec WooCommerce au Gabon : hébergement WordPress optimisé, paiements mobile money et intégration application mobile sur mesure.",
+    category: "E-commerce",
+    date: "09 Oct 2026",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "8 min",
+    metaDescription:
+      "Créez votre boutique en ligne au Gabon avec WooCommerce : hébergement WordPress optimisé, paiement Airtel Money et Moov Money, intégration mobile. Guide SPIDERHOSTER.",
+    keywords: [
+      "WooCommerce Gabon",
+      "boutique en ligne WooCommerce",
+      "créer boutique en ligne WordPress",
+      "paiement mobile money WooCommerce",
+      "hébergement WordPress e-commerce",
+    ],
+    coverImage: "/generated/boutique-en-ligne-woocommerce-gabon.png",
+    coverImageAlt: "Créer une boutique en ligne au Gabon avec WooCommerce",
+  },
+  {
     slug: "creez-vos-factures-en-ligne-au-gabon-avec-factugabon-com",
     urlCategory: "portait",
     title: "Créez vos factures en ligne au Gabon avec Tsangoo.com",

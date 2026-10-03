@@ -4,4 +4,4 @@ status: in_progress
 priority: high
 typ
 ...
-- [x] portait/creez-vos-factures-en-ligne-au-gabon-avec-factugabon-com
+- [x] e-commerce/creer-une-boutique-en-ligne-au-gabon-avec-woocommerce-en-acceptant-les-paiements-mobile
