@@ -15,6 +15,27 @@ export interface BlogArticleMeta {
 
 export const blogArticles: BlogArticleMeta[] = [
   {
+    slug: "vendre-et-acheter-en-ligne-au-gabon",
+    urlCategory: "e-commerce",
+    title: "Vendre et acheter en ligne au Gabon",
+    excerpt:
+      "Marketplace ou boutique en ligne propre : comparatif complet pour vendre et acheter en ligne au Gabon, avec les avantages et inconvénients de chaque option.",
+    category: "E-commerce",
+    date: "27 Juil 2024",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "7 min",
+    metaDescription:
+      "Vendre et acheter en ligne au Gabon : comparatif marketplace vs boutique en ligne, paiement mobile money, sécurité. Guide complet SPIDERHOSTER.",
+    keywords: [
+      "vendre en ligne Gabon",
+      "acheter en ligne Gabon",
+      "e-commerce Gabon",
+      "marketplace vs boutique en ligne",
+    ],
+    coverImage: "/generated/vendre-acheter-en-ligne-gabon.png",
+    coverImageAlt: "Vendre et acheter en ligne au Gabon",
+  },
+  {
     slug: "acheter-un-nom-de-domaine-ga-au-gabon",
     urlCategory: "domaine",
     title: "Acheter un nom de domaine .ga au Gabon",

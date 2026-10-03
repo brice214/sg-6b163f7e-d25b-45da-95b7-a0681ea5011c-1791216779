@@ -62,7 +62,6 @@ export const legacyArticles: LegacyArticleMeta[] = [
   { category: "securite", slug: "comment-supprimer-les-logiciels-malveillants-de-wordpress", title: "Comment supprimer les logiciels malveillants de WordPress", date: "14 Jan 2024" },
   { category: "securite", slug: "hebergement-web-avec-certificat-ssl-gratuit", title: "Hébergement web avec certificat SSL gratuit", date: "14 Jan 2024" },
   { category: "marketing", slug: "les-10-meilleures-idees-de-business-en-ligne-a-lancer", title: "Les 10 meilleures idées de business en ligne à lancer", date: "19 Jan 2024" },
-  { category: "e-commerce", slug: "vendre-et-acheter-en-ligne-au-gabon", title: "Vendre et acheter en ligne au Gabon", date: "27 Juil 2024" },
   { category: "wordpress", slug: "hebergement-wordpress-optimise-a-port-gentil-installez-wordpress-en-5-secondes-avec-spiderhoster-com", title: "Hébergement WordPress optimisé à Port-Gentil : installez WordPress en 5 secondes avec SPIDERHOSTER.com", date: "27 Juil 2024" },
   { category: "hebergement-web", slug: "obtenez-un-hebergement-web-sur-et-fiable-a-port-gentil-au-gabon", title: "Obtenez un hébergement web sûr et fiable à Port-Gentil au Gabon", date: "27 Juil 2024" },
   { category: "hebergement-web", slug: "les-differents-modes-de-paiement-acceptes-sur-la-plateforme-dhebergement-web-spiderhoster", title: "Les différents modes de paiement acceptés sur la plateforme d'hébergement web SPIDERHOSTER", date: "27 Juil 2024" },
