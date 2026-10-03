@@ -21,7 +21,7 @@ export const blogArticles: BlogArticleMeta[] = [
     excerpt:
       "Pourquoi et comment réserver un nom de domaine .ga au Gabon : prix fixe, démarches, et association avec un hébergement performant.",
     category: "Domaines",
-    date: "16 Oct 2026",
+    date: "27 Juil 2024",
     author: "Équipe SPIDERHOSTER",
     readTime: "5 min",
     metaDescription:
@@ -42,7 +42,7 @@ export const blogArticles: BlogArticleMeta[] = [
     excerpt:
       "Guide complet pour créer votre boutique en ligne avec WooCommerce au Gabon : hébergement WordPress optimisé, paiements mobile money et intégration application mobile sur mesure.",
     category: "E-commerce",
-    date: "09 Oct 2026",
+    date: "27 Juil 2024",
     author: "Équipe SPIDERHOSTER",
     readTime: "8 min",
     metaDescription:
@@ -64,7 +64,7 @@ export const blogArticles: BlogArticleMeta[] = [
     excerpt:
       "Comment facturer vos clients en toute simplicité grâce à Tsangoo.com, la solution de facturation en ligne pensée pour les entrepreneurs gabonais.",
     category: "Partenaires",
-    date: "02 Oct 2026",
+    date: "20 Déc 2024",
     author: "Équipe SPIDERHOSTER",
     readTime: "6 min",
     metaDescription:
