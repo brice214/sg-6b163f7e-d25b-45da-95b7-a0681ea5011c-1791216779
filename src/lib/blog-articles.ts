@@ -15,6 +15,27 @@ export interface BlogArticleMeta {
 
 export const blogArticles: BlogArticleMeta[] = [
   {
+    slug: "acheter-un-nom-de-domaine-ga-au-gabon",
+    urlCategory: "domaine",
+    title: "Acheter un nom de domaine .ga au Gabon",
+    excerpt:
+      "Pourquoi et comment réserver un nom de domaine .ga au Gabon : prix fixe, démarches, et association avec un hébergement performant.",
+    category: "Domaines",
+    date: "16 Oct 2026",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "5 min",
+    metaDescription:
+      "Comment acheter un nom de domaine .ga au Gabon : prix fixe de 20 000 FCFA, démarches, délais d'activation. Guide complet SPIDERHOSTER.",
+    keywords: [
+      "nom de domaine .ga",
+      "acheter domaine Gabon",
+      "extension .ga Gabon",
+      "réserver domaine .ga",
+    ],
+    coverImage: "/generated/nom-de-domaine-ga-gabon.png",
+    coverImageAlt: "Acheter un nom de domaine .ga au Gabon",
+  },
+  {
     slug: "creer-une-boutique-en-ligne-au-gabon-avec-woocommerce-en-acceptant-les-paiements-mobile",
     urlCategory: "e-commerce",
     title: "Créer une boutique en ligne au Gabon avec WooCommerce en acceptant les paiements mobile",

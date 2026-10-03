@@ -67,5 +67,4 @@ export const legacyArticles: LegacyArticleMeta[] = [
   { category: "hebergement-web", slug: "obtenez-un-hebergement-web-sur-et-fiable-a-port-gentil-au-gabon", title: "Obtenez un hébergement web sûr et fiable à Port-Gentil au Gabon", date: "27 Juil 2024" },
   { category: "hebergement-web", slug: "les-differents-modes-de-paiement-acceptes-sur-la-plateforme-dhebergement-web-spiderhoster", title: "Les différents modes de paiement acceptés sur la plateforme d'hébergement web SPIDERHOSTER", date: "27 Juil 2024" },
   { category: "domaine", slug: "acheter-un-nom-de-domaine-ga-au-gabon", title: "Acheter un nom de domaine .ga au Gabon", date: "27 Juil 2024" },
-  { category: "e-commerce", slug: "creer-une-boutique-en-ligne-au-gabon-avec-woocommerce-en-acceptant-les-paiements-mobile", title: "Créer une boutique en ligne au Gabon avec WooCommerce en acceptant les paiements mobile", date: "27 Juil 2024" },
 ];
