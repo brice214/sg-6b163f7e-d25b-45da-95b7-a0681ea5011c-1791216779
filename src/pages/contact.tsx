@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SEO } from "@/components/SEO";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -6,6 +7,8 @@ import { PageHero } from "@/components/shared/PageHero";
 import { FeatureGrid, type FeatureItem } from "@/components/shared/FeatureGrid";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock, MessageSquare } from "lucide-react";
+
+const CONTACT_EMAIL = "contact@spiderhoster.com";
 
 const coordonnees: FeatureItem[] = [
   {
@@ -16,7 +19,7 @@ const coordonnees: FeatureItem[] = [
   {
     icon: Phone,
     title: "Téléphone",
-    description: "+241 XX XX XX XX — Du lundi au samedi, 8h à 18h",
+    description: "+241 74 43 63 43 — Du lundi au samedi, 8h à 18h",
   },
   {
     icon: Mail,
@@ -30,7 +33,48 @@ const coordonnees: FeatureItem[] = [
   },
 ];
 
+interface ContactFormState {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
+
+const initialFormState: ContactFormState = {
+  name: "",
+  email: "",
+  phone: "",
+  subject: "Question commerciale",
+  message: "",
+};
+
 export default function Contact() {
+  const [formData, setFormData] = useState<ContactFormState>(initialFormState);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const subjectLine = `[${formData.subject}] Message de ${formData.name || "un visiteur"}`;
+    const bodyLines = [
+      `Nom : ${formData.name}`,
+      `Email : ${formData.email}`,
+      formData.phone ? `Téléphone : ${formData.phone}` : "",
+      "",
+      formData.message,
+    ].filter(Boolean);
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      subjectLine
+    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = mailtoUrl;
+  };
+
   return (
     <>
       <SEO
@@ -49,7 +93,7 @@ export default function Contact() {
           backgroundImage="/generated/contact-support.png"
           imageAlt="Centre de support SPIDERHOSTER"
           primaryCta={{ label: "Envoyer un message", href: "#form" }}
-          secondaryCta={{ label: "Ouvrir un ticket", href: "https://spiderhoster.com/portail" }}
+          secondaryCta={{ label: "Ouvrir un ticket", href: "https://spiderhoster.com/portail/supporttickets.php" }}
           stats={[
             { icon: Clock, value: "24/7", label: "Support disponible" },
             { icon: Mail, value: "<24h", label: "Réponse email" },
@@ -75,7 +119,7 @@ export default function Contact() {
                   <h2 className="text-2xl font-mono font-bold text-foreground mb-6">
                     Envoyez-nous un message
                   </h2>
-                  <form className="space-y-6">
+                  <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-semibold text-foreground mb-2">
@@ -83,6 +127,10 @@ export default function Contact() {
                         </label>
                         <input
                           type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
                           className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="Votre nom"
                         />
@@ -93,6 +141,10 @@ export default function Contact() {
                         </label>
                         <input
                           type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
                           className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="votre@email.com"
                         />
@@ -105,6 +157,9 @@ export default function Contact() {
                       </label>
                       <input
                         type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="+241 XX XX XX XX"
                       />
@@ -114,7 +169,12 @@ export default function Contact() {
                       <label className="block text-sm font-semibold text-foreground mb-2">
                         Sujet
                       </label>
-                      <select className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary">
+                      <select
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                      >
                         <option>Question commerciale</option>
                         <option>Support technique</option>
                         <option>Demande de devis</option>
@@ -128,13 +188,17 @@ export default function Contact() {
                         Message
                       </label>
                       <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
                         rows={6}
                         className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                         placeholder="Décrivez votre besoin ou posez votre question..."
                       />
                     </div>
 
-                    <Button size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold">
+                    <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold">
                       Envoyer le message
                     </Button>
                   </form>
@@ -152,7 +216,7 @@ export default function Contact() {
                       Notre équipe de support est disponible à tout moment pour vous assister avec vos problèmes techniques.
                     </p>
                     <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white">
-                      <a href="https://spiderhoster.com/portail" target="_blank" rel="noopener noreferrer">
+                      <a href="https://spiderhoster.com/portail/supporttickets.php" target="_blank" rel="noopener noreferrer">
                         Ouvrir un ticket
                       </a>
                     </Button>
@@ -168,8 +232,10 @@ export default function Contact() {
                     <p className="text-muted-foreground mb-6 leading-relaxed">
                       Consultez notre base de connaissances pour des guides détaillés et tutoriels vidéo.
                     </p>
-                    <Button variant="outline" className="w-full border-border/50">
-                      Voir la documentation
+                    <Button asChild variant="outline" className="w-full border-border/50">
+                      <a href="https://spiderhoster.com/portail/index.php?rp=/knowledgebase" target="_blank" rel="noopener noreferrer">
+                        Voir la documentation
+                      </a>
                     </Button>
                   </div>
                 </div>
