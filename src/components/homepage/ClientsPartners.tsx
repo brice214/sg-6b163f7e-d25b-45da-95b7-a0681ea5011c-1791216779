@@ -40,6 +40,11 @@ const partners: PartnerLogo[] = [
     alt: "Xeta Digital Corp - Agence Web Gabon, partenaire SPIDERHOSTER",
     label: "Xeta Digital Corp",
   },
+  {
+    src: "/exodus_transports_logo.png",
+    alt: "Exodus Transports Logistique - partenaire SPIDERHOSTER",
+    label: "Exodus Transports",
+  },
 ];
 
 export function ClientsPartners() {
