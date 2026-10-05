@@ -26,7 +26,7 @@ const forfaits: PricingPlan[] = [
     description: "Pour démarrer avec des ressources dédiées",
     price: "23 900",
     period: "/mois",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/serveur-prive-virtuel/vps2",
+    url: "https://portail.spiderhoster.com/index.php?rp=/store/serveur-prive-virtuel/vps2",
     features: [
       "2 GB de CPU",
       "2 Go de RAM",
@@ -40,7 +40,7 @@ const forfaits: PricingPlan[] = [
     description: "Performance et ressources pour applications exigeantes",
     price: "37 900",
     period: "/mois",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/serveur-prive-virtuel/vps4",
+      url: "https://portail.spiderhoster.com/index.php?rp=/store/serveur-prive-virtuel/vps4",
     features: [
       "4 GB de CPU",
       "4 Go de RAM",
@@ -55,7 +55,7 @@ const forfaits: PricingPlan[] = [
     description: "Ressources maximales pour infrastructures critiques",
     price: "70 900",
     period: "/mois",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/serveur-prive-virtuel/vps6-1",
+      url: "https://portail.spiderhoster.com/index.php?rp=/store/serveur-prive-virtuel/vps6-1",
     features: [
       "6 cores de CPU",
       "8 Go de RAM",
@@ -166,7 +166,7 @@ export default function HebergementVPS() {
           imageAlt="Hébergement VPS au Gabon - SPIDERHOSTER"
           primaryCta={{
             label: "Choisir mon VPS",
-            href: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-vps",
+              href: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-vps",
           }}
           secondaryCta={{ label: "Voir les forfaits", href: "#offres" }}
           stats={[
