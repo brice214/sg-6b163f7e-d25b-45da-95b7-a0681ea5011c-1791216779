@@ -14,7 +14,7 @@ const forfaits: PricingPlan[] = [
     description: "Pour un usage personnel ou indépendant",
     price: "18 000",
     period: "/an",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-emails/solo",
+    url: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-emails/solo",
     features: [
       "1 Compte Email",
       "Webmail",
@@ -30,7 +30,7 @@ const forfaits: PricingPlan[] = [
     description: "Pour petites équipes",
     price: "34 800",
     period: "/an",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-emails/pme",
+    url: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-emails/pme",
     features: [
       "10 Comptes Email",
       "Webmail",
@@ -47,7 +47,7 @@ const forfaits: PricingPlan[] = [
     description: "Pour grandes organisations",
     price: "108 000",
     period: "/an",
-    url: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-emails/companies",
+    url: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-emails/companies",
     features: [
       "100 Comptes Emails",
       "Webmail",
@@ -143,7 +143,7 @@ export default function EmailsProfessionnels() {
           description="Adresses email avec votre nom de domaine, webmail moderne, protection antispam et synchronisation cloud"
           backgroundImage="/generated/email-professional.png"
           imageAlt="Email professionnel pour entreprises - SPIDERHOSTER"
-          primaryCta={{ label: "Choisir mon forfait", href: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-email" }}
+          primaryCta={{ label: "Choisir mon forfait", href: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-email" }}
           secondaryCta={{ label: "Voir les forfaits", href: "#offres" }}
           stats={[
             { icon: Shield, value: "Anti-spam", label: "Protection avancée" },
