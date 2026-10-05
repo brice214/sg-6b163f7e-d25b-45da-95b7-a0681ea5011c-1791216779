@@ -154,8 +154,8 @@ export default function HebergementWordPress() {
         <PageHero
           badgeIcon={Sparkles}
           badgeLabel="Hébergement WordPress Optimisé"
-          titlePrefix="WordPress"
-          titleHighlight="Surpuissant"
+          titlePrefix="Hébergement WordPress"
+          titleHighlight="Gabon"
           description="Hébergement WordPress optimisé avec cache avancé, staging, mises à jour automatiques et gestion simplifiée pour des performances exceptionnelles"
           backgroundImage="/Hebergement-WordPress-Gabon.png"
           imageAlt="Hébergement WordPress au Gabon avec logo WordPress - SPIDERHOSTER"

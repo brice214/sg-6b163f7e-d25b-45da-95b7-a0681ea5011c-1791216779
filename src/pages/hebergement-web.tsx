@@ -149,7 +149,7 @@ export default function HebergementWeb() {
           badgeIcon={Globe}
           badgeLabel="Hébergement Web Professionnel"
           titlePrefix="Hébergement Web"
-          titleHighlight="Ultra-Rapide"
+          titleHighlight="Gabon"
           description="Infrastructure fiable et performante pour héberger vos sites web avec SSL gratuit, CDN mondial et garantie de disponibilité 99.9%"
           backgroundImage="/generated/web-hosting-network.png"
           imageAlt="Infrastructure hébergement web SPIDERHOSTER"

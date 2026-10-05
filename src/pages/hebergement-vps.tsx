@@ -159,8 +159,8 @@ export default function HebergementVPS() {
         <PageHero
           badgeIcon={Server}
           badgeLabel="Serveurs VPS Haute Performance"
-          titlePrefix="VPS"
-          titleHighlight="Puissants"
+          titlePrefix="Hébergement VPS"
+          titleHighlight="Gabon"
           description="Des serveurs privés virtuels avec ressources dédiées, stockage NVMe ultra-rapide et accès root complet pour vos applications les plus exigeantes"
           backgroundImage="/hebergement-vps-gabon.png"
           imageAlt="Hébergement VPS au Gabon - SPIDERHOSTER"

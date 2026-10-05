@@ -138,8 +138,8 @@ export default function EmailsProfessionnels() {
         <PageHero
           badgeIcon={Mail}
           badgeLabel="Hébergement Email Professionnel"
-          titlePrefix="Email"
-          titleHighlight="Professionnel"
+          titlePrefix="Email Professionnel"
+          titleHighlight="Gabon"
           description="Adresses email avec votre nom de domaine, webmail moderne, protection antispam et synchronisation cloud"
           backgroundImage="/generated/email-professional.png"
           imageAlt="Email professionnel pour entreprises - SPIDERHOSTER"

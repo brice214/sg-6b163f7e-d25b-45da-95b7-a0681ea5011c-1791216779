@@ -83,7 +83,7 @@ export default function Domaines() {
               
               {/* Heading */}
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-white mb-6 tracking-tight leading-tight">
-                Trouvez le <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-secondary to-blue-400 animate-pulse">nom de domaine</span> parfait
+                Trouvez le <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-secondary to-blue-400 animate-pulse">nom de domaine</span> parfait au Gabon
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
