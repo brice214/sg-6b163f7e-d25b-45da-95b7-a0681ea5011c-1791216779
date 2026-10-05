@@ -2,8 +2,8 @@
   "framework": "nextjs",
   "redirects": [
     {
-      "source": "/old-path",
-      "destination": "/new-path",
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap.xml",
       "permanent": true
     }
   ],
