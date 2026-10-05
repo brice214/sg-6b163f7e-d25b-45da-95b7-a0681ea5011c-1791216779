@@ -14,8 +14,8 @@ const forfaits: PricingPlan[] = [
     description: "Parfait pour débuter avec WordPress",
     priceMonthly: "4700",
     priceAnnually: "56400",
-    urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress/wordpress-lanceur&billingcycle=monthly",
-    urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress/wordpress-lanceur&billingcycle=annually",
+    urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress/wordpress-lanceur&billingcycle=monthly",
+    urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress/wordpress-lanceur&billingcycle=annually",
     features: [
       "10 GB de stockage",
       "Bande passante Illimitée",
@@ -34,8 +34,8 @@ const forfaits: PricingPlan[] = [
     description: "Pour sites professionnels performants",
     priceMonthly: "6200",
     priceAnnually: "74400",
-    urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress/wordpress-pro&billingcycle=monthly",
-    urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress/wordpress-pro&billingcycle=annually",
+    urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress/wordpress-pro&billingcycle=monthly",
+    urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress/wordpress-pro&billingcycle=annually",
     features: [
       "30 GB de stockage",
       "Bande passante Illimitée",
@@ -55,8 +55,8 @@ const forfaits: PricingPlan[] = [
     description: "Performance maximale pour WordPress",
     priceMonthly: "10500",
     priceAnnually: "126000",
-    urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress/wordpress-premium&billingcycle=monthly",
-    urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress/wordpress-premium&billingcycle=annually",
+    urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress/wordpress-premium&billingcycle=monthly",
+    urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress/wordpress-premium&billingcycle=annually",
     features: [
       "Espace web Illimité",
       "Bande passante Illimitée",
@@ -161,7 +161,7 @@ export default function HebergementWordPress() {
           imageAlt="Hébergement WordPress au Gabon avec logo WordPress - SPIDERHOSTER"
           primaryCta={{
             label: "Choisir mon forfait",
-            href: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-wordpress",
+            href: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-wordpress",
           }}
           secondaryCta={{ label: "Voir les forfaits", href: "#offres" }}
           stats={[
