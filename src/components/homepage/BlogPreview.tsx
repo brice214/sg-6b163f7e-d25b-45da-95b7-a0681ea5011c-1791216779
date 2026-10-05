@@ -65,20 +65,22 @@ export function BlogPreview() {
           {articles.map((article, index) => (
             <Card
               key={article.slug}
-              className="group overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-card-hover animate-slide-up"
+              className="group overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-card-hover animate-slide-up p-0"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-0">
-                    {article.category}
-                  </Badge>
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4" />
-                    <span>{article.readTime ?? "5 min"}</span>
-                  </div>
-                </div>
+              <Link href={`/blog/${article.slug}`} className="block relative aspect-[16/10] overflow-hidden bg-muted">
+                <img
+                  src={article.coverImage}
+                  alt={article.coverImageAlt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+                <Badge className="absolute top-4 left-4 bg-card/95 text-primary border-0 shadow-sm backdrop-blur-sm font-mono">
+                  {article.category}
+                </Badge>
+              </Link>
 
+              <div className="p-6">
                 <h3 className="text-xl font-mono font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                   <Link href={`/blog/${article.slug}`}>
                     {article.title}
@@ -90,9 +92,15 @@ export function BlogPreview() {
                 </p>
 
                 <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>{article.date}</span>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="h-4 w-4" />
+                      {article.date}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="h-4 w-4" />
+                      {article.readTime ?? "5 min"}
+                    </span>
                   </div>
 
                   <Link
