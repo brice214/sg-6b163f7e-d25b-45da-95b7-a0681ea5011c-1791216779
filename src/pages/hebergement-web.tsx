@@ -14,8 +14,8 @@ const forfaits: PricingPlan[] = [
     description: "Parfait pour débuter",
     priceMonthly: "3050",
     priceAnnually: "36600",
-    urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=monthly",
-    urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=annually",
+    urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/starter&billingcycle=monthly",
+    urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/starter&billingcycle=annually",
     features: [
       "2 GB Espace Web",
       "Bande passante Illimitée",
@@ -32,8 +32,8 @@ const forfaits: PricingPlan[] = [
     description: "Notre meilleure offre",
     priceMonthly: "5800",
     priceAnnually: "69600",
-    urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=monthly",
-    urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=annually",
+    urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/evolution&billingcycle=monthly",
+    urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/evolution&billingcycle=annually",
     features: [
       "300 GB Espace Web",
       "Bande passante Illimitée",
@@ -51,8 +51,8 @@ const forfaits: PricingPlan[] = [
     description: "Performance maximale",
     priceMonthly: "7500",
     priceAnnually: "90000",
-    urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=monthly",
-    urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=annually",
+    urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/pro&billingcycle=monthly",
+    urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/pro&billingcycle=annually",
     features: [
       "500 GB Espace Web",
       "Bande passante Illimitée",
@@ -153,7 +153,7 @@ export default function HebergementWeb() {
           description="Infrastructure fiable et performante pour héberger vos sites web avec SSL gratuit, CDN mondial et garantie de disponibilité 99.9%"
           backgroundImage="/generated/web-hosting-network.png"
           imageAlt="Infrastructure hébergement web SPIDERHOSTER"
-          primaryCta={{ label: "Choisir mon forfait", href: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web" }}
+          primaryCta={{ label: "Choisir mon forfait", href: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web" }}
           secondaryCta={{ label: "Voir les forfaits", href: "#offres" }}
           stats={[
             { icon: Clock, value: "99.9%", label: "Uptime garanti" },
