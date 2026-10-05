@@ -6,6 +6,7 @@ import { WhySpiderhoster } from "@/components/homepage/WhySpiderhoster";
 import { Offers } from "@/components/homepage/Offers";
 import { Testimonials } from "@/components/homepage/Testimonials";
 import { BlogPreview } from "@/components/homepage/BlogPreview";
+import { ClientsPartners } from "@/components/homepage/ClientsPartners";
 import { FAQ } from "@/components/homepage/FAQ";
 import { Footer } from "@/components/Footer";
 import { SpiderWeb } from "@/components/SpiderWeb";
@@ -27,6 +28,7 @@ export default function Home() {
         <Offers />
         <Testimonials />
         <BlogPreview />
+        <ClientsPartners />
         <FAQ />
         <Footer />
       </div>
