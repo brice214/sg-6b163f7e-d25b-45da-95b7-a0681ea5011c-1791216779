@@ -97,8 +97,9 @@ export default function Blog() {
   return (
     <>
       <SEO
-        title="Blog SPIDERHOSTER | Actualités et Guides Hébergement Web"
-        description="Découvrez nos articles sur l'hébergement web, WordPress, sécurité, noms de domaine et transformation digitale au Gabon et en Afrique."
+        title="Blog Hébergement Web Gabon | Guides & Actualités SPIDERHOSTER"
+        description="Découvrez nos guides sur l'hébergement web, WordPress, VPS, sécurité et noms de domaine au Gabon et en Afrique. Conseils d'experts SPIDERHOSTER."
+        url="https://spiderhoster.com/blog"
       />
       <SpiderWeb />
       <div className="relative z-10">

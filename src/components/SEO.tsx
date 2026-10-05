@@ -9,8 +9,8 @@ interface SEOProps {
 
 // SEO elements that can be used in _document.tsx (returns JSX without Head wrapper)
 export function SEOElements({
-  title = "Hello World",
-  description = "Welcome to my app",
+  title = "SPIDERHOSTER - Hébergement Web, WordPress, VPS & Noms de Domaine au Gabon",
+  description = "Hébergeur web n°1 au Gabon : hébergement Web, WordPress, VPS et noms de domaine. Infrastructure fiable à Libreville, support 24/7, paiement Airtel Money & Moov Money.",
   image = "/og-image.png",
   url,
 }: SEOProps) {
@@ -19,6 +19,7 @@ export function SEOElements({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="icon" href="/favicon.ico" />
+      {url && <link rel="canonical" href={url} />}
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
@@ -26,6 +27,8 @@ export function SEOElements({
       {image && <meta property="og:image" content={image} />}
       {url && <meta property="og:url" content={url} />}
       <meta property="og:type" content="website" />
+      <meta property="og:locale" content="fr_FR" />
+      <meta property="og:site_name" content="SPIDERHOSTER" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

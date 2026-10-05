@@ -14,8 +14,9 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="SPIDERHOSTER - Hébergement Web Premium au Gabon et en Afrique"
-        description="Solutions d'hébergement web professionnelles au Gabon et en Afrique. Hébergement Web, WordPress, VPS et noms de domaine. Infrastructure moderne, support 24/7, performances optimales."
+        title="Hébergement Web Gabon | SPIDERHOSTER - Hébergeur N°1 en Afrique Centrale"
+        description="Hébergement Web, WordPress, VPS et noms de domaine au Gabon. Datacenter à Libreville, support 24/7, SSL gratuit, paiement Airtel Money & Moov Money. Devis gratuit."
+        url="https://spiderhoster.com/"
       />
       <SpiderWeb />
       <div className="relative z-10">

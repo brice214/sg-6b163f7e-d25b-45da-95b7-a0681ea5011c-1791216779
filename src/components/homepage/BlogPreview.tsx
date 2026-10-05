@@ -3,34 +3,39 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { blogArticles } from "@/lib/blog-articles";
+
+const FRENCH_MONTHS: Record<string, number> = {
+  jan: 0,
+  fev: 1,
+  mar: 2,
+  avr: 3,
+  mai: 4,
+  juin: 5,
+  juil: 6,
+  aout: 7,
+  sept: 8,
+  oct: 9,
+  nov: 10,
+  dec: 11,
+};
+
+function parseFrenchDate(dateStr: string): number {
+  const parts = dateStr.trim().split(" ");
+  const day = parseInt(parts[0], 10);
+  const monthKey = parts[1]
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  const month = FRENCH_MONTHS[monthKey] ?? 0;
+  const year = parseInt(parts[2], 10);
+  return new Date(year, month, day).getTime();
+}
 
 export function BlogPreview() {
-  const articles = [
-    {
-      title: "10 conseils pour optimiser la vitesse de votre site WordPress",
-      excerpt: "Découvrez les techniques essentielles pour améliorer les performances de votre site WordPress et offrir une meilleure expérience utilisateur.",
-      category: "WordPress",
-      date: "2026-07-25",
-      readTime: "5 min",
-      slug: "optimiser-vitesse-wordpress",
-    },
-    {
-      title: "Guide complet : Choisir le bon hébergement pour votre projet",
-      excerpt: "Hébergement partagé, VPS ou serveur dédié ? Comprenez les différences et faites le choix optimal selon vos besoins et votre budget.",
-      category: "Guides",
-      date: "2026-07-20",
-      readTime: "8 min",
-      slug: "choisir-hebergement-web",
-    },
-    {
-      title: "Sécurité web : Les meilleures pratiques pour protéger votre site",
-      excerpt: "Apprenez à sécuriser efficacement votre site web contre les menaces courantes : malware, attaques DDoS, et injections SQL.",
-      category: "Sécurité",
-      date: "2026-07-15",
-      readTime: "6 min",
-      slug: "securite-site-web",
-    },
-  ];
+  const articles = [...blogArticles]
+    .sort((a, b) => parseFrenchDate(b.date) - parseFrenchDate(a.date))
+    .slice(0, 3);
 
   return (
     <section className="py-20 lg:py-32 bg-muted/30">
@@ -47,7 +52,7 @@ export function BlogPreview() {
               Conseils, tutoriels et actualités pour optimiser votre présence en ligne
             </p>
           </div>
-          
+
           <Button asChild variant="outline" className="hidden md:inline-flex">
             <Link href="/blog">
               Voir tous les articles
@@ -58,7 +63,7 @@ export function BlogPreview() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {articles.map((article, index) => (
-            <Card 
+            <Card
               key={article.slug}
               className="group overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-card-hover animate-slide-up"
               style={{ animationDelay: `${index * 100}ms` }}
@@ -70,27 +75,27 @@ export function BlogPreview() {
                   </Badge>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Clock className="h-4 w-4" />
-                    <span>{article.readTime}</span>
+                    <span>{article.readTime ?? "5 min"}</span>
                   </div>
                 </div>
-                
-                <h3 className="text-xl font-mono font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+
+                <h3 className="text-xl font-mono font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                   <Link href={`/blog/${article.slug}`}>
                     {article.title}
                   </Link>
                 </h3>
-                
-                <p className="text-muted-foreground leading-relaxed mb-4">
+
+                <p className="text-muted-foreground leading-relaxed mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between pt-4 border-t border-border/50">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>{new Date(article.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                    <span>{article.date}</span>
                   </div>
-                  
-                  <Link 
+
+                  <Link
                     href={`/blog/${article.slug}`}
                     className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1"
                   >
@@ -102,7 +107,7 @@ export function BlogPreview() {
             </Card>
           ))}
         </div>
-        
+
         <div className="text-center mt-8 md:hidden">
           <Button asChild variant="outline">
             <Link href="/blog">
