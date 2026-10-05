@@ -108,7 +108,7 @@ export default function Domaines() {
                       size="lg" 
                       className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white px-8 py-6 text-base font-semibold shadow-lg"
                     >
-                      <a href="https://spiderhoster.com/portail/cart.php?a=add&domain=register" target="_blank" rel="noopener noreferrer">
+                      <a href="https://portail.spiderhoster.com/cart.php?a=add&domain=register" target="_blank" rel="noopener noreferrer">
                         <Search className="mr-2 h-5 w-5" />
                         Vérifier la disponibilité
                       </a>
@@ -222,7 +222,7 @@ export default function Domaines() {
                       size="lg"
                     >
                       <a 
-                        href="https://spiderhoster.com/portail/cart.php?a=add&domain=register"
+                        href="https://portail.spiderhoster.com/cart.php?a=add&domain=register"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -249,7 +249,7 @@ export default function Domaines() {
                   variant="outline"
                   className="group border-2 hover:bg-primary hover:text-white hover:border-primary transition-all"
                 >
-                  <a href="https://spiderhoster.com/portail/cart.php?a=add&domain=register" target="_blank" rel="noopener noreferrer">
+                  <a href="https://portail.spiderhoster.com/cart.php?a=add&domain=register" target="_blank" rel="noopener noreferrer">
                     <Search className="mr-2 h-5 w-5" />
                     Vérifier la disponibilité de votre domaine
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -386,7 +386,7 @@ export default function Domaines() {
                   size="lg"
                   className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white shadow-xl shadow-primary/30 group"
                 >
-                  <a href="https://spiderhoster.com/portail/cart.php?a=add&domain=register" target="_blank" rel="noopener noreferrer">
+                  <a href="https://portail.spiderhoster.com/cart.php?a=add&domain=register" target="_blank" rel="noopener noreferrer">
                     <Search className="mr-2 h-5 w-5" />
                     Enregistrer votre domaine maintenant
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
