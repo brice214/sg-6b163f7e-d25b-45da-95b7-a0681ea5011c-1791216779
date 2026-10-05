@@ -85,6 +85,20 @@ export default function ArticlePage(props: ArticlePageProps) {
               }),
             }}
           />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Accueil", item: "https://spiderhoster.com/" },
+                  { "@type": "ListItem", position: 2, name: "Blog", item: "https://spiderhoster.com/blog" },
+                  { "@type": "ListItem", position: 3, name: meta.title, item: `https://spiderhoster.com/${meta.urlCategory}/${meta.slug}` },
+                ],
+              }),
+            }}
+          />
         </Head>
         <SpiderWeb />
         <div className="relative z-10">

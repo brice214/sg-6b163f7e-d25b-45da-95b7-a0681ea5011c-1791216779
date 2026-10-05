@@ -144,8 +144,9 @@ export default function HebergementWordPress() {
   return (
     <>
       <SEO
-        title="Hébergement WordPress Optimisé au Gabon | SPIDERHOSTER"
-        description="Hébergement WordPress ultra-rapide avec cache avancé, staging, mises à jour automatiques et WordPress Manager. Performance et sécurité maximales."
+        title="Hébergement WordPress Gabon | Optimisé & Ultra-Rapide - SPIDERHOSTER"
+        description="Hébergement WordPress au Gabon dès 4 700 FCFA/mois : cache avancé, staging, mises à jour automatiques, WP Manager. Installation en 5 secondes."
+        url="https://spiderhoster.com/hebergement-wordpress"
       />
       <SpiderWeb />
       <div className="relative z-10">

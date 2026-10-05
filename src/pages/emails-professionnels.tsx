@@ -128,8 +128,9 @@ export default function EmailsProfessionnels() {
   return (
     <>
       <SEO
-        title="Hébergement Email Professionnel au Gabon | SPIDERHOSTER"
-        description="Emails professionnels sécurisés avec webmail moderne, protection antispam, antivirus et synchronisation cloud. Votre nom de domaine."
+        title="Email Professionnel Gabon | Messagerie @votreentreprise - SPIDERHOSTER"
+        description="Adresses email professionnelles avec votre nom de domaine au Gabon. Webmail moderne, antispam, 50 Go/compte. Dès 18 000 FCFA/an."
+        url="https://spiderhoster.com/emails-professionnels"
       />
       <SpiderWeb />
       <div className="relative z-10">

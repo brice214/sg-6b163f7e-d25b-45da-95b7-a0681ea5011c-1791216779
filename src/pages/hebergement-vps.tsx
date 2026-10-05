@@ -149,8 +149,9 @@ export default function HebergementVPS() {
   return (
     <>
       <SEO
-        title="Hébergement VPS Haute Performance au Gabon | SPIDERHOSTER"
-        description="Serveurs VPS avec vCPU dédiés, stockage NVMe, protection DDoS 1Tbit/s+ et accès root complet. Performance et contrôle total pour vos projets critiques."
+        title="Hébergement VPS Gabon | Serveur Privé Virtuel NVMe - SPIDERHOSTER"
+        description="VPS au Gabon dès 23 900 FCFA/mois : vCPU dédiés, stockage NVMe, protection DDoS 1Tbit/s+, accès root complet. Déploiement instantané."
+        url="https://spiderhoster.com/hebergement-vps"
       />
       <SpiderWeb />
       <div className="relative z-10">

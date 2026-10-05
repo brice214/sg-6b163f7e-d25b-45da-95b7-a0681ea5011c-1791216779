@@ -53,8 +53,9 @@ export default function Domaines() {
   return (
     <>
       <SEO 
-        title="Noms de Domaine - SPIDERHOSTER"
-        description="Enregistrez votre nom de domaine au Gabon et en Afrique. .COM, .ORG, .NET, .INFO, .GA - Prix compétitifs, activation rapide, protection WHOIS incluse."
+        title="Nom de Domaine Gabon | .GA, .COM, .ORG dès 12 000 FCFA - SPIDERHOSTER"
+        description="Enregistrez votre nom de domaine au Gabon : .GA, .COM, .ORG, .NET, .INFO. Protection WHOIS gratuite, activation instantanée, prix compétitifs."
+        url="https://spiderhoster.com/domaines"
       />
       <SpiderWeb />
       <div className="relative z-10">

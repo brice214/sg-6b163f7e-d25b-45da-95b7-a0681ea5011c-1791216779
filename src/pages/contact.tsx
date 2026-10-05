@@ -78,8 +78,9 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Nous Contacter | SPIDERHOSTER"
-        description="Contactez SPIDERHOSTER pour toute question sur nos services d'hébergement web, VPS, WordPress ou noms de domaine. Support 24/7 disponible."
+        title="Contact SPIDERHOSTER | Hébergeur Web Gabon - Support 24/7"
+        description="Contactez SPIDERHOSTER à Libreville pour vos besoins en hébergement web, VPS, WordPress ou noms de domaine. Support technique 24/7, réponse sous 24h."
+        url="https://spiderhoster.com/contact"
       />
       <SpiderWeb />
       <div className="relative z-10">

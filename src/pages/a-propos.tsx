@@ -48,8 +48,9 @@ export default function APropos() {
   return (
     <>
       <SEO
-        title="À propos de SPIDERHOSTER | Hébergeur Web Professionnel au Gabon"
-        description="SPIDERHOSTER est le premier hébergeur web professionnel gabonais. Infrastructure fiable, support local 24/7 et expertise reconnue depuis 2015."
+        title="Hébergeur Web Gabon depuis 2015 | À Propos - SPIDERHOSTER"
+        description="SPIDERHOSTER, premier hébergeur web professionnel gabonais depuis 2015. Datacenter à Libreville, 500+ clients, support local 24/7."
+        url="https://spiderhoster.com/a-propos"
       />
       <SpiderWeb />
       <div className="relative z-10">

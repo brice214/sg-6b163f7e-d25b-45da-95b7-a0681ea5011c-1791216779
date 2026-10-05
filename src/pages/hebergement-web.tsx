@@ -138,8 +138,9 @@ export default function HebergementWeb() {
   return (
     <>
       <SEO
-        title="Hébergement Web Professionnel au Gabon | SPIDERHOSTER"
-        description="Hébergement web ultra-rapide avec SSL gratuit, CDN mondial, protection DDoS et garantie uptime 99.9%. Parfait pour sites vitrines, blogs et e-commerce."
+        title="Hébergement Web Gabon | SSL Gratuit, CDN & 99.9% Uptime - SPIDERHOSTER"
+        description="Hébergement web au Gabon dès 3 050 FCFA/mois : SSL gratuit, CDN mondial, protection DDoS, migration gratuite. Support 24/7 à Libreville. Devis gratuit."
+        url="https://spiderhoster.com/hebergement-web"
       />
       <SpiderWeb />
       <div className="relative z-10">
