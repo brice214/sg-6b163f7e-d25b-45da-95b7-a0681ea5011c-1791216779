@@ -30,6 +30,16 @@ const partners: PartnerLogo[] = [
     alt: "FINAM Gabon - La Financière Africaine de Micro-Projets, partenaire SPIDERHOSTER",
     label: "FINAM Gabon",
   },
+  {
+    src: "/nks-gabon.png",
+    alt: "NKS La Tech Service - partenaire technique SPIDERHOSTER",
+    label: "NKS La Tech Service",
+  },
+  {
+    src: "/XETA-DIGITAL-CORP-LOGO-MARKETING-1.png",
+    alt: "Xeta Digital Corp - Agence Web Gabon, partenaire SPIDERHOSTER",
+    label: "Xeta Digital Corp",
+  },
 ];
 
 export function ClientsPartners() {
