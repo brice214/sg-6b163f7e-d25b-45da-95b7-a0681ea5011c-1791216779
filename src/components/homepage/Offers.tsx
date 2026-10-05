@@ -70,6 +70,40 @@ export function Offers() {
 
   return (
     <section id="offers" className="py-20 bg-gradient-to-b from-background to-muted/20">
+      <style jsx>{`
+        @keyframes attention-shake {
+          0%, 88%, 100% {
+            transform: translateX(0) rotate(0deg) scale(1);
+          }
+          89.5% {
+            transform: translateX(-5px) rotate(-1.2deg) scale(1.02);
+          }
+          91% {
+            transform: translateX(5px) rotate(1.2deg) scale(1.02);
+          }
+          92.5% {
+            transform: translateX(-4px) rotate(-1deg) scale(1.02);
+          }
+          94% {
+            transform: translateX(4px) rotate(1deg) scale(1.02);
+          }
+          95.5% {
+            transform: translateX(-2px) rotate(0deg) scale(1.01);
+          }
+          97% {
+            transform: translateX(2px) rotate(0deg) scale(1.01);
+          }
+        }
+        .animate-attention-shake {
+          animation: attention-shake 6s ease-in-out infinite;
+          transform-origin: center;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-attention-shake {
+            animation: none;
+          }
+        }
+      `}</style>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4">
@@ -115,7 +149,7 @@ export function Offers() {
               <div className={`absolute inset-0 ${plan.popular ? "bg-primary/20" : "bg-white/5"} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
 
               {/* Card */}
-              <div className={`relative ${plan.popular ? "bg-blue-600" : "bg-slate-900"} border-2 ${plan.popular ? "border-blue-500" : "border-slate-800"} rounded-2xl p-8 h-full flex flex-col`}>
+              <div className={`relative ${plan.popular ? "bg-blue-600" : "bg-slate-900"} border-2 ${plan.popular ? "border-blue-500" : "border-slate-800"} rounded-2xl p-8 h-full flex flex-col ${plan.popular ? "animate-attention-shake" : ""}`}>
                 {plan.popular && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white border-none">
                     ⭐ Le plus populaire ⭐
