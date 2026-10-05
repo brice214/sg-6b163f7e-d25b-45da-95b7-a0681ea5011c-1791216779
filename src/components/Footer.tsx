@@ -80,7 +80,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://spiderhoster.com/portail/index.php?rp=/login" target="_blank" rel="noopener noreferrer" className="text-background/70 hover:text-background transition-colors">
+                <a href="https://portail.spiderhoster.com/index.php?rp=/login" target="_blank" rel="noopener noreferrer" className="text-background/70 hover:text-background transition-colors">
                   Espace Client
                 </a>
               </li>
