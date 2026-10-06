@@ -14,8 +14,8 @@ export function Offers() {
       description: "Parfait pour débuter",
       priceMonthly: "3050",
       priceAnnually: "36600",
-      urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=monthly",
-      urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/starter&billingcycle=annually",
+      urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/starter&billingcycle=monthly",
+      urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/starter&billingcycle=annually",
       features: [
         "2 GB Espace Web",
         "Bande passante Illimitée",
@@ -33,8 +33,8 @@ export function Offers() {
       description: "Notre meilleure offre",
       priceMonthly: "5800",
       priceAnnually: "69600",
-      urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=monthly",
-      urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/evolution&billingcycle=annually",
+      urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/evolution&billingcycle=monthly",
+      urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/evolution&billingcycle=annually",
       features: [
         "300 GB Espace Web",
         "Bande passante Illimitée",
@@ -52,8 +52,8 @@ export function Offers() {
       description: "Performance maximale",
       priceMonthly: "7500",
       priceAnnually: "90000",
-      urlMonthly: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=monthly",
-      urlAnnually: "https://spiderhoster.com/portail/index.php?rp=/store/hebergement-web/pro&billingcycle=annually",
+      urlMonthly: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/pro&billingcycle=monthly",
+      urlAnnually: "https://portail.spiderhoster.com/index.php?rp=/store/hebergement-web/pro&billingcycle=annually",
       features: [
         "500 GB Espace Web",
         "Bande passante Illimitée",

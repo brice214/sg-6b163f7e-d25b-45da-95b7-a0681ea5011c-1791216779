@@ -49,7 +49,7 @@ export function Hero() {
                 size="lg" 
                 className="group bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base px-8 py-6 shadow-lg shadow-primary/50 hover:shadow-primary/70 hover:scale-105 transition-all"
               >
-                <a href="https://order.spiderhoster.com" target="_blank" rel="noopener noreferrer">
+                <a href="#offers">
                   Commander maintenant
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -61,7 +61,7 @@ export function Hero() {
                 variant="outline"
                 className="group bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-base px-8 py-6 backdrop-blur-md"
               >
-                <a href="#offres">
+                <a href="#services">
                   Découvrir nos offres
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </a>
