@@ -3,33 +3,43 @@ export type ProjectType =
   | "blog"
   | "ecommerce"
   | "webapp"
-  | "community"
-  | "portfolio";
+  | "community";
 
-export type TrafficRange = 
-  | "low"      // < 1K
-  | "medium"   // 1K-10K
-  | "high"     // 10K-50K
-  | "very-high"// 50K-200K
-  | "massive"; // > 200K
+export type TrafficLevel = 
+  | "low"        // < 1K
+  | "medium"     // 1K-10K
+  | "high"       // 10K-50K
+  | "very-high"  // 50K-200K
+  | "massive";   // 200K+
 
-export type TechnicalLevel = "beginner" | "intermediate" | "advanced";
+export type TechnicalLevel = 
+  | "beginner"
+  | "intermediate"
+  | "advanced";
 
 export interface CalculatorAnswers {
-  projectType: ProjectType;
-  traffic: TrafficRange;
-  features: string[];
-  technicalLevel: TechnicalLevel;
-  email?: string;
+  projectType?: ProjectType;
+  traffic?: TrafficLevel;
+  features?: string[];
+  technicalLevel?: TechnicalLevel;
 }
 
-export type PlanType = "starter" | "business" | "premium" | "vps";
+export type PlanType = 
+  | "starter"
+  | "evolution"
+  | "premium"
+  | "wp-lanceur"
+  | "wp-pro"
+  | "wp-premium"
+  | "vps-start"
+  | "vps-business"
+  | "vps-performance";
 
 export interface PlanRecommendation {
   plan: PlanType;
   planName: string;
   price: number;
-  confidence: number; // 0-100
+  confidence: number;
   reasons: string[];
   features: string[];
   warning?: string;

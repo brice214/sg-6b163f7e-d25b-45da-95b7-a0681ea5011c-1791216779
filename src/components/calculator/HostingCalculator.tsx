@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Check, Zap, TrendingUp, Shield, Rocket } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Zap, TrendingUp, Shield, Rocket, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -445,6 +445,174 @@ export function HostingCalculator() {
           <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </div>
+
+      {currentStep === 5 && recommendation && (
+        <div className="space-y-8">
+          <div className="text-center">
+            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+              <span className="text-sm font-mono font-semibold text-primary">Résultat personnalisé</span>
+            </div>
+            <h3 className="text-2xl font-bold mb-2">Votre forfait idéal</h3>
+            <p className="text-muted-foreground">
+              Basé sur vos réponses, voici notre recommandation
+            </p>
+          </div>
+
+          {/* Carte de recommandation principale */}
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-20 blur-xl rounded-2xl" />
+            <div className="relative bg-card border-2 border-primary rounded-2xl p-8 shadow-xl">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
+                    <Zap className="w-3 h-3" />
+                    {getPlanDetails(recommendation.plan).category}
+                  </div>
+                  <h4 className="text-3xl font-bold mb-2">{recommendation.planName}</h4>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-bold text-primary">
+                      {recommendation.price.toLocaleString("fr-FR")}
+                    </span>
+                    <span className="text-lg text-muted-foreground">FCFA/mois</span>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end gap-2">
+                  <Badge variant="default" className="text-xs">
+                    {recommendation.confidence}% de correspondance
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div>
+                  <h5 className="font-semibold mb-2 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary" />
+                    Pourquoi ce forfait ?
+                  </h5>
+                  <ul className="space-y-2">
+                    {recommendation.reasons.map((reason, idx) => (
+                      <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                        <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{reason}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h5 className="font-semibold mb-2">Inclus dans ce forfait :</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {recommendation.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-sm">
+                        <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {recommendation.warning && (
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20 mb-6">
+                  <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-amber-900 dark:text-amber-200">
+                    {recommendation.warning}
+                  </p>
+                </div>
+              )}
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  asChild
+                  size="lg"
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:opacity-90 group"
+                >
+                  <a
+                    href={getPlanDetails(recommendation.plan).url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Commander maintenant
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => {
+                    setCurrentStep(1);
+                    setAnswers({});
+                    setRecommendation(null);
+                  }}
+                >
+                  Recommencer
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Upgrade suggéré */}
+          {recommendation.upgrade && (
+            <div className="bg-muted/50 border border-border rounded-xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h5 className="font-semibold mb-1">💡 Upgrade recommandé</h5>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {recommendation.upgrade.reason}
+                  </p>
+                  <p className="text-sm font-medium">
+                    +{recommendation.upgrade.extraCost.toLocaleString("fr-FR")} FCFA/mois
+                    <span className="text-muted-foreground ml-1">
+                      → {getPlanDetails(recommendation.upgrade.plan).name}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Alternatives */}
+          {recommendation.alternatives.length > 0 && (
+            <div>
+              <h5 className="font-semibold mb-4">Autres options à considérer :</h5>
+              <div className="grid gap-4 md:grid-cols-2">
+                {recommendation.alternatives.map((alt) => {
+                  const altPlan = getPlanDetails(alt.plan);
+                  return (
+                    <div
+                      key={alt.plan}
+                      className="border border-border rounded-xl p-5 hover:border-primary/50 transition-colors"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div>
+                          <h6 className="font-semibold">{altPlan.name}</h6>
+                          <p className="text-sm text-primary font-semibold">
+                            {altPlan.price.toLocaleString("fr-FR")} FCFA/mois
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">{alt.reason}</p>
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                      >
+                        <a href={altPlan.url} target="_blank" rel="noopener noreferrer">
+                          Voir cette offre
+                        </a>
+                      </Button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
