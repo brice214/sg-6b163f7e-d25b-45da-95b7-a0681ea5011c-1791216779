@@ -12,8 +12,20 @@ export default function CalculateurPage() {
         url="https://spiderhoster.com/calculateur"
       />
       <Header />
-      <main className="min-h-screen bg-background">
-        <HostingCalculator />
+      <main className="min-h-screen relative">
+        {/* Background image avec overlay */}
+        <div className="absolute inset-0 z-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/calculateur-arriere-plan-spiderhoster-gabon.png')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95 backdrop-blur-sm" />
+        </div>
+        
+        {/* Contenu par-dessus */}
+        <div className="relative z-10">
+          <HostingCalculator />
+        </div>
       </main>
       <Footer />
     </>
