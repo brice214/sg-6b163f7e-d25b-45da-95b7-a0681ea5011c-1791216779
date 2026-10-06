@@ -284,17 +284,8 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
       plan: "wp-pro",
       reason: "Suffisant si trafic surestimé (30 GB)",
     });
-  } else if (recommendedPlan === "vps-start") {
-    result.alternatives.push({
-      plan: "vps-business",
-      reason: "Plus de ressources recommandées (4 cores, 4 GB RAM)",
-    });
   } else if (recommendedPlan === "vps-business") {
     result.alternatives.push(
-      {
-        plan: "vps-start",
-        reason: "Plus économique si besoins modérés (2 cores, 2 GB RAM)",
-      },
       {
         plan: "vps-performance",
         reason: "Maximum de puissance si infrastructure critique (6 cores, 8 GB RAM)",
@@ -320,11 +311,11 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
       reason: "Espace illimité + 30 emails professionnels",
       extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
     };
-  } else if (recommendedPlan === "vps-start") {
+  } else if (recommendedPlan === "vps-business") {
     result.upgrade = {
-      plan: "vps-business",
-      reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
-      extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
+      plan: "vps-performance",
+      reason: "Plus de puissance : 6 cores CPU + 8 GB RAM",
+      extraCost: PLANS["vps-performance"].price - PLANS["vps-business"].price,
     };
   }
 
