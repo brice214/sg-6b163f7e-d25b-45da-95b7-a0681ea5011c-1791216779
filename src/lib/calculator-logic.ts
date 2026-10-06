@@ -304,24 +304,30 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   }
 
   // Upgrade suggéré
-  if (recommendedPlan === "evolution" && !needsPriority) {
-    result.upgrade = {
-      plan: "premium",
-      reason: "500 GB + 30 emails + 10 bases de données",
-      extraCost: PLANS.premium.price - PLANS.evolution.price,
-    };
-  } else if (recommendedPlan === "wp-pro") {
-    result.upgrade = {
-      plan: "wp-premium",
-      reason: "Espace illimité + 30 emails professionnels",
-      extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
-    };
-  } else if (recommendedPlan === "vps-start") {
-    result.upgrade = {
-      plan: "vps-business",
-      reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
-      extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
-    };
+  if (recommendedPlan === "starter" || recommendedPlan === "evolution" || recommendedPlan === "premium") {
+    if (recommendedPlan === "evolution" && !needsPriority) {
+      result.upgrade = {
+        plan: "premium",
+        reason: "500 GB + 30 emails + 10 bases de données",
+        extraCost: PLANS.premium.price - PLANS.evolution.price,
+      };
+    }
+  } else if (recommendedPlan === "wp-lanceur" || recommendedPlan === "wp-pro" || recommendedPlan === "wp-premium") {
+    if (recommendedPlan === "wp-pro") {
+      result.upgrade = {
+        plan: "wp-premium",
+        reason: "Espace illimité + 30 emails professionnels",
+        extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
+      };
+    }
+  } else if (recommendedPlan === "vps-start" || recommendedPlan === "vps-business" || recommendedPlan === "vps-performance") {
+    if (recommendedPlan === "vps-start") {
+      result.upgrade = {
+        plan: "vps-business",
+        reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
+        extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
+      };
+    }
   }
 
   // Warning si sous-dimensionné
