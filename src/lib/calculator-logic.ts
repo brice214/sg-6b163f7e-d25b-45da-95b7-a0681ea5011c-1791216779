@@ -325,10 +325,12 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   }
 
   // Warning si sous-dimensionné
-  if (recommendedPlan === "starter" && (traffic === "medium" || projectType === "ecommerce")) {
-    result.warning = "Ce forfait pourrait être insuffisant si votre trafic augmente rapidement. Evolution recommandé.";
-  } else if (recommendedPlan === "wp-lanceur" && traffic === "high") {
-    result.warning = "10 GB pourrait être limité avec ce trafic. WP Pro ou Premium recommandé.";
+  if (plan.category !== "VPS") {
+    if (recommendedPlan === "starter" && (traffic === "medium" || projectType === "ecommerce")) {
+      result.warning = "Ce forfait pourrait être insuffisant si votre trafic augmente rapidement. Evolution recommandé.";
+    } else if (recommendedPlan === "wp-lanceur" && traffic === "high") {
+      result.warning = "10 GB pourrait être limité avec ce trafic. WP Pro ou Premium recommandé.";
+    }
   }
 
   return result;
