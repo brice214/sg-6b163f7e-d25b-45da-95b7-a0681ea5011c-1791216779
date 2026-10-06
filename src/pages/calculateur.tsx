@@ -19,7 +19,7 @@ export default function CalculateurPage() {
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/calculateur-arriere-plan-spiderhoster-gabon.png')" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/70" />
         </div>
         
         {/* Contenu par-dessus */}
