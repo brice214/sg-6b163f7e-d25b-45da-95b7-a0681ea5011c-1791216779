@@ -79,6 +79,9 @@ export function Header() {
             <Link href="/domaines" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted/50">
               Domaines
             </Link>
+            <Link href="/calculateur" className="px-4 py-2 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 transition-colors rounded-md">
+              Calculateur
+            </Link>
             <Link href="/blog" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted/50">
               Blog
             </Link>
@@ -128,6 +131,9 @@ export function Header() {
             </Link>
             <Link href="/domaines" className="px-4 py-3 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Domaines
+            </Link>
+            <Link href="/calculateur" className="px-4 py-3 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)}>
+              Calculateur
             </Link>
             <Link href="/blog" className="px-4 py-3 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Blog

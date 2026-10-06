@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, Zap, Shield, Clock } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Zap, Shield, Clock, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -60,6 +61,18 @@ export function Hero() {
                 size="lg" 
                 variant="outline"
                 className="group bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-base px-8 py-6 backdrop-blur-md"
+              >
+                <Link href="/calculateur">
+                  Quel hébergement me faut-il ?
+                  <Calculator className="ml-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                </Link>
+              </Button>
+              
+              <Button 
+                asChild 
+                size="lg" 
+                variant="ghost"
+                className="group text-white hover:bg-white/10 text-base px-8 py-6 backdrop-blur-md"
               >
                 <a href="#services">
                   Découvrir nos offres
