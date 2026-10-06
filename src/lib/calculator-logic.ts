@@ -222,9 +222,8 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
     `${plan.traffic} bande passante`,
   ];
   
-  if (plan.category === "VPS") {
-    featuresList.unshift(`${"cpu" in plan ? plan.cpu : ""} CPU`, `${"ram" in plan ? plan.ram : ""} RAM`);
-    featuresList.push(`${plan.emails} comptes emails`);
+  if ("cpu" in plan) {
+    featuresList.unshift(`${("cpu" in plan ? plan.cpu : "")} CPU`, `${("ram" in plan ? plan.ram : "")} RAM`);
   } else {
     featuresList.push(`${plan.emails} comptes emails`);
     if ("databases" in plan) {
@@ -242,8 +241,15 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
     alternatives: [],
   };
 
-  // Alternatives basées sur la catégorie
-  if (plan.category === "Hébergement Web") {
+  // Alternatives basées sur le plan recommandé
+  const isWebPlan = (p: PlanType): p is "starter" | "evolution" | "premium" => 
+    ["starter", "evolution", "premium"].includes(p);
+  const isWPPlan = (p: PlanType): p is "wp-lanceur" | "wp-pro" | "wp-premium" => 
+    ["wp-lanceur", "wp-pro", "wp-premium"].includes(p);
+  const isVPSPlan = (p: PlanType): p is "vps-start" | "vps-business" | "vps-performance" => 
+    ["vps-start", "vps-business", "vps-performance"].includes(p);
+
+  if (isWebPlan(recommendedPlan)) {
     if (recommendedPlan === "evolution") {
       result.alternatives.push({
         plan: "starter",
@@ -264,7 +270,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         reason: "Suffisant si trafic surestimé (300 GB)",
       });
     }
-  } else if (plan.category === "WordPress") {
+  } else if (isWPPlan(recommendedPlan)) {
     if (recommendedPlan === "wp-pro") {
       result.alternatives.push({
         plan: "wp-lanceur",
@@ -285,7 +291,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         reason: "Suffisant si trafic surestimé (30 GB)",
       });
     }
-  } else if (plan.category === "VPS") {
+  } else if (isVPSPlan(recommendedPlan)) {
     if (recommendedPlan === "vps-business") {
       result.alternatives.push({
         plan: "vps-start",
@@ -304,7 +310,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   }
 
   // Upgrade suggéré
-  if (plan.category === "Hébergement Web") {
+  if (isWebPlan(recommendedPlan)) {
     if (recommendedPlan === "evolution" && !needsPriority) {
       result.upgrade = {
         plan: "premium",
@@ -312,7 +318,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         extraCost: PLANS.premium.price - PLANS.evolution.price,
       };
     }
-  } else if (plan.category === "WordPress") {
+  } else if (isWPPlan(recommendedPlan)) {
     if (recommendedPlan === "wp-pro") {
       result.upgrade = {
         plan: "wp-premium",
@@ -320,7 +326,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
       };
     }
-  } else if (plan.category === "VPS") {
+  } else if (isVPSPlan(recommendedPlan)) {
     if (recommendedPlan === "vps-start") {
       result.upgrade = {
         plan: "vps-business",
@@ -331,7 +337,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   }
 
   // Warning si sous-dimensionné
-  if (plan.category !== "VPS") {
+  if (!isVPSPlan(recommendedPlan)) {
     if (recommendedPlan === "starter" && (traffic === "medium" || projectType === "ecommerce")) {
       result.warning = "Ce forfait pourrait être insuffisant si votre trafic augmente rapidement. Evolution recommandé.";
     } else if (recommendedPlan === "wp-lanceur" && traffic === "high") {
