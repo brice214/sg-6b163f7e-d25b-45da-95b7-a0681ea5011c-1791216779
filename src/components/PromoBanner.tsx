@@ -65,7 +65,7 @@ export function PromoBanner() {
               </Badge>
               
               <span className="text-white font-semibold text-sm md:text-base">
-                🎉 <span className="hidden sm:inline">Profitez de </span>30% de réduction sur tous nos hébergements
+                🎉 Profitez de 30% de réduction sur tous nos hébergements en utilisant le code: <span className="font-mono bg-white/20 px-2 py-0.5 rounded">BVNUE2027</span>
               </span>
             </div>
 
