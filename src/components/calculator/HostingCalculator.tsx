@@ -351,7 +351,6 @@ export function HostingCalculator() {
                 { value: "ssl", label: "Certificat SSL gratuit" },
                 { value: "email", label: "Emails professionnels" },
                 { value: "database", label: "Base de données MySQL" },
-                { value: "backup", label: "Sauvegardes automatiques" },
                 { value: "cdn", label: "CDN pour accélérer le site" },
                 { value: "priority", label: "Support technique prioritaire" },
               ].map((option) => (
