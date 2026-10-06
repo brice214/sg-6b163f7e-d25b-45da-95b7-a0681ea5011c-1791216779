@@ -284,23 +284,32 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         reason: "Suffisant si trafic surestimé (30 GB)",
       });
     }
-  } else {
-    // VPS plans
-    if (recommendedPlan === "vps-business") {
-      result.alternatives.push({
-        plan: "vps-start",
-        reason: "Plus économique si besoins modérés (2 cores, 2 GB RAM)",
-      });
-      result.alternatives.push({
-        plan: "vps-performance",
-        reason: "Maximum de puissance si infrastructure critique (6 cores, 8 GB RAM)",
-      });
-    } else if (recommendedPlan === "vps-start") {
-      result.alternatives.push({
-        plan: "vps-business",
-        reason: "Plus de ressources recommandées (4 cores, 4 GB RAM)",
-      });
-    }
+  }
+  
+  // VPS alternatives - traiter séparément pour éviter les erreurs TypeScript
+  if (recommendedPlan === "vps-business") {
+    result.alternatives.push({
+      plan: "vps-start",
+      reason: "Plus économique si besoins modérés (2 cores, 2 GB RAM)",
+    });
+    result.alternatives.push({
+      plan: "vps-performance",
+      reason: "Maximum de puissance si infrastructure critique (6 cores, 8 GB RAM)",
+    });
+  }
+  
+  if (recommendedPlan === "vps-start") {
+    result.alternatives.push({
+      plan: "vps-business",
+      reason: "Plus de ressources recommandées (4 cores, 4 GB RAM)",
+    });
+  }
+  
+  if (recommendedPlan === "vps-performance") {
+    result.alternatives.push({
+      plan: "vps-business",
+      reason: "Suffisant si besoins surestimés (4 cores, 4 GB RAM)",
+    });
   }
 
   // Upgrade suggéré
