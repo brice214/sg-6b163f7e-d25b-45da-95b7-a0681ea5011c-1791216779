@@ -22,6 +22,7 @@ export interface CalculatorAnswers {
   traffic?: TrafficLevel;
   features?: string[];
   technicalLevel?: TechnicalLevel;
+  email?: string;
 }
 
 export type PlanType = 

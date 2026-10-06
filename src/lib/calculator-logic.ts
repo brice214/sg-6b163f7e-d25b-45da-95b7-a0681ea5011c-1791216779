@@ -217,16 +217,19 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
 
   // Construire la recommandation
   const plan = PLANS[recommendedPlan];
-  const featuresList = [
+  const featuresList: string[] = [
     `${plan.storage} stockage`,
     `${plan.traffic} bande passante`,
-    `${plan.emails} comptes emails`,
   ];
   
   if (plan.category === "VPS") {
-    featuresList.unshift(`${plan.cpu} CPU`, `${plan.ram} RAM`);
+    featuresList.unshift(`${"cpu" in plan ? plan.cpu : ""} CPU`, `${"ram" in plan ? plan.ram : ""} RAM`);
+    featuresList.push(`${plan.emails} comptes emails`);
   } else {
-    featuresList.push(`${plan.databases} base(s) de données`);
+    featuresList.push(`${plan.emails} comptes emails`);
+    if ("databases" in plan) {
+      featuresList.push(`${plan.databases} base(s) de données`);
+    }
   }
   
   const result: PlanRecommendation = {
@@ -312,6 +315,12 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
       plan: "wp-premium",
       reason: "Espace illimité + 30 emails professionnels",
       extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
+    };
+  } else if (recommendedPlan === "vps-start") {
+    result.upgrade = {
+      plan: "vps-business",
+      reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
+      extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
     };
   }
 

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import type { CalculatorAnswers, ProjectType, TrafficRange, TechnicalLevel } from "@/lib/calculator-types";
+import type { CalculatorAnswers, ProjectType, TrafficLevel, TechnicalLevel, PlanRecommendation } from "@/lib/calculator-types";
 import { calculateRecommendation, getPlanDetails } from "@/lib/calculator-logic";
 
 const STEPS = 4;
@@ -18,6 +18,7 @@ export function HostingCalculator() {
   const [answers, setAnswers] = useState<Partial<CalculatorAnswers>>({
     features: [],
   });
+  const [recommendation, setRecommendation] = useState<PlanRecommendation | null>(null);
   const [showResults, setShowResults] = useState(false);
 
   const progress = (currentStep / STEPS) * 100;
@@ -42,6 +43,11 @@ export function HostingCalculator() {
     if (currentStep < STEPS) {
       setCurrentStep(currentStep + 1);
     } else {
+      // Générer la recommandation
+      if (answers.projectType && answers.traffic && answers.technicalLevel) {
+        const rec = calculateRecommendation(answers as CalculatorAnswers);
+        setRecommendation(rec);
+      }
       setShowResults(true);
     }
   };
@@ -314,11 +320,11 @@ export function HostingCalculator() {
             </h3>
             <div className="grid gap-3">
               {[
-                { value: "low" as TrafficRange, label: "Moins de 1,000 visiteurs/mois", desc: "Site en démarrage" },
-                { value: "medium" as TrafficRange, label: "1,000 - 10,000 visiteurs/mois", desc: "Croissance modérée" },
-                { value: "high" as TrafficRange, label: "10,000 - 50,000 visiteurs/mois", desc: "Trafic établi" },
-                { value: "very-high" as TrafficRange, label: "50,000 - 200,000 visiteurs/mois", desc: "Fort trafic" },
-                { value: "massive" as TrafficRange, label: "Plus de 200,000 visiteurs/mois", desc: "Trafic massif" },
+                { value: "low" as TrafficLevel, label: "Moins de 1,000 visiteurs/mois", desc: "Site en démarrage" },
+                { value: "medium" as TrafficLevel, label: "1,000 - 10,000 visiteurs/mois", desc: "Croissance modérée" },
+                { value: "high" as TrafficLevel, label: "10,000 - 50,000 visiteurs/mois", desc: "Trafic établi" },
+                { value: "very-high" as TrafficLevel, label: "50,000 - 200,000 visiteurs/mois", desc: "Fort trafic" },
+                { value: "massive" as TrafficLevel, label: "Plus de 200,000 visiteurs/mois", desc: "Trafic massif" },
               ].map((option) => (
                 <button
                   key={option.value}
