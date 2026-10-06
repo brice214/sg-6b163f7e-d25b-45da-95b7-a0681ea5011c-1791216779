@@ -242,111 +242,90 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   };
 
   // Alternatives basées sur le plan recommandé
-  switch (recommendedPlan) {
-    // Hébergement Web
-    case "starter":
-      result.alternatives.push({
-        plan: "evolution",
-        reason: "Marge de croissance recommandée (300 GB vs 2 GB)",
-      });
-      break;
-    case "evolution":
-      result.alternatives.push(
-        {
-          plan: "starter",
-          reason: "Plus économique si budget très serré (2 GB)",
-        },
-        {
-          plan: "premium",
-          reason: "Plus de puissance si croissance rapide prévue (500 GB)",
-        }
-      );
-      break;
-    case "premium":
-      result.alternatives.push({
-        plan: "evolution",
-        reason: "Suffisant si trafic surestimé (300 GB)",
-      });
-      break;
-    
-    // WordPress
-    case "wp-lanceur":
-      result.alternatives.push({
-        plan: "wp-pro",
-        reason: "Plus d'espace si beaucoup de médias (30 GB vs 10 GB)",
-      });
-      break;
-    case "wp-pro":
-      result.alternatives.push(
-        {
-          plan: "wp-lanceur",
-          reason: "Plus économique pour démarrer (10 GB)",
-        },
-        {
-          plan: "wp-premium",
-          reason: "Espace illimité si forte croissance prévue",
-        }
-      );
-      break;
-    case "wp-premium":
-      result.alternatives.push({
-        plan: "wp-pro",
-        reason: "Suffisant si trafic surestimé (30 GB)",
-      });
-      break;
-    
-    // VPS
-    case "vps-start":
-      result.alternatives.push({
-        plan: "vps-business",
-        reason: "Plus de ressources recommandées (4 cores, 4 GB RAM)",
-      });
-      break;
-    case "vps-business":
-      result.alternatives.push(
-        {
-          plan: "vps-start",
-          reason: "Plus économique si besoins modérés (2 cores, 2 GB RAM)",
-        },
-        {
-          plan: "vps-performance",
-          reason: "Maximum de puissance si infrastructure critique (6 cores, 8 GB RAM)",
-        }
-      );
-      break;
-    case "vps-performance":
-      result.alternatives.push({
-        plan: "vps-business",
-        reason: "Suffisant si besoins surestimés (4 cores, 4 GB RAM)",
-      });
-      break;
+  if (recommendedPlan === "starter") {
+    result.alternatives.push({
+      plan: "evolution",
+      reason: "Marge de croissance recommandée (300 GB vs 2 GB)",
+    });
+  } else if (recommendedPlan === "evolution") {
+    result.alternatives.push(
+      {
+        plan: "starter",
+        reason: "Plus économique si budget très serré (2 GB)",
+      },
+      {
+        plan: "premium",
+        reason: "Plus de puissance si croissance rapide prévue (500 GB)",
+      }
+    );
+  } else if (recommendedPlan === "premium") {
+    result.alternatives.push({
+      plan: "evolution",
+      reason: "Suffisant si trafic surestimé (300 GB)",
+    });
+  } else if (recommendedPlan === "wp-lanceur") {
+    result.alternatives.push({
+      plan: "wp-pro",
+      reason: "Plus d'espace si beaucoup de médias (30 GB vs 10 GB)",
+    });
+  } else if (recommendedPlan === "wp-pro") {
+    result.alternatives.push(
+      {
+        plan: "wp-lanceur",
+        reason: "Plus économique pour démarrer (10 GB)",
+      },
+      {
+        plan: "wp-premium",
+        reason: "Espace illimité si forte croissance prévue",
+      }
+    );
+  } else if (recommendedPlan === "wp-premium") {
+    result.alternatives.push({
+      plan: "wp-pro",
+      reason: "Suffisant si trafic surestimé (30 GB)",
+    });
+  } else if (recommendedPlan === "vps-start") {
+    result.alternatives.push({
+      plan: "vps-business",
+      reason: "Plus de ressources recommandées (4 cores, 4 GB RAM)",
+    });
+  } else if (recommendedPlan === "vps-business") {
+    result.alternatives.push(
+      {
+        plan: "vps-start",
+        reason: "Plus économique si besoins modérés (2 cores, 2 GB RAM)",
+      },
+      {
+        plan: "vps-performance",
+        reason: "Maximum de puissance si infrastructure critique (6 cores, 8 GB RAM)",
+      }
+    );
+  } else if (recommendedPlan === "vps-performance") {
+    result.alternatives.push({
+      plan: "vps-business",
+      reason: "Suffisant si besoins surestimés (4 cores, 4 GB RAM)",
+    });
   }
 
   // Upgrade suggéré
-  switch (recommendedPlan) {
-    case "evolution":
-      if (!needsPriority) {
-        result.upgrade = {
-          plan: "premium",
-          reason: "500 GB + 30 emails + 10 bases de données",
-          extraCost: PLANS.premium.price - PLANS.evolution.price,
-        };
-      }
-      break;
-    case "wp-pro":
-      result.upgrade = {
-        plan: "wp-premium",
-        reason: "Espace illimité + 30 emails professionnels",
-        extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
-      };
-      break;
-    case "vps-start":
-      result.upgrade = {
-        plan: "vps-business",
-        reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
-        extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
-      };
-      break;
+  if (recommendedPlan === "evolution" && !needsPriority) {
+    result.upgrade = {
+      plan: "premium",
+      reason: "500 GB + 30 emails + 10 bases de données",
+      extraCost: PLANS.premium.price - PLANS.evolution.price,
+    };
+  } else if (recommendedPlan === "wp-pro") {
+    result.upgrade = {
+      plan: "wp-premium",
+      reason: "Espace illimité + 30 emails professionnels",
+      extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
+    };
+  } else if (recommendedPlan === "vps-start") {
+    result.upgrade = {
+      plan: "vps-business",
+      reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
+      extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
+    };
   }
 
   // Warning si sous-dimensionné
