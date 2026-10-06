@@ -4,21 +4,30 @@ import { useEffect } from "react";
 
 export function TawkToChat() {
   useEffect(() => {
+    // Initialiser les variables globales Tawk.to
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
+
     // Configuration Tawk.to
     const script = document.createElement("script");
     script.async = true;
-    script.src = "https://embed.tawk.to/YOUR_TAWK_PROPERTY_ID/YOUR_WIDGET_ID";
+    script.src = "https://embed.tawk.to/6ac4ef54df085134c908c812/1k48kdoth";
     script.charset = "UTF-8";
     script.setAttribute("crossorigin", "*");
     
-    // Insérer le script
-    document.body.appendChild(script);
+    // Insérer le script avant le premier script existant
+    const firstScript = document.getElementsByTagName("script")[0];
+    if (firstScript && firstScript.parentNode) {
+      firstScript.parentNode.insertBefore(script, firstScript);
+    } else {
+      document.body.appendChild(script);
+    }
 
     // Cleanup au démontage
     return () => {
       // Retirer le script
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
       }
       
       // Retirer le widget Tawk.to du DOM
