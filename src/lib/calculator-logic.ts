@@ -242,14 +242,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   };
 
   // Alternatives basées sur le plan recommandé
-  const isWebPlan = (p: PlanType): p is "starter" | "evolution" | "premium" => 
-    ["starter", "evolution", "premium"].includes(p);
-  const isWPPlan = (p: PlanType): p is "wp-lanceur" | "wp-pro" | "wp-premium" => 
-    ["wp-lanceur", "wp-pro", "wp-premium"].includes(p);
-  const isVPSPlan = (p: PlanType): p is "vps-start" | "vps-business" | "vps-performance" => 
-    ["vps-start", "vps-business", "vps-performance"].includes(p);
-
-  if (isWebPlan(recommendedPlan)) {
+  if (recommendedPlan === "starter" || recommendedPlan === "evolution" || recommendedPlan === "premium") {
     if (recommendedPlan === "evolution") {
       result.alternatives.push({
         plan: "starter",
@@ -270,7 +263,7 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         reason: "Suffisant si trafic surestimé (300 GB)",
       });
     }
-  } else if (isWPPlan(recommendedPlan)) {
+  } else if (recommendedPlan === "wp-lanceur" || recommendedPlan === "wp-pro" || recommendedPlan === "wp-premium") {
     if (recommendedPlan === "wp-pro") {
       result.alternatives.push({
         plan: "wp-lanceur",
@@ -291,7 +284,8 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
         reason: "Suffisant si trafic surestimé (30 GB)",
       });
     }
-  } else if (isVPSPlan(recommendedPlan)) {
+  } else {
+    // VPS plans
     if (recommendedPlan === "vps-business") {
       result.alternatives.push({
         plan: "vps-start",
@@ -310,39 +304,31 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
   }
 
   // Upgrade suggéré
-  if (isWebPlan(recommendedPlan)) {
-    if (recommendedPlan === "evolution" && !needsPriority) {
-      result.upgrade = {
-        plan: "premium",
-        reason: "500 GB + 30 emails + 10 bases de données",
-        extraCost: PLANS.premium.price - PLANS.evolution.price,
-      };
-    }
-  } else if (isWPPlan(recommendedPlan)) {
-    if (recommendedPlan === "wp-pro") {
-      result.upgrade = {
-        plan: "wp-premium",
-        reason: "Espace illimité + 30 emails professionnels",
-        extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
-      };
-    }
-  } else if (isVPSPlan(recommendedPlan)) {
-    if (recommendedPlan === "vps-start") {
-      result.upgrade = {
-        plan: "vps-business",
-        reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
-        extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
-      };
-    }
+  if (recommendedPlan === "evolution" && !needsPriority) {
+    result.upgrade = {
+      plan: "premium",
+      reason: "500 GB + 30 emails + 10 bases de données",
+      extraCost: PLANS.premium.price - PLANS.evolution.price,
+    };
+  } else if (recommendedPlan === "wp-pro") {
+    result.upgrade = {
+      plan: "wp-premium",
+      reason: "Espace illimité + 30 emails professionnels",
+      extraCost: PLANS["wp-premium"].price - PLANS["wp-pro"].price,
+    };
+  } else if (recommendedPlan === "vps-start") {
+    result.upgrade = {
+      plan: "vps-business",
+      reason: "Plus de puissance : 4 cores CPU + 4 GB RAM",
+      extraCost: PLANS["vps-business"].price - PLANS["vps-start"].price,
+    };
   }
 
   // Warning si sous-dimensionné
-  if (!isVPSPlan(recommendedPlan)) {
-    if (recommendedPlan === "starter" && (traffic === "medium" || projectType === "ecommerce")) {
-      result.warning = "Ce forfait pourrait être insuffisant si votre trafic augmente rapidement. Evolution recommandé.";
-    } else if (recommendedPlan === "wp-lanceur" && traffic === "high") {
-      result.warning = "10 GB pourrait être limité avec ce trafic. WP Pro ou Premium recommandé.";
-    }
+  if (recommendedPlan === "starter" && (traffic === "medium" || projectType === "ecommerce")) {
+    result.warning = "Ce forfait pourrait être insuffisant si votre trafic augmente rapidement. Evolution recommandé.";
+  } else if (recommendedPlan === "wp-lanceur" && traffic === "high") {
+    result.warning = "10 GB pourrait être limité avec ce trafic. WP Pro ou Premium recommandé.";
   }
 
   return result;
