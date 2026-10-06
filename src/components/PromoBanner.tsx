@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { X, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -106,10 +107,10 @@ export function PromoBanner() {
                 size="sm" 
                 className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg group whitespace-nowrap"
               >
-                <a href="/#offers">
+                <Link href="/#offers">
                   Profiter
                   <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </Button>
 
               <button
