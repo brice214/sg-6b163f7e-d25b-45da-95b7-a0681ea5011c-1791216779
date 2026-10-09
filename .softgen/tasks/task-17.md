@@ -1,6 +1,6 @@
 ---
 title: Contact — Intégration SMTP réelle
-status: todo
+status: done
 priority: urgent
 type: feature
 tags: [contact, smtp, email, backend]
@@ -20,12 +20,12 @@ Configuration SMTP fournie par l'utilisateur (à stocker en variables d'environn
 Infrastructure email partagée avec le calculateur (task-16) via un module utilitaire commun.
 
 ## Checklist
-- [ ] Installer nodemailer (+ types) si absent du package.json
-- [ ] Créer src/lib/email.ts avec un transporter SMTP basé sur variables d'environnement (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD)
-- [ ] Ajouter les variables d'environnement nécessaires dans .env.local
-- [ ] Créer src/pages/api/contact.ts qui reçoit les données du formulaire et envoie l'email à info@spiderhoster.com
-- [ ] Connecter le formulaire contact.tsx à cette API avec gestion des états loading/success/error
-- [ ] Créer src/pages/api/send-recommendation.ts pour l'envoi de recommandation depuis le calculateur (task-16)
+- [x] Installer nodemailer (+ types) si absent du package.json
+- [x] Créer src/lib/email.ts avec un transporter SMTP basé sur variables d'environnement (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD)
+- [x] Ajouter les variables d'environnement nécessaires dans .env.local
+- [x] Créer src/pages/api/contact.ts qui reçoit les données du formulaire et envoie l'email à info@spiderhoster.com
+- [x] Connecter le formulaire contact.tsx à cette API avec gestion des états loading/success/error
+- [x] Créer src/pages/api/send-recommendation.ts pour l'envoi de recommandation depuis le calculateur (task-16)
 
 ## Acceptance
 - Envoyer le formulaire de contact déclenche un email réel reçu sur info@spiderhoster.com
