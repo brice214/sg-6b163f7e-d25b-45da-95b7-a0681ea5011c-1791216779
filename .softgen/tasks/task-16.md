@@ -1,6 +1,6 @@
 ---
 title: Calculateur — Règles business avancées + email recommandation
-status: todo
+status: done
 priority: high
 type: feature
 tags: [calculateur, business-logic, email]
@@ -20,13 +20,13 @@ Règles business demandées par l'utilisateur :
 6. Nouveau bouton "En savoir plus" → doit rediriger vers la page produit correspondante (/hebergement-web, /hebergement-wordpress, /hebergement-vps) pour le forfait recommandé.
 
 ## Checklist
-- [ ] Forcer un forfait VPS quand projectType === "webapp", indépendamment du trafic/features cochées
-- [ ] Forcer un forfait WordPress quand projectType === "ecommerce", indépendamment de la checkbox features
-- [ ] Désactiver/masquer la checkbox WordPress à l'étape 3 si le type de projet n'est pas compatible WordPress (webapp)
-- [ ] Ajouter/vérifier le champ email optionnel à l'étape finale du formulaire avec le bon libellé
-- [ ] Appeler l'API d'envoi d'email (task-17) automatiquement si un email est renseigné lors de l'affichage de la recommandation
-- [ ] Ajouter le bouton "En savoir plus" redirigeant vers la page du forfait recommandé
-- [ ] Vérifier que "Commander maintenant" redirige bien vers l'URL de commande exacte du forfait recommandé
+- [x] Forcer un forfait VPS quand projectType === "webapp", indépendamment du trafic/features cochées
+- [x] Forcer un forfait WordPress quand projectType === "ecommerce", indépendamment de la checkbox features
+- [x] Désactiver/masquer la checkbox WordPress à l'étape 3 si le type de projet n'est pas compatible WordPress (webapp)
+- [x] Ajouter/vérifier le champ email optionnel à l'étape finale du formulaire avec le bon libellé
+- [x] Appeler l'API d'envoi d'email (task-17) automatiquement si un email est renseigné lors de l'affichage de la recommandation
+- [x] Ajouter le bouton "En savoir plus" redirigeant vers la page du forfait recommandé
+- [x] Vérifier que "Commander maintenant" redirige bien vers l'URL de commande exacte du forfait recommandé
 
 ## Acceptance
 - "Application Web/SaaS" recommande toujours un VPS
