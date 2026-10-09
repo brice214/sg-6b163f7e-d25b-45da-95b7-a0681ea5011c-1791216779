@@ -127,28 +127,16 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
     reasons.push("Accès root complet pour configuration avancée");
     confidence = 95;
   } else if (projectType === "ecommerce") {
-    if (needsWordPress) {
-      if (traffic === "low" || traffic === "medium") {
-        recommendedPlan = "wp-pro";
-        reasons.push("WordPress optimisé pour boutique WooCommerce");
-        reasons.push("Mise en scène incluse pour tester avant publication");
-      } else {
-        recommendedPlan = "wp-premium";
-        reasons.push("Trafic e-commerce élevé = WordPress Premium");
-        reasons.push("Espace illimité pour produits et médias");
-        confidence = 98;
-      }
+    // Toujours recommander WordPress + WooCommerce pour l'e-commerce
+    if (traffic === "low" || traffic === "medium") {
+      recommendedPlan = "wp-pro";
+      reasons.push("WordPress + WooCommerce recommandé pour votre boutique en ligne");
+      reasons.push("Mise en scène incluse pour tester avant publication");
     } else {
-      if (traffic === "low") {
-        recommendedPlan = "evolution";
-        reasons.push("E-commerce nécessite performance et fiabilité");
-        reasons.push("300 GB pour catalogue produits et photos");
-      } else {
-        recommendedPlan = "premium";
-        reasons.push("Trafic e-commerce élevé requiert Premium");
-        reasons.push("500 GB + 30 emails pour équipe commerciale");
-        confidence = 98;
-      }
+      recommendedPlan = "wp-premium";
+      reasons.push("Trafic e-commerce élevé = WordPress Premium");
+      reasons.push("Espace illimité pour produits et médias");
+      confidence = 98;
     }
   } else if (traffic === "massive" || traffic === "very-high") {
     if (needsWordPress) {
@@ -331,4 +319,15 @@ export function calculateRecommendation(answers: CalculatorAnswers): PlanRecomme
 
 export function getPlanDetails(plan: PlanType) {
   return PLANS[plan];
+}
+
+const CATEGORY_PAGE_MAP: Record<string, string> = {
+  "Hébergement Web": "/hebergement-web",
+  "WordPress": "/hebergement-wordpress",
+  "VPS": "/hebergement-vps",
+};
+
+export function getPlanPageUrl(plan: PlanType): string {
+  const details = PLANS[plan];
+  return CATEGORY_PAGE_MAP[details.category] || "/";
 }

@@ -1,33 +1,76 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Check, Zap, TrendingUp, Shield, Rocket, CheckCircle2, AlertCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowLeft, Check, Zap, TrendingUp, Shield, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import type { CalculatorAnswers, ProjectType, TrafficLevel, TechnicalLevel, PlanRecommendation } from "@/lib/calculator-types";
-import { calculateRecommendation, getPlanDetails } from "@/lib/calculator-logic";
+import { useToast } from "@/hooks/use-toast";
+import type {
+  CalculatorAnswers,
+  ProjectType,
+  TrafficLevel,
+  TechnicalLevel,
+  PlanRecommendation,
+} from "@/lib/calculator-types";
+import { calculateRecommendation, getPlanDetails, getPlanPageUrl } from "@/lib/calculator-logic";
 
 const STEPS = 4;
 
+const PROJECT_TYPES: { value: ProjectType; label: string; desc: string }[] = [
+  { value: "vitrine", label: "Site Vitrine", desc: "5-20 pages, présentation" },
+  { value: "blog", label: "Blog / Magazine", desc: "Articles, actualités" },
+  { value: "ecommerce", label: "Boutique E-commerce", desc: "Vente en ligne" },
+  { value: "webapp", label: "Application Web / SaaS", desc: "Plateforme interactive" },
+  { value: "community", label: "Communauté / Forum", desc: "Espace membres" },
+];
+
+const TRAFFIC_LEVELS: { value: TrafficLevel; label: string; desc: string }[] = [
+  { value: "low", label: "Moins de 1,000 visiteurs/mois", desc: "Site en démarrage" },
+  { value: "medium", label: "1,000 - 10,000 visiteurs/mois", desc: "Croissance modérée" },
+  { value: "high", label: "10,000 - 50,000 visiteurs/mois", desc: "Trafic établi" },
+  { value: "very-high", label: "50,000 - 200,000 visiteurs/mois", desc: "Fort trafic" },
+  { value: "massive", label: "Plus de 200,000 visiteurs/mois", desc: "Trafic massif" },
+];
+
+const FEATURE_OPTIONS = [
+  { value: "wordpress", label: "WordPress (installation 1-clic)" },
+  { value: "ssl", label: "Certificat SSL gratuit" },
+  { value: "email", label: "Emails professionnels" },
+  { value: "database", label: "Base de données MySQL" },
+  { value: "cdn", label: "CDN pour accélérer le site" },
+  { value: "priority", label: "Support technique prioritaire" },
+];
+
+const TECHNICAL_LEVELS: { value: TechnicalLevel; label: string; desc: string }[] = [
+  { value: "beginner", label: "Débutant", desc: "Je préfère un panneau simple et intuitif" },
+  { value: "intermediate", label: "Intermédiaire", desc: "J'ai déjà géré des sites web" },
+  { value: "advanced", label: "Avancé", desc: "J'ai besoin d'accès SSH/FTP complet" },
+];
+
 export function HostingCalculator() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [answers, setAnswers] = useState<Partial<CalculatorAnswers>>({
-    features: [],
-  });
+  const [answers, setAnswers] = useState<Partial<CalculatorAnswers>>({ features: [] });
   const [recommendation, setRecommendation] = useState<PlanRecommendation | null>(null);
   const [showResults, setShowResults] = useState(false);
+  const { toast } = useToast();
 
   const progress = (currentStep / STEPS) * 100;
 
-  const updateAnswer = <K extends keyof CalculatorAnswers>(
-    key: K,
-    value: CalculatorAnswers[K]
-  ) => {
+  const updateAnswer = <K extends keyof CalculatorAnswers>(key: K, value: CalculatorAnswers[K]) => {
     setAnswers((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const selectProjectType = (type: ProjectType) => {
+    setAnswers((prev) => ({
+      ...prev,
+      projectType: type,
+      features: type === "webapp" ? (prev.features || []).filter((f) => f !== "wordpress") : prev.features,
+    }));
   };
 
   const toggleFeature = (feature: string) => {
@@ -39,23 +82,49 @@ export function HostingCalculator() {
     }));
   };
 
-  const nextStep = () => {
-    if (currentStep < STEPS) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      // Générer la recommandation
-      if (answers.projectType && answers.traffic && answers.technicalLevel) {
-        const rec = calculateRecommendation(answers as CalculatorAnswers);
-        setRecommendation(rec);
-      }
-      setShowResults(true);
+  const sendRecommendationEmail = async (currentAnswers: CalculatorAnswers, rec: PlanRecommendation) => {
+    try {
+      const planDetails = getPlanDetails(rec.plan);
+      const response = await fetch("/api/send-recommendation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: currentAnswers.email,
+          planName: rec.planName,
+          price: rec.price,
+          category: planDetails.category,
+          reasons: rec.reasons,
+          projectType: currentAnswers.projectType,
+          traffic: currentAnswers.traffic,
+        }),
+      });
+      if (!response.ok) throw new Error("send failed");
+      toast({
+        title: "Recommandation envoyée !",
+        description: "Vous recevrez bientôt un suivi personnalisé par email.",
+      });
+    } catch (error) {
+      console.error("Erreur envoi recommandation:", error);
     }
   };
 
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+  const nextStep = () => {
+    if (currentStep < STEPS) {
+      setCurrentStep(currentStep + 1);
+      return;
     }
+    if (answers.projectType && answers.traffic && answers.technicalLevel) {
+      const rec = calculateRecommendation(answers as CalculatorAnswers);
+      setRecommendation(rec);
+      if (answers.email) {
+        sendRecommendationEmail(answers as CalculatorAnswers, rec);
+      }
+    }
+    setShowResults(true);
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
   const canProceed = () => {
@@ -65,7 +134,7 @@ export function HostingCalculator() {
       case 2:
         return !!answers.traffic;
       case 3:
-        return true; // Features are optional
+        return true;
       case 4:
         return !!answers.technicalLevel;
       default:
@@ -73,9 +142,16 @@ export function HostingCalculator() {
     }
   };
 
-  if (showResults && answers.projectType && answers.traffic && answers.technicalLevel) {
-    const recommendation = calculateRecommendation(answers as CalculatorAnswers);
+  const restart = () => {
+    setShowResults(false);
+    setCurrentStep(1);
+    setAnswers({ features: [] });
+    setRecommendation(null);
+  };
+
+  if (showResults && recommendation) {
     const planDetails = getPlanDetails(recommendation.plan);
+    const pageUrl = getPlanPageUrl(recommendation.plan);
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -84,15 +160,12 @@ export function HostingCalculator() {
             <Zap className="w-3 h-3 mr-1" />
             Recommandation Personnalisée
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Notre Recommandation Pour Vous
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Recommandation Pour Vous</h2>
           <p className="text-muted-foreground text-lg">
             Basée sur vos réponses, voici le forfait optimal pour votre projet
           </p>
         </div>
 
-        {/* Résumé des réponses */}
         <Card className="p-6 mb-8 bg-muted/30">
           <h3 className="font-semibold mb-4 flex items-center gap-2">
             <Check className="w-5 h-5 text-primary" />
@@ -106,11 +179,7 @@ export function HostingCalculator() {
             <div>
               <span className="text-muted-foreground">Trafic estimé:</span>{" "}
               <span className="font-medium">
-                {answers.traffic === "low" && "Moins de 1,000/mois"}
-                {answers.traffic === "medium" && "1,000-10,000/mois"}
-                {answers.traffic === "high" && "10,000-50,000/mois"}
-                {answers.traffic === "very-high" && "50,000-200,000/mois"}
-                {answers.traffic === "massive" && "Plus de 200,000/mois"}
+                {TRAFFIC_LEVELS.find((t) => t.value === answers.traffic)?.label}
               </span>
             </div>
             <div>
@@ -124,18 +193,19 @@ export function HostingCalculator() {
           </div>
         </Card>
 
-        {/* Recommandation principale */}
         <Card className="p-8 mb-8 border-primary/50 shadow-lg bg-gradient-to-br from-primary/5 to-transparent">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
             <div>
               <Badge className="mb-2 bg-primary text-primary-foreground">
                 <Rocket className="w-3 h-3 mr-1" />
-                Recommandé
+                {planDetails.category}
               </Badge>
               <h3 className="text-2xl md:text-3xl font-bold">{recommendation.planName}</h3>
             </div>
             <div className="text-right">
-              <div className="text-4xl font-bold text-primary">{recommendation.price.toLocaleString()}</div>
+              <div className="text-4xl font-bold text-primary">
+                {recommendation.price.toLocaleString("fr-FR")}
+              </div>
               <div className="text-sm text-muted-foreground">FCFA/mois</div>
             </div>
           </div>
@@ -172,24 +242,23 @@ export function HostingCalculator() {
 
           {recommendation.warning && (
             <div className="mb-6 p-4 bg-orange-500/10 border border-orange-500/20 rounded-lg">
-              <p className="text-sm text-orange-900 dark:text-orange-200">
-                ⚠️ {recommendation.warning}
-              </p>
+              <p className="text-sm text-orange-900 dark:text-orange-200">⚠️ {recommendation.warning}</p>
             </div>
           )}
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="flex-1 group">
-              Commander Maintenant
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Button asChild size="lg" className="flex-1 group">
+              <a href={planDetails.url} target="_blank" rel="noopener noreferrer">
+                Commander Maintenant
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-            <Button size="lg" variant="outline" className="flex-1">
-              En savoir plus
+            <Button asChild size="lg" variant="outline" className="flex-1">
+              <Link href={pageUrl}>En savoir plus</Link>
             </Button>
           </div>
         </Card>
 
-        {/* Upgrade suggéré */}
         {recommendation.upgrade && (
           <Card className="p-6 mb-8 bg-gradient-to-r from-orange-500/10 to-transparent border-orange-500/20">
             <div className="flex items-start gap-4">
@@ -198,20 +267,18 @@ export function HostingCalculator() {
               </div>
               <div className="flex-1">
                 <h4 className="font-semibold mb-2">💡 Upgrade Suggéré</h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {recommendation.upgrade.reason}
-                </p>
-                <div className="flex items-center gap-4">
+                <p className="text-sm text-muted-foreground mb-3">{recommendation.upgrade.reason}</p>
+                <div className="flex items-center gap-4 flex-wrap">
                   <div>
-                    <span className="font-semibold">
-                      {getPlanDetails(recommendation.upgrade.plan).name}
-                    </span>
+                    <span className="font-semibold">{getPlanDetails(recommendation.upgrade.plan).name}</span>
                     <span className="text-sm text-muted-foreground ml-2">
-                      +{recommendation.upgrade.extraCost.toLocaleString()} FCFA/mois
+                      +{recommendation.upgrade.extraCost.toLocaleString("fr-FR")} FCFA/mois
                     </span>
                   </div>
-                  <Button size="sm" variant="outline">
-                    Voir le forfait
+                  <Button asChild size="sm" variant="outline">
+                    <a href={getPlanDetails(recommendation.upgrade.plan).url} target="_blank" rel="noopener noreferrer">
+                      Voir le forfait
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -219,7 +286,6 @@ export function HostingCalculator() {
           </Card>
         )}
 
-        {/* Alternatives */}
         {recommendation.alternatives.length > 0 && (
           <div className="mb-8">
             <h4 className="font-semibold mb-4">Vous avez aussi considéré :</h4>
@@ -231,10 +297,15 @@ export function HostingCalculator() {
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-semibold">{altPlan.name}</span>
                       <span className="text-sm font-medium">
-                        {altPlan.price.toLocaleString()} FCFA/mois
+                        {altPlan.price.toLocaleString("fr-FR")} FCFA/mois
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground">{alt.reason}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{alt.reason}</p>
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                      <a href={altPlan.url} target="_blank" rel="noopener noreferrer">
+                        Voir cette offre
+                      </a>
+                    </Button>
                   </Card>
                 );
               })}
@@ -242,16 +313,8 @@ export function HostingCalculator() {
           </div>
         )}
 
-        {/* Actions finales */}
         <div className="text-center">
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setShowResults(false);
-              setCurrentStep(1);
-              setAnswers({ features: [] });
-            }}
-          >
+          <Button variant="ghost" onClick={restart}>
             <ArrowLeft className="mr-2 w-4 h-4" />
             Recommencer le test
           </Button>
@@ -262,47 +325,31 @@ export function HostingCalculator() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      {/* Header */}
       <div className="text-center mb-8">
         <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
           Étape {currentStep} sur {STEPS}
         </Badge>
-        <h2 className="text-2xl md:text-3xl font-bold mb-2">
-          Trouvez Votre Hébergement Idéal
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2">Trouvez Votre Hébergement Idéal</h2>
         <p className="text-muted-foreground">
           Répondez à quelques questions pour une recommandation personnalisée
         </p>
       </div>
 
-      {/* Progress Bar */}
       <div className="mb-8">
         <Progress value={progress} className="h-2" />
       </div>
 
-      {/* Questions */}
       <Card className="p-8 mb-6">
         {currentStep === 1 && (
           <div>
-            <h3 className="text-xl font-semibold mb-6">
-              Quel type de site voulez-vous héberger ?
-            </h3>
+            <h3 className="text-xl font-semibold mb-6">Quel type de site voulez-vous héberger ?</h3>
             <div className="grid gap-3">
-              {[
-                { value: "vitrine" as ProjectType, label: "Site Vitrine", desc: "5-20 pages, présentation" },
-                { value: "blog" as ProjectType, label: "Blog / Magazine", desc: "Articles, actualités" },
-                { value: "ecommerce" as ProjectType, label: "Boutique E-commerce", desc: "Vente en ligne" },
-                { value: "webapp" as ProjectType, label: "Application Web / SaaS", desc: "Plateforme interactive" },
-                { value: "community" as ProjectType, label: "Communauté / Forum", desc: "Espace membres" },
-                { value: "portfolio" as ProjectType, label: "Portfolio Personnel", desc: "Showcase créatif" },
-              ].map((option) => (
+              {PROJECT_TYPES.map((option) => (
                 <button
                   key={option.value}
-                  onClick={() => updateAnswer("projectType", option.value)}
+                  onClick={() => selectProjectType(option.value)}
                   className={`text-left p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${
-                    answers.projectType === option.value
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                    answers.projectType === option.value ? "border-primary bg-primary/5" : "border-border"
                   }`}
                 >
                   <div className="font-medium">{option.label}</div>
@@ -315,24 +362,14 @@ export function HostingCalculator() {
 
         {currentStep === 2 && (
           <div>
-            <h3 className="text-xl font-semibold mb-6">
-              Combien de visiteurs attendez-vous par mois ?
-            </h3>
+            <h3 className="text-xl font-semibold mb-6">Combien de visiteurs attendez-vous par mois ?</h3>
             <div className="grid gap-3">
-              {[
-                { value: "low" as TrafficLevel, label: "Moins de 1,000 visiteurs/mois", desc: "Site en démarrage" },
-                { value: "medium" as TrafficLevel, label: "1,000 - 10,000 visiteurs/mois", desc: "Croissance modérée" },
-                { value: "high" as TrafficLevel, label: "10,000 - 50,000 visiteurs/mois", desc: "Trafic établi" },
-                { value: "very-high" as TrafficLevel, label: "50,000 - 200,000 visiteurs/mois", desc: "Fort trafic" },
-                { value: "massive" as TrafficLevel, label: "Plus de 200,000 visiteurs/mois", desc: "Trafic massif" },
-              ].map((option) => (
+              {TRAFFIC_LEVELS.map((option) => (
                 <button
                   key={option.value}
                   onClick={() => updateAnswer("traffic", option.value)}
                   className={`text-left p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${
-                    answers.traffic === option.value
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                    answers.traffic === option.value ? "border-primary bg-primary/5" : "border-border"
                   }`}
                 >
                   <div className="font-medium">{option.label}</div>
@@ -345,28 +382,17 @@ export function HostingCalculator() {
 
         {currentStep === 3 && (
           <div>
-            <h3 className="text-xl font-semibold mb-2">
-              De quelles fonctionnalités avez-vous besoin ?
-            </h3>
-            <p className="text-sm text-muted-foreground mb-6">
-              Sélectionnez toutes celles qui vous intéressent
-            </p>
+            <h3 className="text-xl font-semibold mb-2">De quelles fonctionnalités avez-vous besoin ?</h3>
+            <p className="text-sm text-muted-foreground mb-6">Sélectionnez toutes celles qui vous intéressent</p>
             <div className="grid gap-3">
-              {[
-                { value: "wordpress", label: "WordPress (installation 1-clic)" },
-                { value: "ssl", label: "Certificat SSL gratuit" },
-                { value: "email", label: "Emails professionnels" },
-                { value: "database", label: "Base de données MySQL" },
-                { value: "cdn", label: "CDN pour accélérer le site" },
-                { value: "priority", label: "Support technique prioritaire" },
-              ].map((option) => (
+              {FEATURE_OPTIONS.filter(
+                (option) => option.value !== "wordpress" || answers.projectType !== "webapp"
+              ).map((option) => (
                 <button
                   key={option.value}
                   onClick={() => toggleFeature(option.value)}
                   className={`text-left p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${
-                    answers.features?.includes(option.value)
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                    answers.features?.includes(option.value) ? "border-primary bg-primary/5" : "border-border"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -377,9 +403,7 @@ export function HostingCalculator() {
                           : "border-muted-foreground/30"
                       }`}
                     >
-                      {answers.features?.includes(option.value) && (
-                        <Check className="w-3 h-3 text-white" />
-                      )}
+                      {answers.features?.includes(option.value) && <Check className="w-3 h-3 text-white" />}
                     </div>
                     <span className="font-medium">{option.label}</span>
                   </div>
@@ -391,22 +415,14 @@ export function HostingCalculator() {
 
         {currentStep === 4 && (
           <div>
-            <h3 className="text-xl font-semibold mb-6">
-              Quel est votre niveau technique ?
-            </h3>
+            <h3 className="text-xl font-semibold mb-6">Quel est votre niveau technique ?</h3>
             <div className="grid gap-3">
-              {[
-                { value: "beginner" as TechnicalLevel, label: "Débutant", desc: "Je préfère un panneau simple et intuitif" },
-                { value: "intermediate" as TechnicalLevel, label: "Intermédiaire", desc: "J'ai déjà géré des sites web" },
-                { value: "advanced" as TechnicalLevel, label: "Avancé", desc: "J'ai besoin d'accès SSH/FTP complet" },
-              ].map((option) => (
+              {TECHNICAL_LEVELS.map((option) => (
                 <button
                   key={option.value}
                   onClick={() => updateAnswer("technicalLevel", option.value)}
                   className={`text-left p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${
-                    answers.technicalLevel === option.value
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                    answers.technicalLevel === option.value ? "border-primary bg-primary/5" : "border-border"
                   }`}
                 >
                   <div className="font-medium">{option.label}</div>
@@ -432,193 +448,16 @@ export function HostingCalculator() {
         )}
       </Card>
 
-      {/* Navigation */}
       <div className="flex justify-between">
-        <Button
-          variant="outline"
-          onClick={prevStep}
-          disabled={currentStep === 1}
-        >
+        <Button variant="outline" onClick={prevStep} disabled={currentStep === 1}>
           <ArrowLeft className="mr-2 w-4 h-4" />
           Précédent
         </Button>
-        <Button
-          onClick={nextStep}
-          disabled={!canProceed()}
-          className="group"
-        >
+        <Button onClick={nextStep} disabled={!canProceed()} className="group">
           {currentStep === STEPS ? "Voir Ma Recommandation" : "Suivant"}
           <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </div>
-
-      {currentStep === 5 && recommendation && (
-        <div className="space-y-8">
-          <div className="text-center">
-            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-              <span className="text-sm font-mono font-semibold text-primary">Résultat personnalisé</span>
-            </div>
-            <h3 className="text-2xl font-bold mb-2">Votre forfait idéal</h3>
-            <p className="text-muted-foreground">
-              Basé sur vos réponses, voici notre recommandation
-            </p>
-          </div>
-
-          {/* Carte de recommandation principale */}
-          <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-20 blur-xl rounded-2xl" />
-            <div className="relative bg-card border-2 border-primary rounded-2xl p-8 shadow-xl">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
-                    <Zap className="w-3 h-3" />
-                    {getPlanDetails(recommendation.plan).category}
-                  </div>
-                  <h4 className="text-3xl font-bold mb-2">{recommendation.planName}</h4>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-primary">
-                      {recommendation.price.toLocaleString("fr-FR")}
-                    </span>
-                    <span className="text-lg text-muted-foreground">FCFA/mois</span>
-                  </div>
-                </div>
-                <div className="flex flex-col items-end gap-2">
-                  <Badge variant="default" className="text-xs">
-                    {recommendation.confidence}% de correspondance
-                  </Badge>
-                </div>
-              </div>
-
-              <div className="space-y-4 mb-6">
-                <div>
-                  <h5 className="font-semibold mb-2 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary" />
-                    Pourquoi ce forfait ?
-                  </h5>
-                  <ul className="space-y-2">
-                    {recommendation.reasons.map((reason, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{reason}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h5 className="font-semibold mb-2">Inclus dans ce forfait :</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {recommendation.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {recommendation.warning && (
-                <div className="flex items-start gap-3 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20 mb-6">
-                  <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-amber-900 dark:text-amber-200">
-                    {recommendation.warning}
-                  </p>
-                </div>
-              )}
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  asChild
-                  size="lg"
-                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:opacity-90 group"
-                >
-                  <a
-                    href={getPlanDetails(recommendation.plan).url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Commander maintenant
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => {
-                    setCurrentStep(1);
-                    setAnswers({});
-                    setRecommendation(null);
-                  }}
-                >
-                  Recommencer
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Upgrade suggéré */}
-          {recommendation.upgrade && (
-            <div className="bg-muted/50 border border-border rounded-xl p-6">
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <h5 className="font-semibold mb-1">💡 Upgrade recommandé</h5>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    {recommendation.upgrade.reason}
-                  </p>
-                  <p className="text-sm font-medium">
-                    +{recommendation.upgrade.extraCost.toLocaleString("fr-FR")} FCFA/mois
-                    <span className="text-muted-foreground ml-1">
-                      → {getPlanDetails(recommendation.upgrade.plan).name}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Alternatives */}
-          {recommendation.alternatives.length > 0 && (
-            <div>
-              <h5 className="font-semibold mb-4">Autres options à considérer :</h5>
-              <div className="grid gap-4 md:grid-cols-2">
-                {recommendation.alternatives.map((alt) => {
-                  const altPlan = getPlanDetails(alt.plan);
-                  return (
-                    <div
-                      key={alt.plan}
-                      className="border border-border rounded-xl p-5 hover:border-primary/50 transition-colors"
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h6 className="font-semibold">{altPlan.name}</h6>
-                          <p className="text-sm text-primary font-semibold">
-                            {altPlan.price.toLocaleString("fr-FR")} FCFA/mois
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">{alt.reason}</p>
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="w-full"
-                      >
-                        <a href={altPlan.url} target="_blank" rel="noopener noreferrer">
-                          Voir cette offre
-                        </a>
-                      </Button>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { SpiderWeb } from "@/components/SpiderWeb";
 import { PageHero } from "@/components/shared/PageHero";
 import { FeatureGrid, type FeatureItem } from "@/components/shared/FeatureGrid";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Clock, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageSquare, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 const CONTACT_EMAIL = "contact@spiderhoster.com";
 
@@ -51,6 +51,8 @@ const initialFormState: ContactFormState = {
 
 export default function Contact() {
   const [formData, setFormData] = useState<ContactFormState>(initialFormState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -59,20 +61,27 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subjectLine = `[${formData.subject}] Message de ${formData.name || "un visiteur"}`;
-    const bodyLines = [
-      `Nom : ${formData.name}`,
-      `Email : ${formData.email}`,
-      formData.phone ? `Téléphone : ${formData.phone}` : "",
-      "",
-      formData.message,
-    ].filter(Boolean);
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      subjectLine
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-    window.location.href = mailtoUrl;
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du message");
+      }
+      setSubmitStatus("success");
+      setFormData(initialFormState);
+    } catch (error) {
+      console.error("Erreur envoi contact:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -199,8 +208,32 @@ export default function Contact() {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold">
-                      Envoyer le message
+                    {submitStatus === "success" && (
+                      <div className="flex items-center gap-2 p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 text-sm">
+                        <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+                        Votre message a bien été envoyé. Nous vous répondrons sous 24h ouvrées.
+                      </div>
+                    )}
+                    {submitStatus === "error" && (
+                      <div className="flex items-center gap-2 p-4 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm">
+                        <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                        Une erreur est survenue. Merci de réessayer ou de nous contacter via WhatsApp.
+                      </div>
+                    )}
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold disabled:opacity-60"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        "Envoyer le message"
+                      )}
                     </Button>
                   </form>
                 </div>
