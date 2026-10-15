@@ -27,7 +27,7 @@ const sections: LegalSection[] = [
       },
       {
         type: "paragraph",
-        text: "Siège social : Nzeng-Ayong, Libreville, BP 319, Gabon. Bureaux : Immeuble ASCOMA, 7ème étage, Centre-ville, Libreville, Gabon. Contact : contact@spiderhoster.com — +241 74 43 63 43.",
+        text: "Siège social : Nzeng-Ayong, Libreville, BP 20142, Gabon. Bureaux : Immeuble ASCOMA, 7ème étage, Centre-ville, Libreville, Gabon. Contact : contact@spiderhoster.com — +241 74 43 63 43.",
       },
       {
         type: "subheading",
@@ -102,8 +102,50 @@ const sections: LegalSection[] = [
     ],
   },
   {
+    id: "suspension-retention",
+    title: "7. Suspension, rétention et suppression des services",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "En cas de non-paiement ou de non-renouvellement d'un service à son échéance, les règles de suspension, de rétention et de suppression ci-dessous s'appliquent. Certaines suppressions étant irréversibles, nous invitons chaque client à en prendre connaissance attentivement.",
+      },
+      {
+        type: "subheading",
+        text: "Hébergement Web et WordPress (comptes suspendus)",
+      },
+      {
+        type: "paragraph",
+        text: "En cas de non-renouvellement ou de défaut de paiement, le compte d'hébergement concerné est suspendu puis conservé pendant une durée d'un (1) mois. Passé ce délai, le compte et l'ensemble de ses données (fichiers, bases de données, emails) sont supprimés automatiquement et définitivement. Cette suppression est irréversible : SPIDERHOSTER ne pourra en aucun cas restaurer les données d'un compte supprimé.",
+      },
+      {
+        type: "subheading",
+        text: "Serveurs Privés Virtuels (VPS)",
+      },
+      {
+        type: "paragraph",
+        text: "Un VPS non renouvelé à son échéance est suspendu puis supprimé automatiquement au bout de sept (7) jours. Passé ce délai, toutes les données du serveur (fichiers, configurations, machines virtuelles) sont définitivement perdues et ne pourront être récupérées.",
+      },
+      {
+        type: "subheading",
+        text: "Noms de domaine",
+      },
+      {
+        type: "paragraph",
+        text: "À l'expiration d'un nom de domaine, une période de grâce d'un (1) mois est accordée, durant laquelle le client peut renouveler son domaine au tarif normal en vigueur. Passé ce délai, le domaine entre en période de rédemption, d'une durée généralement comprise entre 70 et 120 jours selon l'extension concernée. Durant cette période, le renouvellement reste possible moyennant des frais de récupération fixés à 100 000 FCFA. À l'issue de la période de rédemption, si le domaine n'a toujours pas été renouvelé, il est libéré et redevient disponible à l'enregistrement par toute personne ou entité, y compris le client initial, selon le principe du premier arrivé, premier servi. Les tarifs d'enregistrement et de renouvellement des noms de domaine sont fixés par les registres compétents et peuvent évoluer sans préavis.",
+      },
+      {
+        type: "subheading",
+        text: "Emails professionnels",
+      },
+      {
+        type: "paragraph",
+        text: "Chaque compte email professionnel dispose d'une capacité de stockage de 10 Go. Le client peut commander de l'espace de stockage additionnel à tout moment, selon ses besoins, directement depuis le portail client.",
+      },
+    ],
+  },
+  {
     id: "responsabilite",
-    title: "7. Responsabilité",
+    title: "8. Responsabilité",
     blocks: [
       {
         type: "paragraph",
@@ -117,7 +159,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "liens-hypertextes",
-    title: "8. Liens hypertextes",
+    title: "9. Liens hypertextes",
     blocks: [
       {
         type: "paragraph",
@@ -127,7 +169,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "droit-applicable",
-    title: "9. Droit applicable et juridiction",
+    title: "10. Droit applicable et juridiction",
     blocks: [
       {
         type: "paragraph",
@@ -137,7 +179,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "modification-cgu",
-    title: "10. Modification des CGU",
+    title: "11. Modification des CGU",
     blocks: [
       {
         type: "paragraph",
@@ -147,7 +189,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "contact-cgu",
-    title: "11. Contact",
+    title: "12. Contact",
     blocks: [
       {
         type: "paragraph",
@@ -162,7 +204,7 @@ export default function CGU() {
     <>
       <SEO
         title="Conditions Générales d'Utilisation | SPIDERHOSTER"
-        description="Conditions Générales d'Utilisation du site SPIDERHOSTER : mentions légales, accès au site, commandes, paiement et droit applicable."
+        description="Conditions Générales d'Utilisation du site SPIDERHOSTER : mentions légales, accès au site, commandes, paiement, rétention des services et droit applicable."
         url="https://spiderhoster.com/cgu"
       />
       <LegalPageLayout

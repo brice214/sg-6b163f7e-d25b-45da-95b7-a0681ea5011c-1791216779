@@ -23,7 +23,7 @@ const sections: LegalSection[] = [
       },
       {
         type: "paragraph",
-        text: "Siège social : Nzeng-Ayong, Libreville, BP 319, Gabon. Bureaux : Immeuble ASCOMA, 7ème étage, Centre-ville, Libreville, Gabon. Contact : contact@spiderhoster.com — +241 74 43 63 43.",
+        text: "Siège social : Nzeng-Ayong, Libreville, BP 20142, Gabon. Bureaux : Immeuble ASCOMA, 7ème étage, Centre-ville, Libreville, Gabon. Contact : contact@spiderhoster.com — +241 74 43 63 43.",
       },
     ],
   },
