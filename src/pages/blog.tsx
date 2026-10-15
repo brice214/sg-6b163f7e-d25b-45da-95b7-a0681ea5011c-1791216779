@@ -7,7 +7,7 @@ import { PageHero } from "@/components/shared/PageHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Calendar, User, ArrowRight, Tag, Rss, BookOpen, Layers } from "lucide-react";
+import { Calendar, User, ArrowRight, Tag, Rss, BookOpen, Layers, Search, X } from "lucide-react";
 import { blogArticles } from "@/lib/blog-articles";
 import { legacyArticles, legacyCategoryLabels } from "@/lib/legacy-articles";
 
@@ -71,11 +71,21 @@ const ARTICLES_PER_PAGE = 9;
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("Tous");
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredArticles = useMemo(
-    () => (selectedCategory === "Tous" ? articles : articles.filter((a) => a.category === selectedCategory)),
-    [selectedCategory]
-  );
+  const filteredArticles = useMemo(() => {
+    let result = selectedCategory === "Tous" ? articles : articles.filter((a) => a.category === selectedCategory);
+    if (searchQuery.trim()) {
+      const q = searchQuery.trim().toLowerCase();
+      result = result.filter(
+        (a) =>
+          a.title.toLowerCase().includes(q) ||
+          a.excerpt.toLowerCase().includes(q) ||
+          a.category.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [selectedCategory, searchQuery]);
 
   const totalPages = Math.max(1, Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE));
 
@@ -86,6 +96,11 @@ export default function Blog() {
 
   const handleCategoryChange = (cat: string) => {
     setSelectedCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
     setCurrentPage(1);
   };
 
@@ -123,6 +138,25 @@ export default function Blog() {
 
         <section className="py-10 bg-background border-b border-border/50">
           <div className="container mx-auto px-4">
+            <div className="max-w-xl mx-auto mb-8 relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                placeholder="Rechercher un article (ex: WordPress, SSL, nom de domaine...)"
+                className="w-full pl-11 pr-11 py-3 rounded-xl border border-border/60 bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50 transition-colors font-mono text-sm"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => handleSearchChange("")}
+                  aria-label="Effacer la recherche"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
             <div className="flex flex-wrap gap-3 justify-center">
               {categories.map((cat) => (
                 <Button
@@ -204,7 +238,11 @@ export default function Blog() {
               </div>
             ) : (
               <div className="text-center py-20">
-                <p className="text-muted-foreground font-mono">Aucun article dans cette catégorie pour le moment.</p>
+                <p className="text-muted-foreground font-mono">
+                  {searchQuery
+                    ? `Aucun article ne correspond à « ${searchQuery} ».`
+                    : "Aucun article dans cette catégorie pour le moment."}
+                </p>
               </div>
             )}
 
