@@ -13,6 +13,8 @@ const staticPages = [
   { path: "a-propos", priority: "0.6", freq: "monthly" },
   { path: "blog", priority: "0.8", freq: "daily" },
   { path: "contact", priority: "0.6", freq: "monthly" },
+  { path: "politique-confidentialite", priority: "0.3", freq: "yearly" },
+  { path: "cgu", priority: "0.3", freq: "yearly" },
 ];
 
 function generateSiteMap(): string {

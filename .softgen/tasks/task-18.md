@@ -28,7 +28,7 @@ Correction en parallèle de l'incohérence d'adresse détectée entre Footer ("Q
 - [x] Créer cgu.tsx (mentions légales, commande/paiement, remboursement, responsabilité, droit applicable, etc.)
 - [x] Ajouter liens vers les deux pages dans le Footer
 - [x] Corriger l'adresse dans Footer, Contact et Schema.org (_document.tsx)
-- [ ] Ajouter les deux pages au sitemap.xml
+- [x] Ajouter les deux pages au sitemap.xml
 - [ ] Vérifier l'absence d'erreurs (check_for_errors)
 
 ## Acceptance
