@@ -14,7 +14,7 @@ const coordonnees: FeatureItem[] = [
   {
     icon: MapPin,
     title: "Adresse",
-    description: "Libreville, Gabon — Quartier Glass, Boulevard Triomphal",
+    description: "Immeuble ASCOMA, 7ème étage — Centre-ville, Libreville",
   },
   {
     icon: Phone,

@@ -14,7 +14,7 @@ const organizationSchema = {
     "Hébergeur web professionnel au Gabon : hébergement Web, WordPress, VPS et noms de domaine pour entreprises et développeurs en Afrique.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Boulevard Triomphal, Quartier Glass",
+    streetAddress: "Immeuble ASCOMA, 7ème étage, Centre-ville",
     addressLocality: "Libreville",
     addressCountry: "GA",
   },

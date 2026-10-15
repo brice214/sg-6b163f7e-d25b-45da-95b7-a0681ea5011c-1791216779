@@ -84,6 +84,16 @@ export function Footer() {
                   Espace Client
                 </a>
               </li>
+              <li>
+                <Link href="/politique-confidentialite" className="text-background/70 hover:text-background transition-colors">
+                  Politique de Confidentialité
+                </Link>
+              </li>
+              <li>
+                <Link href="/cgu" className="text-background/70 hover:text-background transition-colors">
+                  CGU
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -93,8 +103,8 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-background/70 flex-shrink-0 mt-0.5" />
                 <span className="text-background/70">
-                  Boulevard Triomphal, Quartier Louis<br />
-                  Libreville, Gabon
+                  Immeuble ASCOMA, 7ème étage<br />
+                  Centre-ville, Libreville, Gabon
                 </span>
               </li>
               <li className="flex items-center gap-3">
