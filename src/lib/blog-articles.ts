@@ -221,4 +221,46 @@ export const blogArticles: BlogArticleMeta[] = [
     coverImage: "/generated/choisir-nom-domaine-gabon.png",
     coverImageAlt: "Comment bien choisir son nom de domaine",
   },
+  {
+    slug: "les-principales-methodes-de-paiement-mobile-money-au-gabon",
+    urlCategory: "hebergement-web",
+    title: "Les principales méthodes de paiement mobile money au Gabon",
+    excerpt:
+      "Airtel Money, Moov Money : comment ces solutions dominent les paiements au Gabon et comment les intégrer à votre site ou votre hébergement.",
+    category: "Hébergement Web",
+    date: "21 Fév 2023",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "6 min",
+    metaDescription:
+      "Les principales méthodes de paiement mobile money au Gabon : Airtel Money, Moov Money, intégration e-commerce et paiement d'hébergement web.",
+    keywords: ["mobile money Gabon", "Airtel Money", "Moov Money", "paiement en ligne Gabon"],
+  },
+  {
+    slug: "cest-quoi-wordpress",
+    urlCategory: "wordpress",
+    title: "C'est quoi WordPress ?",
+    excerpt:
+      "Découvrez ce qu'est WordPress, pourquoi ce CMS équipe 40% des sites web dans le monde et comment bien démarrer au Gabon.",
+    category: "WordPress",
+    date: "18 Mar 2023",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "5 min",
+    metaDescription:
+      "C'est quoi WordPress ? Découvrez ce CMS open-source, ses avantages et comment créer votre site WordPress au Gabon avec SPIDERHOSTER.",
+    keywords: ["c'est quoi WordPress", "WordPress CMS", "créer site WordPress Gabon"],
+  },
+  {
+    slug: "quest-ce-quun-domaine-de-premier-niveau-tld",
+    urlCategory: "domaine",
+    title: "Qu'est-ce qu'un domaine de premier niveau (TLD) ?",
+    excerpt:
+      "Comprendre les TLD (.com, .ga, .africa) pour choisir l'extension de nom de domaine la plus adaptée à votre activité.",
+    category: "Domaines",
+    date: "10 Jan 2024",
+    author: "Équipe SPIDERHOSTER",
+    readTime: "5 min",
+    metaDescription:
+      "Qu'est-ce qu'un TLD (domaine de premier niveau) ? Différences entre .com, .ga et .africa. Guide complet SPIDERHOSTER.",
+    keywords: ["TLD", "domaine de premier niveau", "extension .ga", "ccTLD Gabon"],
+  },
 ];

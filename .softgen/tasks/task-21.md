@@ -18,7 +18,7 @@ position: 21
 - Traiter par lots prioritaires : d'abord les catégories à fort potentiel commercial (hébergement-web, sécurité, WordPress, domaine, e-commerce), puis le reste (référencement, marketing, webdesign, non-classé).
 
 ## Checklist
-- [ ] les-principales-methodes-de-paiement-mobile-money-au-gabon (hebergement-web)
+- [x] les-principales-methodes-de-paiement-mobile-money-au-gabon (hebergement-web)
 - [ ] hebergement-web-en-afrique-centrale-avec-paiement-gimacpay (hebergement-web)
 - [ ] hebergez-vos-sites-web-a-port-gentil-gabon-avec-spiderhoster-com (hebergement-web)
 - [ ] quest-ce-que-cloudlinux (hebergement-web)
@@ -33,13 +33,13 @@ position: 21
 - [ ] hebergement-web-avec-certificat-ssl-gratuit (securite)
 - [ ] 7-choses-que-vous-ignorez-peut-etre-au-sujet-de-cms-wordpress (wordpress)
 - [ ] comment-creer-un-site-web-wordpress-en-5-etapes-faciles (wordpress)
-- [ ] cest-quoi-wordpress (wordpress)
+- [x] cest-quoi-wordpress (wordpress)
 - [ ] dois-je-utiliser-un-hebergement-wordpress-ou-un-hebergement-mutualise (wordpress)
 - [ ] comment-mettre-en-ligne-un-site-web-wordpress-rapidement (wordpress)
 - [ ] 6-erreurs-wordpress-les-plus-courantes-et-comment-les-corriger (wordpress)
 - [ ] obtenir-nom-de-domaine-gratuit-spiderhoster (domaine)
 - [ ] 5-tactiques-sournoises-utilisees-par-les-registraires-de-domaine-bon-marche (domaine)
-- [ ] quest-ce-quun-domaine-de-premier-niveau-tld (domaine)
+- [x] quest-ce-quun-domaine-de-premier-niveau-tld (domaine)
 - [ ] comment-bien-demarrer-une-boutique-en-ligne-reussie-conseils-pour-les-debutants (e-commerce)
 - [ ] comprendre-le-referencement-et-comment-il-fonctionne (referencement)
 - [ ] comment-obtenir-un-score-de-100-sur-google-pagespeed-insights (referencement)

@@ -10,6 +10,9 @@ import securiserSiteWebSsl from "./securiser-site-web-ssl";
 import vpsVsHebergementPartage from "./vps-vs-hebergement-partage";
 import lancerBoutiqueEnLigneGabon from "./lancer-boutique-en-ligne-gabon";
 import choisirNomDeDomaine from "./choisir-nom-de-domaine";
+import lesPrincipalesMethodesDePaiementMobileMoneyAuGabon from "./les-principales-methodes-de-paiement-mobile-money-au-gabon";
+import cestQuoiWordpress from "./cest-quoi-wordpress";
+import questCeQuunDomaineDePremierNiveauTld from "./quest-ce-quun-domaine-de-premier-niveau-tld";
 
 export const blogContentMap: Record<string, BlogArticleContent> = {
   [hebergementWordpressOptimisePortGentil.slug]: hebergementWordpressOptimisePortGentil,
@@ -23,4 +26,7 @@ export const blogContentMap: Record<string, BlogArticleContent> = {
   [vpsVsHebergementPartage.slug]: vpsVsHebergementPartage,
   [lancerBoutiqueEnLigneGabon.slug]: lancerBoutiqueEnLigneGabon,
   [choisirNomDeDomaine.slug]: choisirNomDeDomaine,
+  [lesPrincipalesMethodesDePaiementMobileMoneyAuGabon.slug]: lesPrincipalesMethodesDePaiementMobileMoneyAuGabon,
+  [cestQuoiWordpress.slug]: cestQuoiWordpress,
+  [questCeQuunDomaineDePremierNiveauTld.slug]: questCeQuunDomaineDePremierNiveauTld,
 };
