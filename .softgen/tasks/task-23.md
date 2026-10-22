@@ -1,6 +1,6 @@
 ---
 title: Infrastructure i18n FR/EN
-status: in_progress
+status: done
 priority: urgent
 type: chore
 tags: [i18n, infrastructure, seo]
@@ -16,14 +16,14 @@ Détection: si le cookie NEXT_LOCALE est absent, lecture de l'en-tête Accept-La
 Tant qu'aucune page n'est traduite, la liste blanche reste vide : zéro changement de comportement pour les visiteurs actuels (pas de régression). Chaque tâche de traduction suivante ajoutera son URL à la liste blanche pour activer la redirection automatique page par page.
 
 ## Checklist
-- [ ] Créer le dictionnaire de traductions `src/lib/i18n/` (types + fr.ts + en.ts + index.ts + routes.ts) pour le Header, le Footer et les libellés communs
-- [ ] Créer `src/contexts/LanguageContext.tsx` (détection de la locale via l'URL, fonction t(), lien vers l'équivalent dans l'autre langue)
-- [ ] Créer `src/middleware.ts` (détection Accept-Language + cookie NEXT_LOCALE + exclusion des robots + liste blanche des routes traduites)
-- [ ] Brancher `LanguageProvider` dans `_app.tsx`
-- [ ] Définir `<html lang>` dynamique dans `_document.tsx`
-- [ ] Convertir `Header.tsx` pour utiliser le dictionnaire (sélecteur de langue FR/EN visible uniquement si une version EN existe pour la page courante)
-- [ ] Convertir `Footer.tsx` pour utiliser le dictionnaire
-- [ ] Ajouter les balises hreflang (fr/en/x-default) dans `SEO.tsx`, générées uniquement pour les pages présentes dans la liste blanche
+- [x] Créer le dictionnaire de traductions `src/lib/i18n/` (types + fr.ts + en.ts + index.ts + routes.ts) pour le Header, le Footer et les libellés communs
+- [x] Créer `src/contexts/LanguageContext.tsx` (détection de la locale via l'URL, fonction t(), lien vers l'équivalent dans l'autre langue)
+- [x] Créer `src/middleware.ts` (détection Accept-Language + cookie NEXT_LOCALE + exclusion des robots + liste blanche des routes traduites)
+- [x] Brancher `LanguageProvider` dans `_app.tsx`
+- [x] Définir `<html lang>` dynamique dans `_document.tsx`
+- [x] Convertir `Header.tsx` pour utiliser le dictionnaire (sélecteur de langue FR/EN visible uniquement si une version EN existe pour la page courante)
+- [x] Convertir `Footer.tsx` pour utiliser le dictionnaire
+- [x] Ajouter les balises hreflang (fr/en/x-default) dans `SEO.tsx`, générées uniquement pour les pages présentes dans la liste blanche
 
 ## Acceptance
 - Le site français existant est strictement identique visuellement et fonctionnellement (aucune régression détectable)
