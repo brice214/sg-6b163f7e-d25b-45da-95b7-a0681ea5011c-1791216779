@@ -27,3 +27,8 @@ export function toFrenchPath(enPath: string): string {
 export function getLocaleFromPath(path: string): Locale {
   return path === "/en" || path.startsWith("/en/") ? "en" : "fr";
 }
+
+export function localizedHref(path: string, locale: Locale): string {
+  if (locale === "fr") return path;
+  return isPathLocalized(path) ? toEnglishPath(path) : path;
+}
