@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { sendEmail } from "@/lib/email";
+import { verifyRecaptcha } from "@/lib/recaptcha";
 
 interface RecommendationRequestBody {
   email: string;
@@ -9,6 +10,7 @@ interface RecommendationRequestBody {
   reasons: string[];
   projectType?: string;
   traffic?: string;
+  recaptchaToken?: string;
 }
 
 interface RecommendationResponse {
@@ -25,11 +27,16 @@ export default async function handler(
     return res.status(405).json({ error: "Méthode non autorisée" });
   }
 
-  const { email, planName, price, category, reasons, projectType, traffic } =
+  const { email, planName, price, category, reasons, projectType, traffic, recaptchaToken } =
     req.body as RecommendationRequestBody;
 
   if (!email || !planName) {
     return res.status(400).json({ error: "Email et forfait recommandé requis." });
+  }
+
+  const isHuman = await verifyRecaptcha(recaptchaToken);
+  if (!isHuman) {
+    return res.status(400).json({ error: "Vérification anti-spam invalide." });
   }
 
   try {

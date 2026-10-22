@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SEO } from "@/components/SEO";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SpiderWeb } from "@/components/SpiderWeb";
 import { PageHero } from "@/components/shared/PageHero";
 import { FeatureGrid, type FeatureItem } from "@/components/shared/FeatureGrid";
+import { Recaptcha, type RecaptchaRef } from "@/components/shared/Recaptcha";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock, MessageSquare, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
@@ -53,6 +54,9 @@ export default function Contact() {
   const [formData, setFormData] = useState<ContactFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [captchaMissing, setCaptchaMissing] = useState(false);
+  const recaptchaRef = useRef<RecaptchaRef>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -63,13 +67,18 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!recaptchaToken) {
+      setCaptchaMissing(true);
+      return;
+    }
+    setCaptchaMissing(false);
     setIsSubmitting(true);
     setSubmitStatus("idle");
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
       if (!response.ok) {
         throw new Error("Erreur lors de l'envoi du message");
@@ -81,6 +90,8 @@ export default function Contact() {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -206,6 +217,24 @@ export default function Contact() {
                         className="w-full px-4 py-3 border border-border/50 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                         placeholder="Décrivez votre besoin ou posez votre question..."
                       />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-foreground mb-2">
+                        Vérification anti-spam
+                      </label>
+                      <Recaptcha
+                        ref={recaptchaRef}
+                        onChange={(token) => {
+                          setRecaptchaToken(token);
+                          if (token) setCaptchaMissing(false);
+                        }}
+                      />
+                      {captchaMissing && (
+                        <p className="text-sm text-destructive mt-2">
+                          Merci de valider le captcha avant d&apos;envoyer le message.
+                        </p>
+                      )}
                     </div>
 
                     {submitStatus === "success" && (

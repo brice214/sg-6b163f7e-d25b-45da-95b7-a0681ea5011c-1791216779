@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, Check, Zap, TrendingUp, Shield, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
+import { Recaptcha, type RecaptchaRef } from "@/components/shared/Recaptcha";
 import { useToast } from "@/hooks/use-toast";
 import type {
   CalculatorAnswers,
@@ -57,6 +58,8 @@ export function HostingCalculator() {
   const [answers, setAnswers] = useState<Partial<CalculatorAnswers>>({ features: [] });
   const [recommendation, setRecommendation] = useState<PlanRecommendation | null>(null);
   const [showResults, setShowResults] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<RecaptchaRef>(null);
   const { toast } = useToast();
 
   const progress = (currentStep / STEPS) * 100;
@@ -96,6 +99,7 @@ export function HostingCalculator() {
           reasons: rec.reasons,
           projectType: currentAnswers.projectType,
           traffic: currentAnswers.traffic,
+          recaptchaToken,
         }),
       });
       if (!response.ok) throw new Error("send failed");
@@ -111,6 +115,13 @@ export function HostingCalculator() {
   const nextStep = () => {
     if (currentStep < STEPS) {
       setCurrentStep(currentStep + 1);
+      return;
+    }
+    if (answers.email && !recaptchaToken) {
+      toast({
+        title: "Vérification requise",
+        description: "Merci de valider le captcha pour recevoir votre recommandation par email.",
+      });
       return;
     }
     if (answers.projectType && answers.traffic && answers.technicalLevel) {
@@ -147,6 +158,8 @@ export function HostingCalculator() {
     setCurrentStep(1);
     setAnswers({ features: [] });
     setRecommendation(null);
+    setRecaptchaToken(null);
+    recaptchaRef.current?.reset();
   };
 
   if (showResults && recommendation) {
@@ -443,6 +456,9 @@ export function HostingCalculator() {
                 onChange={(e) => updateAnswer("email", e.target.value)}
                 className="max-w-md"
               />
+              <div className="mt-4">
+                <Recaptcha ref={recaptchaRef} onChange={setRecaptchaToken} />
+              </div>
             </div>
           </div>
         )}
