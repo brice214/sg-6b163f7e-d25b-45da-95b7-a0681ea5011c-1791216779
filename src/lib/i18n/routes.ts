@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/types";
 
-export const AVAILABLE_EN_PATHS: string[] = [];
+export const AVAILABLE_EN_PATHS: string[] = ["/"];
 
 function normalize(path: string): string {
   if (path === "/") return "/";

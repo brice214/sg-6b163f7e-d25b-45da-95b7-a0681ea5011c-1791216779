@@ -2,14 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizedHref as getLocalizedHref } from "@/lib/i18n/routes";
 
 export function Footer() {
   const { locale, t } = useLanguage();
 
-  const localizedHref = (path: string): string => {
-    if (locale === "fr") return path;
-    return path === "/" ? "/en" : `/en${path}`;
-  };
+  const localizedHref = (path: string): string => getLocalizedHref(path, locale);
 
   return (
     <footer className="bg-foreground text-background">

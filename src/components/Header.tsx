@@ -6,17 +6,12 @@ import { useState } from "react";
 import { Menu, X, Phone, Mail, User, Settings, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import type { Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/i18n/routes";
 
 interface NavItem {
   path: string;
   label: string;
   highlight?: boolean;
-}
-
-function localizedHref(path: string, locale: Locale): string {
-  if (locale === "fr") return path;
-  return path === "/" ? "/en" : `/en${path}`;
 }
 
 export function Header() {

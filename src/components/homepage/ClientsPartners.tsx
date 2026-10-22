@@ -1,3 +1,6 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+import { getHomepageContent } from "@/lib/i18n/content/homepage";
+
 interface PartnerLogo {
   src: string;
   alt: string;
@@ -105,19 +108,21 @@ function MarqueeRow({
 }
 
 export function ClientsPartners() {
+  const { locale } = useLanguage();
+  const content = getHomepageContent(locale).clientsPartners;
+
   return (
     <section className="py-20 md:py-28 bg-muted/40 border-y border-border overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="font-mono text-sm text-primary font-semibold tracking-wide">
-            ~/partenaires
+            {content.eyebrow}
           </span>
           <h2 className="font-mono text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
-            Clients &amp; Partenaires
+            {content.title}
           </h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-            Institutions publiques, opérateurs mobiles et entreprises technologiques
-            qui nous font confiance au Gabon et en Afrique Centrale.
+            {content.subtitle}
           </p>
         </div>
       </div>
