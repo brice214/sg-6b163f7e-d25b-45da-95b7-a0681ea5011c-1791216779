@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { getLocaleFromPath, isPathLocalized, toEnglishPath, toFrenchPath } from '@/lib/i18n/routes';
 
 interface SEOProps {
   title?: string;
@@ -44,9 +46,35 @@ export function SEOElements({
 
 // Default SEO component for use in pages/_app.tsx or individual pages (uses next/head)
 export function SEO(props: SEOProps) {
+  const router = useRouter();
+  const currentPath = (router.asPath || "/").split("?")[0].split("#")[0];
+  const locale = getLocaleFromPath(currentPath);
+  const baseUrl = "https://spiderhoster.com";
+  const buildUrl = (path: string) => (path === "/" ? `${baseUrl}/` : `${baseUrl}${path}`);
+
+  let hreflangLinks: { hrefLang: string; href: string }[] = [];
+  if (locale === "en") {
+    const frPath = toFrenchPath(currentPath);
+    hreflangLinks = [
+      { hrefLang: "en", href: buildUrl(currentPath) },
+      { hrefLang: "fr", href: buildUrl(frPath) },
+      { hrefLang: "x-default", href: buildUrl(frPath) },
+    ];
+  } else if (isPathLocalized(currentPath)) {
+    const enPath = toEnglishPath(currentPath);
+    hreflangLinks = [
+      { hrefLang: "fr", href: buildUrl(currentPath) },
+      { hrefLang: "en", href: buildUrl(enPath) },
+      { hrefLang: "x-default", href: buildUrl(currentPath) },
+    ];
+  }
+
   return (
     <Head>
       <SEOElements {...props} />
+      {hreflangLinks.map((link) => (
+        <link key={link.hrefLang} rel="alternate" hrefLang={link.hrefLang} href={link.href} />
+      ))}
     </Head>
   );
 }

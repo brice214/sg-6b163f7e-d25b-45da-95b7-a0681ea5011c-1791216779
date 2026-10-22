@@ -1,5 +1,12 @@
 import { cn } from "@/lib/utils";
-import { Html, Head, Main, NextScript } from "next/document";
+import NextDocument, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  type DocumentContext,
+  type DocumentInitialProps,
+} from "next/document";
 import { SEOElements } from "@/components/SEO";
 
 const organizationSchema = {
@@ -54,24 +61,23 @@ const organizationSchema = {
   sameAs: [],
 };
 
-export default function Document() {
+interface CustomDocumentProps extends DocumentInitialProps {
+  locale: "fr" | "en";
+}
+
+export default function Document({ locale }: CustomDocumentProps) {
   return (
-    <Html lang="fr">
+    <Html lang={locale}>
       <Head>
         <SEOElements />
         <meta name="geo.region" content="GA" />
         <meta name="geo.placename" content="Libreville" />
-        <meta name="language" content="French" />
+        <meta name="language" content={locale === "en" ? "English" : "French"} />
         <meta name="author" content="SPIDERHOSTER" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        {/*
-          CRITICAL: DO NOT REMOVE THIS SCRIPT
-          The Softgen AI monitoring script is essential for core app functionality.
-          The application will not function without it.
-        */}
         <script
           src="https://cdn.softgen.ai/script.js"
           async
@@ -86,7 +92,6 @@ export default function Document() {
         <Main />
         <NextScript />
 
-        {/* Visual Editor Script */}
         {process.env.NODE_ENV === "development" && (
           <script
             src="https://cdn.softgen.dev/visual-editor.min.js"
@@ -98,3 +103,11 @@ export default function Document() {
     </Html>
   );
 }
+
+Document.getInitialProps = async (
+  ctx: DocumentContext
+): Promise<CustomDocumentProps> => {
+  const initialProps = await NextDocument.getInitialProps(ctx);
+  const locale: "fr" | "en" = ctx.pathname?.startsWith("/en") ? "en" : "fr";
+  return { ...initialProps, locale };
+};
