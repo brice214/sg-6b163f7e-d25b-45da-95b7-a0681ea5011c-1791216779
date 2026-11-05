@@ -1,7 +1,126 @@
 import type { HomepageContent } from "@/lib/i18n/content/homepage-types";
 
-export const home
-...
-e nous font confiance au Gabon et en Afrique Centrale.",
+export const homepageFr: HomepageContent = {
+  hero: {
+    badge: "Hébergement Premium pour l'Afrique",
+    titleBefore: "Votre hébergement web ",
+    titleHighlight: "rapide, sécurisé",
+    titleAfter: " et adapté à vos ambitions",
+    subtitle: "Infrastructure internationale de pointe au service de l'Afrique. Support expert 24/7 basé au Gabon et en Europe, performances exceptionnelles pour votre réussite en ligne.",
+    ctaPrimary: "Commander maintenant",
+    ctaSecondary: "Quel hébergement me faut-il ?",
+    ctaTertiary: "Découvrir nos offres",
+    statUptimeLabel: "Uptime garanti",
+    statSslLabel: "Certificat gratuit",
+    statSupportLabel: "Support expert",
+  },
+  services: {
+    badge: "Nos Services",
+    titleBefore: "Solutions d'hébergement ",
+    titleHighlight: "complètes",
+    subtitle: "De l'hébergement partagé aux serveurs dédiés, trouvez la solution parfaite pour votre projet web",
+    learnMore: "En savoir plus",
+    items: [
+      {
+        title: "Hébergement Web",
+        description: "Hébergement mutualisé haute performance avec cPanel, SSL gratuit et sauvegardes quotidiennes. Idéal pour sites vitrines et portfolios.",
+        features: ["cPanel inclus", "SSL gratuit", "Sauvegardes automatiques"],
+      },
+      {
+        title: "Hébergement WordPress",
+        description: "Hébergement optimisé pour WordPress avec installation en un clic, cache intégré et mises à jour automatiques. Performance maximale garantie.",
+        features: ["Installation en 1 clic", "Cache LiteSpeed", "Mises à jour automatiques"],
+      },
+      {
+        title: "Serveurs VPS",
+        description: "Serveurs privés virtuels avec ressources dédiées, accès root complet et scalabilité instantanée. Contrôle total sur votre infrastructure.",
+        features: ["Ressources dédiées", "Accès root", "Scalabilité instantanée"],
+      },
+      {
+        title: "Noms de Domaine",
+        description: "Enregistrez votre domaine dans toutes les extensions (.ga, .com, .net, .org). Gestion DNS avancée et transfert facile.",
+        features: ["Toutes extensions", "DNS avancé", "Transfert facile"],
+      },
+    ],
+  },
+  why: {
+    badge: "Pourquoi nous choisir",
+    titleBefore: "L'excellence au service de votre ",
+    titleHighlight: "réussite",
+    subtitle: "SPIDERHOSTER combine technologie de pointe et expertise locale pour vous offrir le meilleur hébergement en Afrique",
+    reasons: [
+      { title: "Performance Maximale", description: "Serveurs NVMe SSD, CDN intégré et cache avancé pour des temps de chargement ultra-rapides." },
+      { title: "Sécurité Renforcée", description: "Pare-feu WAF, protection DDoS, SSL gratuit et sauvegardes quotidiennes automatiques." },
+      { title: "Support Expert 24/7", description: "Équipe technique locale disponible jour et nuit par téléphone, email et chat en direct." },
+      { title: "Scalabilité Instantanée", description: "Évoluez facilement selon vos besoins, sans interruption de service." },
+      { title: "Confidentialité Garantie", description: "Données hébergées en Afrique, conformité RGPD et politique de confidentialité stricte." },
+      { title: "Uptime 99.9%", description: "Infrastructure redondante et monitoring 24/7 pour une disponibilité maximale garantie." },
+    ],
+  },
+  offers: {
+    badge: "Nos Offres",
+    title: "Plans d'Hébergement",
+    subtitle: "Choisissez la formule qui correspond à vos besoins. Toutes nos offres incluent SSL gratuit et support 24/7",
+    monthly: "Mensuel",
+    annually: "Annuel",
+    popularBadge: "⭐ Le plus populaire ⭐",
+    perMonth: "/mois",
+    perYear: "/an",
+    choosePrefix: "Choisir ",
+    paymentNote: "💳 Paiements acceptés : Airtel Money, Moov Money, Carte bancaire, Virement, Chèque, Espèces",
+    plans: [
+      {
+        name: "Starter",
+        description: "Parfait pour démarrer",
+        features: ["2 Go d'espace web", "Bande passante illimitée", "1 base de données", "1 sous-domaine", "10 comptes email", "Certificat SSL gratuit", "WordPress optimisé", "Support 24/7"],
+      },
+      {
+        name: "Evolution",
+        description: "Notre meilleur rapport qualité-prix",
+        features: ["300 Go d'espace web", "Bande passante illimitée", "4 bases de données", "4 sous-domaines", "20 comptes email", "Certificat SSL gratuit", "WordPress optimisé", "Support 24/7"],
+      },
+      {
+        name: "Premium",
+        description: "Performance maximale",
+        features: ["500 Go d'espace web", "Bande passante illimitée", "10 bases de données", "10 sous-domaines", "30 comptes email", "Certificat SSL gratuit", "WordPress optimisé", "Support 24/7"],
+      },
+    ],
+  },
+  testimonials: {
+    badge: "Témoignages",
+    title: "Ce que disent nos clients",
+    subtitle: "Plus de 5000 clients nous font confiance pour leur hébergement web en Afrique",
+    items: [
+      { role: "Directeur Technique", company: "Ndong Digital Solutions", content: "SPIDERHOSTER a transformé notre infrastructure web. Les performances sont exceptionnelles et le support technique répond en quelques minutes, même le week-end. Un vrai partenaire pour notre croissance." },
+      { role: "Fondatrice", company: "Koumba E-commerce", content: "J'ai migré mon site e-commerce chez SPIDERHOSTER il y a 6 mois. La différence est remarquable : temps de chargement divisés par trois, aucune interruption, et mes clients le remarquent. Je recommande vivement." },
+      { role: "CEO", company: "StartupHub Gabon", content: "Nous hébergeons 15 sites clients sur leurs serveurs VPS. Infrastructure stable, scalabilité sans accroc, et tarifs compétitifs. L'équipe technique comprend vraiment les besoins d'une agence. Excellent partenariat." },
+      { role: "Consultante Web", company: "Mboumba Consulting", content: "Support local, serveurs basés au Gabon et vraie expertise locale : SPIDERHOSTER coche toutes les cases. Mes clients adorent la rapidité, et moi j'adore la facilité de gestion via cPanel." },
+    ],
+  },
+  blogPreview: {
+    badge: "Blog",
+    title: "Derniers articles",
+    subtitle: "Conseils, tutoriels et actualités pour optimiser votre présence en ligne",
+    viewAll: "Voir tous les articles",
+    read: "Lire",
+  },
+  faq: {
+    badge: "FAQ",
+    title: "Questions fréquentes",
+    subtitle: "Tout ce que vous devez savoir sur nos services d'hébergement",
+    items: [
+      { question: "Quel hébergement choisir ?", answer: "Pour un portfolio ou un blog, notre offre Starter en hébergement web suffit. Pour un site WordPress, optez pour notre hébergement WordPress optimisé. Pour des projets plus exigeants nécessitant des ressources dédiées et un contrôle total, choisissez un VPS." },
+      { question: "Puis-je migrer mon site existant vers SPIDERHOSTER ?", answer: "Absolument. Notre équipe technique vous accompagne gratuitement dans votre migration. Contactez le support avec les détails de votre hébergement actuel, et nous nous occupons du transfert sans interruption de service." },
+      { question: "Où sont situés vos datacenters ?", answer: "Nos datacenters sont situés au Royaume-Uni, garantissant une infrastructure de pointe avec une connectivité optimale pour l'Afrique et le monde entier." },
+      { question: "Puis-je changer de forfait plus tard ?", answer: "Oui, vous pouvez upgrader ou downgrader votre forfait à tout moment depuis votre espace client. Le changement est effectif immédiatement." },
+      { question: "Quel support technique proposez-vous ?", answer: "Notre équipe d'experts est disponible 24/7 par email, chat en direct et téléphone pour vous accompagner à tout moment." },
+      { question: "Les certificats SSL sont-ils vraiment gratuits ?", answer: "Oui, chaque forfait inclut un certificat SSL Let's Encrypt gratuit, installé et renouvelé automatiquement." },
+      { question: "Proposez-vous une garantie de satisfaction ?", answer: "Oui, chaque forfait d'hébergement bénéficie d'une garantie satisfait ou remboursé de 30 jours. Si vous n'êtes pas satisfait dans les 30 premiers jours, nous vous remboursons intégralement, sans question." },
+    ],
+  },
+  clientsPartners: {
+    eyebrow: "~/partenaires",
+    title: "Clients & Partenaires",
+    subtitle: "Institutions publiques, opérateurs mobiles et entreprises technologiques qui nous font confiance au Gabon et en Afrique Centrale.",
   },
 };

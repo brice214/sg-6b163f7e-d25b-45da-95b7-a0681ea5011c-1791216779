@@ -1,7 +1,126 @@
 import type { HomepageContent } from "@/lib/i18n/content/homepage-types";
 
-export const home
-...
-hnology companies that trust us across Gabon and Central Africa.",
+export const homepageEn: HomepageContent = {
+  hero: {
+    badge: "Premium Hosting for Africa & Beyond",
+    titleBefore: "Web hosting that's ",
+    titleHighlight: "fast, secure",
+    titleAfter: " and built for your ambitions",
+    subtitle: "World-class infrastructure powering Africa's digital growth. 24/7 expert support based in Gabon and Europe, with the performance your online success demands.",
+    ctaPrimary: "Get Started Now",
+    ctaSecondary: "Which plan is right for me?",
+    ctaTertiary: "Explore our plans",
+    statUptimeLabel: "Guaranteed uptime",
+    statSslLabel: "Free certificate",
+    statSupportLabel: "Expert support",
+  },
+  services: {
+    badge: "Our Services",
+    titleBefore: "Complete hosting ",
+    titleHighlight: "solutions",
+    subtitle: "From shared hosting to dedicated servers, find the perfect fit for your web project",
+    learnMore: "Learn more",
+    items: [
+      {
+        title: "Web Hosting",
+        description: "High-performance shared hosting with cPanel, free SSL, and daily backups. Ideal for business and portfolio websites.",
+        features: ["cPanel included", "Free SSL certificate", "Automatic backups"],
+      },
+      {
+        title: "WordPress Hosting",
+        description: "Hosting optimized for WordPress with one-click install, built-in caching, and automatic updates. Maximum performance, guaranteed.",
+        features: ["One-click install", "LiteSpeed caching", "Automatic updates"],
+      },
+      {
+        title: "VPS Servers",
+        description: "Virtual private servers with dedicated resources, full root access, and instant scalability. Complete control over your infrastructure.",
+        features: ["Dedicated resources", "Root access", "Instant scalability"],
+      },
+      {
+        title: "Domain Names",
+        description: "Register your domain across every extension (.ga, .com, .net, .org). Advanced DNS management and seamless transfers.",
+        features: ["All extensions", "Advanced DNS", "Easy transfer"],
+      },
+    ],
+  },
+  why: {
+    badge: "Why Choose Us",
+    titleBefore: "Excellence powering your ",
+    titleHighlight: "success",
+    subtitle: "SPIDERHOSTER combines cutting-edge technology with local expertise to deliver the best hosting experience in Africa",
+    reasons: [
+      { title: "Peak Performance", description: "NVMe SSD servers, built-in CDN, and advanced caching for lightning-fast load times." },
+      { title: "Hardened Security", description: "WAF firewall, DDoS protection, free SSL, and automatic daily backups." },
+      { title: "24/7 Expert Support", description: "A local technical team available day and night by phone, email, and live chat." },
+      { title: "Instant Scalability", description: "Grow effortlessly as your needs evolve, with zero service interruption." },
+      { title: "Guaranteed Privacy", description: "Your data hosted in Africa, GDPR-aligned practices, and a strict privacy policy." },
+      { title: "99.9% Uptime", description: "Redundant infrastructure and round-the-clock monitoring for maximum guaranteed availability." },
+    ],
+  },
+  offers: {
+    badge: "Our Plans",
+    title: "Hosting Plans",
+    subtitle: "Choose the plan that fits your needs. Every plan includes free SSL and 24/7 support",
+    monthly: "Monthly",
+    annually: "Yearly",
+    popularBadge: "⭐ Most Popular ⭐",
+    perMonth: "/month",
+    perYear: "/year",
+    choosePrefix: "Choose ",
+    paymentNote: "💳 Payments accepted: Airtel Money, Moov Money, Credit Card, Bank Transfer, Check, Cash",
+    plans: [
+      {
+        name: "Starter",
+        description: "Perfect to get started",
+        features: ["2 GB Web Space", "Unlimited Bandwidth", "1 Database", "1 Subdomain", "10 Email Accounts", "Free SSL Certificate", "Optimized WordPress", "24/7 Support"],
+      },
+      {
+        name: "Evolution",
+        description: "Our best-value plan",
+        features: ["300 GB Web Space", "Unlimited Bandwidth", "4 Databases", "4 Subdomains", "20 Email Accounts", "Free SSL Certificate", "Optimized WordPress", "24/7 Support"],
+      },
+      {
+        name: "Premium",
+        description: "Maximum performance",
+        features: ["500 GB Web Space", "Unlimited Bandwidth", "10 Databases", "10 Subdomains", "30 Email Accounts", "Free SSL Certificate", "Optimized WordPress", "24/7 Support"],
+      },
+    ],
+  },
+  testimonials: {
+    badge: "Testimonials",
+    title: "What Our Clients Say",
+    subtitle: "Over 5,000 clients trust us with their web hosting across Africa",
+    items: [
+      { role: "Chief Technology Officer", company: "Ndong Digital Solutions", content: "SPIDERHOSTER transformed our web infrastructure. Performance is outstanding, and technical support responds within minutes, even on weekends. A reliable partner for our growth." },
+      { role: "Founder", company: "Koumba E-commerce", content: "I migrated my e-commerce site to SPIDERHOSTER six months ago. The difference is remarkable: load times cut by two-thirds, zero downtime, and customers notice the speed. Highly recommended." },
+      { role: "CEO", company: "StartupHub Gabon", content: "We host 15 client sites on their VPS servers. Stable infrastructure, seamless scalability, and competitive pricing. The technical team truly understands an agency's needs. Excellent partnership." },
+      { role: "Web Consultant", company: "Mboumba Consulting", content: "Local support, servers based in Gabon, and genuine local expertise, SPIDERHOSTER checks every box. My clients love the performance, and I love how easy it is to manage everything through cPanel." },
+    ],
+  },
+  blogPreview: {
+    badge: "Blog",
+    title: "Latest Articles",
+    subtitle: "Tips, tutorials, and insights to grow your online presence",
+    viewAll: "View all articles",
+    read: "Read",
+  },
+  faq: {
+    badge: "FAQ",
+    title: "Frequently Asked Questions",
+    subtitle: "Everything you need to know about our hosting services",
+    items: [
+      { question: "Which hosting plan should I choose?", answer: "For a portfolio or blog, our Starter web hosting plan is enough. For a WordPress site, go with our optimized WordPress hosting. For more demanding projects that need dedicated resources and full control, choose a VPS." },
+      { question: "Can I migrate my existing website to SPIDERHOSTER?", answer: "Absolutely. Our technical team assists with your migration free of charge. Contact support with your current hosting details, and we will handle the transfer with zero downtime." },
+      { question: "Where are your datacenters located?", answer: "Our datacenters are located in the United Kingdom, ensuring state-of-the-art infrastructure with optimal connectivity for Africa and the rest of the world." },
+      { question: "Can I change my plan later?", answer: "Yes, you can upgrade or downgrade your plan at any time from your client area. Changes take effect immediately." },
+      { question: "What technical support do you offer?", answer: "Our team of experts is available 24/7 by email, live chat, and phone to support you whenever you need it." },
+      { question: "Are SSL certificates really free?", answer: "Yes, every plan includes a free Let's Encrypt SSL certificate, automatically installed and renewed." },
+      { question: "Do you offer a satisfaction guarantee?", answer: "Yes, every hosting plan comes with a 30-day money-back guarantee. If you are not satisfied within the first 30 days, we will refund you in full, no questions asked." },
+    ],
+  },
+  clientsPartners: {
+    eyebrow: "~/partners",
+    title: "Clients & Partners",
+    subtitle: "Public institutions, mobile network operators, and technology companies that trust us across Gabon and Central Africa.",
   },
 };
