@@ -1,4 +1,5 @@
 import { SEO } from "@/components/SEO";
+import Head from "next/head";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/homepage/Services";
@@ -14,6 +15,9 @@ import { SpiderWeb } from "@/components/SpiderWeb";
 export default function Home() {
   return (
     <>
+      <Head>
+        <meta name="google-site-verification" content="Hy6HQlxCVL3HgF8dF5hFpZk03nupEdKSceZsPURTvv0" />
+      </Head>
       <SEO 
         title="Hébergement Web Gabon | SPIDERHOSTER - Hébergeur N°1 en Afrique Centrale"
         description="Hébergement Web, WordPress, VPS et noms de domaine au Gabon. Datacenter à Libreville, support 24/7, SSL gratuit, paiement Airtel Money & Moov Money. Devis gratuit."

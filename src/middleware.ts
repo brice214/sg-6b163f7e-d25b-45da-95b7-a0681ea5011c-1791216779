@@ -2,8 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { AVAILABLE_EN_PATHS, toEnglishPath } from "@/lib/i18n/routes";
 
 const LOCALE_COOKIE = "NEXT_LOCALE";
+const REGION_COOKIE = "NEXT_REGION";
 const BOT_PATTERN =
   /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|preview|headless/i;
+
+const EUROPE_COUNTRIES = new Set([
+  "FR", "BE", "LU", "CH", "MC", "DE", "IT", "ES", "PT", "NL", "AT", "IE", "GB",
+  "DK", "SE", "NO", "FI", "PL", "CZ", "SK", "HU", "RO", "BG", "GR", "HR", "SI",
+  "EE", "LV", "LT", "CY", "MT", "IS", "LI", "AD", "SM", "VA", "BA", "RS", "MK",
+  "AL", "ME", "UA", "MD",
+]);
 
 function isLocalized(pathname: string): boolean {
   const normalized = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
@@ -23,35 +31,42 @@ export function middleware(request: NextRequest) {
   }
 
   const userAgent = request.headers.get("user-agent") || "";
-  if (BOT_PATTERN.test(userAgent)) {
-    return NextResponse.next();
+  const isBot = BOT_PATTERN.test(userAgent);
+
+  let response: NextResponse;
+
+  if (isBot || !isLocalized(pathname)) {
+    response = NextResponse.next();
+  } else {
+    const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
+
+    if (cookieLocale === "en") {
+      response = NextResponse.redirect(new URL(toEnglishPath(pathname), request.url));
+    } else if (cookieLocale === "fr") {
+      response = NextResponse.next();
+    } else {
+      const acceptLanguage = request.headers.get("accept-language") || "";
+      const prefersFrench = /^fr/i.test(acceptLanguage.split(",")[0]?.trim() || "");
+
+      response = prefersFrench
+        ? NextResponse.next()
+        : NextResponse.redirect(new URL(toEnglishPath(pathname), request.url));
+
+      response.cookies.set(LOCALE_COOKIE, prefersFrench ? "fr" : "en", {
+        maxAge: 60 * 60 * 24 * 365,
+        path: "/",
+      });
+    }
   }
 
-  if (!isLocalized(pathname)) {
-    return NextResponse.next();
+  if (!isBot && !request.cookies.get(REGION_COOKIE)?.value) {
+    const country = request.headers.get("x-vercel-ip-country") || "";
+    const region = EUROPE_COUNTRIES.has(country) ? "eu" : "africa";
+    response.cookies.set(REGION_COOKIE, region, {
+      maxAge: 60 * 60 * 24 * 365,
+      path: "/",
+    });
   }
-
-  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
-
-  if (cookieLocale === "en") {
-    return NextResponse.redirect(new URL(toEnglishPath(pathname), request.url));
-  }
-
-  if (cookieLocale === "fr") {
-    return NextResponse.next();
-  }
-
-  const acceptLanguage = request.headers.get("accept-language") || "";
-  const prefersFrench = /^fr/i.test(acceptLanguage.split(",")[0]?.trim() || "");
-
-  const response = prefersFrench
-    ? NextResponse.next()
-    : NextResponse.redirect(new URL(toEnglishPath(pathname), request.url));
-
-  response.cookies.set(LOCALE_COOKIE, prefersFrench ? "fr" : "en", {
-    maxAge: 60 * 60 * 24 * 365,
-    path: "/",
-  });
 
   return response;
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { parsePriceToNumber } from "@/lib/i18n/portal";
 
 export interface PricingPlan {
   name: string;
@@ -37,6 +39,14 @@ export function PricingSection({
   billingToggle = false,
 }: PricingSectionProps) {
   const [isAnnual, setIsAnnual] = useState(false);
+  const { locale, withPortalParams, formatPlanPrice } = useLanguage();
+
+  const monthlyLabel = locale === "en" ? "Monthly" : "Mensuel";
+  const annualLabel = locale === "en" ? "Yearly" : "Annuel";
+  const popularLabel = locale === "en" ? "\u2b50 Most Popular \u2b50" : "\u2b50 Le plus populaire \u2b50";
+  const chooseLabel = locale === "en" ? "Choose " : "Choisir ";
+  const perMonthLabel = locale === "en" ? "/month" : "/mois";
+  const perYearLabel = locale === "en" ? "/year" : "/an";
 
   return (
     <section id={id} className="py-20 lg:py-32 bg-gradient-to-b from-background to-muted/20">
@@ -51,7 +61,7 @@ export function PricingSection({
           {billingToggle && (
             <div className="flex items-center justify-center gap-4 mb-4">
               <span className={`text-sm font-medium transition-colors ${!isAnnual ? "text-foreground" : "text-muted-foreground"}`}>
-                Mensuel
+                {monthlyLabel}
               </span>
               <button
                 onClick={() => setIsAnnual(!isAnnual)}
@@ -66,7 +76,7 @@ export function PricingSection({
                 />
               </button>
               <span className={`text-sm font-medium transition-colors ${isAnnual ? "text-foreground" : "text-muted-foreground"}`}>
-                Annuel
+                {annualLabel}
               </span>
             </div>
           )}
@@ -74,9 +84,11 @@ export function PricingSection({
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => {
-            const displayPrice = billingToggle ? (isAnnual ? plan.priceAnnually : plan.priceMonthly) : plan.price;
-            const displayPeriod = billingToggle ? (isAnnual ? "/an" : "/mois") : plan.period;
-            const displayUrl = billingToggle ? (isAnnual ? plan.urlAnnually : plan.urlMonthly) : plan.url;
+            const rawPrice = billingToggle ? (isAnnual ? plan.priceAnnually : plan.priceMonthly) : plan.price;
+            const displayPeriod = billingToggle ? (isAnnual ? perYearLabel : perMonthLabel) : plan.period;
+            const rawUrl = billingToggle ? (isAnnual ? plan.urlAnnually : plan.urlMonthly) : plan.url;
+            const displayUrl = rawUrl ? withPortalParams(rawUrl) : rawUrl;
+            const priceValue = formatPlanPrice(parsePriceToNumber(rawPrice || "0"));
 
             return (
               <div key={plan.name} className={`relative group ${plan.popular ? "md:-mt-4" : ""}`}>
@@ -93,7 +105,7 @@ export function PricingSection({
                 >
                   {plan.popular && (
                     <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white border-none">
-                      ⭐ Le plus populaire ⭐
+                      {popularLabel}
                     </Badge>
                   )}
 
@@ -104,8 +116,8 @@ export function PricingSection({
 
                   <div className="mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-bold font-mono text-white">{displayPrice}</span>
-                      <span className="text-gray-300">FCFA</span>
+                      <span className="text-4xl font-bold font-mono text-white">{priceValue.amount}</span>
+                      <span className="text-gray-300">{priceValue.label}</span>
                     </div>
                     <p className="text-xs text-gray-400 mt-1">{displayPeriod}</p>
                   </div>
@@ -126,7 +138,7 @@ export function PricingSection({
                     } group/btn`}
                   >
                     <a href={displayUrl} target="_blank" rel="noopener noreferrer">
-                      Choisir {plan.name}
+                      {chooseLabel}{plan.name}
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                     </a>
                   </Button>
