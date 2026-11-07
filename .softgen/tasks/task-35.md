@@ -1,6 +1,6 @@
 ---
 title: Multi-devise portail & vérification Search Console
-status: in_progress
+status: done
 priority: urgent
 type: feature
 tags: [i18n, pricing, seo]
