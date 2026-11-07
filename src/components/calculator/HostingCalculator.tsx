@@ -19,6 +19,7 @@ import type {
   PlanRecommendation,
 } from "@/lib/calculator-types";
 import { calculateRecommendation, getPlanDetails, getPlanPageUrl } from "@/lib/calculator-logic";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const STEPS = 4;
 
@@ -61,6 +62,7 @@ export function HostingCalculator() {
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<RecaptchaRef>(null);
   const { toast } = useToast();
+  const { withPortalParams, formatPlanPrice } = useLanguage();
 
   const progress = (currentStep / STEPS) * 100;
 
@@ -217,9 +219,9 @@ export function HostingCalculator() {
             </div>
             <div className="text-right">
               <div className="text-4xl font-bold text-primary">
-                {recommendation.price.toLocaleString("fr-FR")}
+                {formatPlanPrice(recommendation.price).amount}
               </div>
-              <div className="text-sm text-muted-foreground">FCFA/mois</div>
+              <div className="text-sm text-muted-foreground">{formatPlanPrice(recommendation.price).label}/mois</div>
             </div>
           </div>
 
@@ -261,7 +263,7 @@ export function HostingCalculator() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="flex-1 group">
-              <a href={planDetails.url} target="_blank" rel="noopener noreferrer">
+              <a href={withPortalParams(planDetails.url)} target="_blank" rel="noopener noreferrer">
                 Commander Maintenant
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -285,11 +287,11 @@ export function HostingCalculator() {
                   <div>
                     <span className="font-semibold">{getPlanDetails(recommendation.upgrade.plan).name}</span>
                     <span className="text-sm text-muted-foreground ml-2">
-                      +{recommendation.upgrade.extraCost.toLocaleString("fr-FR")} FCFA/mois
+                      +{formatPlanPrice(recommendation.upgrade.extraCost).amount} {formatPlanPrice(recommendation.upgrade.extraCost).label}/mois
                     </span>
                   </div>
                   <Button asChild size="sm" variant="outline">
-                    <a href={getPlanDetails(recommendation.upgrade.plan).url} target="_blank" rel="noopener noreferrer">
+                    <a href={withPortalParams(getPlanDetails(recommendation.upgrade.plan).url)} target="_blank" rel="noopener noreferrer">
                       Voir le forfait
                     </a>
                   </Button>
@@ -310,12 +312,12 @@ export function HostingCalculator() {
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-semibold">{altPlan.name}</span>
                       <span className="text-sm font-medium">
-                        {altPlan.price.toLocaleString("fr-FR")} FCFA/mois
+                        {formatPlanPrice(altPlan.price).amount} {formatPlanPrice(altPlan.price).label}/mois
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{alt.reason}</p>
                     <Button asChild variant="outline" size="sm" className="w-full">
-                      <a href={altPlan.url} target="_blank" rel="noopener noreferrer">
+                      <a href={withPortalParams(altPlan.url)} target="_blank" rel="noopener noreferrer">
                         Voir cette offre
                       </a>
                     </Button>
