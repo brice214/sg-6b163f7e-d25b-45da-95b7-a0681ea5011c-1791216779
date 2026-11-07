@@ -13,9 +13,23 @@ const EUROPE_COUNTRIES = new Set([
   "AL", "ME", "UA", "MD",
 ]);
 
+const FRANCOPHONE_COUNTRIES = new Set([
+  "FR", "BE", "CH", "LU", "MC", "CA",
+  "GA", "SN", "CI", "CM", "ML", "BF", "NE", "TD", "CG", "CD", "BJ", "TG",
+  "MG", "RW", "BI", "DJ", "KM", "GN", "MR", "HT", "VU", "SC", "GQ", "CF",
+]);
+
 function isLocalized(pathname: string): boolean {
   const normalized = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
   return AVAILABLE_EN_PATHS.includes(normalized);
+}
+
+function detectPrefersFrench(request: NextRequest, country: string): boolean {
+  if (country) {
+    return FRANCOPHONE_COUNTRIES.has(country);
+  }
+  const acceptLanguage = request.headers.get("accept-language") || "";
+  return /^fr/i.test(acceptLanguage.split(",")[0]?.trim() || "");
 }
 
 export function middleware(request: NextRequest) {
@@ -32,6 +46,7 @@ export function middleware(request: NextRequest) {
 
   const userAgent = request.headers.get("user-agent") || "";
   const isBot = BOT_PATTERN.test(userAgent);
+  const country = request.headers.get("x-vercel-ip-country") || "";
 
   let response: NextResponse;
 
@@ -45,8 +60,7 @@ export function middleware(request: NextRequest) {
     } else if (cookieLocale === "fr") {
       response = NextResponse.next();
     } else {
-      const acceptLanguage = request.headers.get("accept-language") || "";
-      const prefersFrench = /^fr/i.test(acceptLanguage.split(",")[0]?.trim() || "");
+      const prefersFrench = detectPrefersFrench(request, country);
 
       response = prefersFrench
         ? NextResponse.next()
@@ -60,7 +74,6 @@ export function middleware(request: NextRequest) {
   }
 
   if (!isBot && !request.cookies.get(REGION_COOKIE)?.value) {
-    const country = request.headers.get("x-vercel-ip-country") || "";
     const region = EUROPE_COUNTRIES.has(country) ? "eu" : "africa";
     response.cookies.set(REGION_COOKIE, region, {
       maxAge: 60 * 60 * 24 * 365,
